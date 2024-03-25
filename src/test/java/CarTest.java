@@ -7,8 +7,15 @@ import org.junit.jupiter.api.Test;
 public class CarTest {
 
 	@Test
+	@DisplayName("자동차 이름은 5자 이하만 가능하다.")
+	void 자동차_이름_검증() {
+		assertThatExceptionOfType(IllegalArgumentException.class)
+			.isThrownBy(() -> new Car("5자가 넘는 이름"));
+	}
+
+	@Test
 	@DisplayName("전진한다.")
-	void go() {
+	void 전진() {
 		Car car = new Car("test");
 		car.move(4);
 		assertThat(car.getPosition()).isEqualTo(1);
@@ -16,7 +23,7 @@ public class CarTest {
 
 	@Test
 	@DisplayName("이동하지 않는다.")
-	void stop() {
+	void 멈춤() {
 		Car car = new Car("test");
 		car.move(3);
 		assertThat(car.getPosition()).isEqualTo(0);
