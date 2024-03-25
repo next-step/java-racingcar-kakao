@@ -11,8 +11,17 @@ public class Input {
         return scanner.nextLine();
     }
 
-    public static String getGameCountLine() {
+    public static int getGameCount() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return scanner.nextLine();
+        String input = scanner.nextLine();
+        validate(input);
+        return Integer.parseInt(input);
+    }
+
+    private static void validate(String input) {
+        int count = Integer.parseInt(input);
+        if (count < 0) {
+            throw new IllegalArgumentException();
+        }
     }
 }
