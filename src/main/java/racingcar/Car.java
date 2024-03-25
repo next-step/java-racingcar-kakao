@@ -1,6 +1,7 @@
 package racingcar;
 
 import java.util.Objects;
+import racingcar.dto.CarState;
 
 public class Car implements Comparable<Car>{
 
@@ -14,6 +15,10 @@ public class Car implements Comparable<Car>{
 	public Car(String name, int position) {
 		this.name = name;
 		this.position = position;
+	}
+
+	public CarState getState() {
+		return new CarState(this.name, this.position);
 	}
 
 	public void proceed() {
