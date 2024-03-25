@@ -2,12 +2,11 @@ package car;
 
 public class Car {
     private int position;
+    private final String name;
 
-    public int generateRandomNumber() {
-        return (int) (Math.random() * 10);
+    public Car(String name) {
+        this.name = name;
     }
-
-
 
     public int getPosition() {
         return position;
