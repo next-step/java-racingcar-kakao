@@ -26,6 +26,24 @@ public class Cars {
         return cars.size();
     }
 
+    public void move(List<DiceResult> diceResults) {
+        for (int i = 0; i < cars.size(); i++) {
+            cars.get(i).move(diceResults.get(i));
+        }
+    }
+
+    public List<String> decideWinner() {
+        int max = cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow();
+
+        return cars.stream()
+                .filter(it -> it.getPosition() == max)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
     @Override
     public String toString() {
         return cars.stream()
