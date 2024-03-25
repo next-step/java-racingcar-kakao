@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cars {
 
@@ -16,5 +17,27 @@ public class Cars {
 
     public int getCarSize() {
         return carList.size();
+    }
+
+    public Car getCar(String carName) {
+        return carList.stream()
+                .filter(car -> car.getName().equals(carName))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("해당 이름의 차량이 없습니다."));
+    }
+
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+        return carList.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return carList.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("차량이 없습니다."));
     }
 }

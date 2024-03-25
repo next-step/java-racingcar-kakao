@@ -22,6 +22,10 @@ public class Car {
         return position;
     }
 
+    public String getName() {
+        return name;
+    }
+
     private void validateName(String name) {
         if (name.length() > 5) {
             throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
