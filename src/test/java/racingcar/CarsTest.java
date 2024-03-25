@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class RacingGameTest {
-	RacingGame racingGame;
+public class CarsTest {
+	Cars racingGame;
 	List<Car> cars;
 	@BeforeEach
 	void setUp() {
@@ -24,7 +24,7 @@ public class RacingGameTest {
 	public void findWinnerTest(){
 		Car winner = new Car("winner", 3);
 		cars.add(winner);
-		racingGame = new RacingGame(5, cars);
+		racingGame = new Cars(cars);
 		Assertions.assertThat(racingGame.findWinner()).contains(winner);
 	}
 
@@ -35,7 +35,7 @@ public class RacingGameTest {
 		cars.add(winner1);
 		Car winner2 = new Car("winner2", 3);
 		cars.add(winner2);
-		racingGame = new RacingGame(5, cars);
+		racingGame = new Cars(cars);
 		Assertions.assertThat(racingGame.findWinner()).contains(winner1, winner2);
 	}
 }

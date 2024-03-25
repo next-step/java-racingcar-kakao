@@ -3,11 +3,9 @@ package racingcar;
 import java.util.Collections;
 import java.util.List;
 
-public class RacingGame {
-	private final int round;
+public class Cars {
 	private List<Car> cars;
-	public RacingGame(int round, List<Car> cars) {
-		this.round = round;
+	public Cars(List<Car> cars) {
 		this.cars = cars;
 	}
 
