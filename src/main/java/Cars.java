@@ -14,6 +14,10 @@ public class Cars {
 		}
 	}
 
+	public List<Car> getCars(){
+		return new ArrayList<>(cars);
+	}
+
 	public List<String> getCarNames() {
 		return cars.stream()
 			.map(Car::getName)

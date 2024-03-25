@@ -10,12 +10,15 @@ public class OutputView {
 		System.out.println("시도할 횟수는 몇회인가요?");
 	}
 
-	public void printResultGuid() {
-		System.out.println("실행 결과");
+	public void printResultGuide() {
+		System.out.println(System.lineSeparator() + "실행 결과");
 	}
 
-	public void printResult(String carName, int carPosition) {
-		System.out.println(carName + " : " + "-".repeat(carPosition));
+	public void printResult(Cars cars) {
+		for(Car car: cars.getCars()){
+			System.out.println(car);
+		}
+		System.out.println();
 	}
 
 	public void printWinners(List<String> winnerNames) {
