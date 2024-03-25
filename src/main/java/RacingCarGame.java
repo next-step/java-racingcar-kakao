@@ -9,10 +9,15 @@ public class RacingCarGame {
 		Cars cars = new Cars(names);
 
 		outputView.printTryCount();
-		int number = inputView.getNumber();
+		int tryCount = inputView.getNumber();
 
+		playGame(tryCount, cars);
+	}
+
+	private static void playGame(int tryCount, Cars cars) {
 		outputView.printResultGuide();
-		for(int i=0;i<number;i++){
+
+		for(int i=0;i<tryCount;i++){
 			cars.move(new NumberGenerator());
 			outputView.printResult(cars);
 		}
