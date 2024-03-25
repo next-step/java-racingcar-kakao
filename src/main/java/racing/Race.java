@@ -30,4 +30,9 @@ public class Race {
     public List<Car> getCars() {
         return cars;
     }
+
+    public List<String> winners() {
+        int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElse(-1);
+        return cars.stream().filter(car -> car.getPosition() == maxPosition).map(Car::getName).collect(Collectors.toList());
+    }
 }

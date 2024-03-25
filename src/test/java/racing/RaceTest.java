@@ -58,4 +58,56 @@ public class RaceTest {
         // then
         assertThat(names).containsExactlyInAnyOrder("vector", "sage");
     }
+
+    @Test
+    void winners() {
+        // given
+        Car vectorCar = new Car("vector");
+        Car sageCar = new Car("sage");
+        Car amberCar = new Car("amber");
+        NumberGenerator generator = new StubNumberGenerator(0);
+        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+
+        // when
+        sageCar.move(7);
+        List<String> winners = race.winners();
+
+        // then
+        assertThat(winners).containsExactlyInAnyOrder("sage");
+    }
+
+    @Test
+    void winners2() {
+        // given
+        Car vectorCar = new Car("vector");
+        Car sageCar = new Car("sage");
+        Car amberCar = new Car("amber");
+        NumberGenerator generator = new StubNumberGenerator(0);
+        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+
+        // when
+        sageCar.move(7);
+        amberCar.move(7);
+        List<String> winners = race.winners();
+
+        // then
+        assertThat(winners).containsExactlyInAnyOrder("sage", "amber");
+    }
+
+    @Test
+    void winners3() {
+        // given
+        Car vectorCar = new Car("vector");
+        Car sageCar = new Car("sage");
+        Car amberCar = new Car("amber");
+        NumberGenerator generator = new StubNumberGenerator(0);
+        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+
+        // when
+        race.move();
+        List<String> winners = race.winners();
+
+        // then
+        assertThat(winners).containsExactlyInAnyOrder("sage", "amber", "vector");
+    }
 }
