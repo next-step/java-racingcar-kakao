@@ -11,12 +11,16 @@ public class RaceTest {
 
     @Test
     void move() {
+        // given
         Car vectorCar = new Car("vector");
         Car sageCar = new Car("sage");
         NumberGenerator generator = new StubNumberGenerator(7);
         Race race = new Race(generator, List.of(vectorCar, sageCar));
+
+        // when
         race.move();
 
+        // then
         assertAll(
                 () -> assertThat(vectorCar.getPosition()).isEqualTo(1),
                 () -> assertThat(sageCar.getPosition()).isEqualTo(1)
@@ -25,12 +29,16 @@ public class RaceTest {
 
     @Test
     void moveFail() {
+        // given
         Car vectorCar = new Car("vector");
         Car sageCar = new Car("sage");
         NumberGenerator generator = new StubNumberGenerator(0);
         Race race = new Race(generator, List.of(vectorCar, sageCar));
+
+        // when
         race.move();
 
+        // then
         assertAll(
                 () -> assertThat(vectorCar.getPosition()).isEqualTo(0),
                 () -> assertThat(sageCar.getPosition()).isEqualTo(0)
