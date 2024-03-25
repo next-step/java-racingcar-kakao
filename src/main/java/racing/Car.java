@@ -34,4 +34,8 @@ public class Car {
     public String display() {
         return name + " : " + "-".repeat(position + 1);
     }
+
+    public void moveForward(RandomStrategy rs) {
+        moveForward(rs.generateRandomNumber());
+    }
 }

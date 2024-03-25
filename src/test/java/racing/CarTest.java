@@ -2,6 +2,8 @@ package racing;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class CarTest {
@@ -44,5 +46,14 @@ public class CarTest {
     void displayWhenPositionIs3() {
         Car car = new Car("pobi", 3);
         assertThat(car.display()).isEqualTo("pobi : ----");
+    }
+
+    @Test
+    void moveRandom() {
+        Car car = new Car("pobi", 0);
+        List<Integer> numbers = List.of(4, 3, 4, 3, 4, 3);
+        RandomStrategy rs = new FakeRandomStrategy(numbers);
+        numbers.forEach(i -> car.moveForward(rs));
+        assertThat(car.getPosition()).isEqualTo(3);
     }
 }
