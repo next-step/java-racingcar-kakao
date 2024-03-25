@@ -10,10 +10,6 @@ public class Car {
         this.name = name;
     }
 
-    public int getPosition() {
-        return position;
-    }
-
     public void run(int randomNumber) {
         if (randomNumber >= 4) {
             position += 1;
@@ -21,12 +17,15 @@ public class Car {
     }
 
     public String generateMessage() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(name).append(" : ");
-        for (int i = 0; i < position; i++) {
-            sb.append("-");
-        }
-        return sb.toString();
+        return name + " : " + "-".repeat(position);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     @Override
@@ -40,9 +39,5 @@ public class Car {
     @Override
     public int hashCode() {
         return Objects.hash(position, name);
-    }
-
-    public String getName() {
-        return this.name;
     }
 }

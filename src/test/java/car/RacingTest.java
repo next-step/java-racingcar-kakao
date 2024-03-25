@@ -25,7 +25,7 @@ public class RacingTest {
         second.run(4);
         third.run(3);
 
-        RacingResult result = new RacingResult(Arrays.asList(first, second, third));
+        RacingGame result = new RacingGame(Arrays.asList(first, second, third));
         assertTrue(result.getWinners().contains(first));
     }
 
@@ -46,7 +46,7 @@ public class RacingTest {
         second.run(4);
         third.run(3);
 
-        RacingResult result = new RacingResult(Arrays.asList(first, second, third));
+        RacingGame result = new RacingGame(Arrays.asList(first, second, third));
         assertTrue(result.getWinners().contains(first));
         assertTrue(result.getWinners().contains(second));
     }

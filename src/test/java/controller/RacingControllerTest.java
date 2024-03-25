@@ -1,17 +1,22 @@
-package view;
+package controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.CarInputView;
+import view.CarOutputView;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CarInputViewTest {
-    private CarInputView carInputView;
+public class RacingControllerTest {
+    private RacingController racingController;
 
     @BeforeEach
     void setUp() {
-        carInputView = new CarInputView();
+        racingController = new RacingController(
+                new CarInputView(),
+                new CarOutputView()
+        );
     }
 
     @Test
@@ -19,7 +24,7 @@ public class CarInputViewTest {
     void validateCarNameTest() {
         String carName = "longlonglong";
         assertThrows(IllegalArgumentException.class,
-                () -> carInputView.getCarNames(carName));
+                () -> racingController.extractCarNames(carName));
     }
 
 }
