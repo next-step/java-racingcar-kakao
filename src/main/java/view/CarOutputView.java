@@ -1,5 +1,7 @@
 package view;
 
+import car.RacingResult;
+
 import java.util.List;
 
 public class CarOutputView {
@@ -20,7 +22,9 @@ public class CarOutputView {
         System.out.println();
     }
 
-    public void printWinnerMessage(String winners) {
-        System.out.println(winners + "가 최종 우승했습니다.");
+    public void printWinnerMessage(RacingResult result) {
+        StringBuilder sb = new StringBuilder();
+        result.getWinners().forEach(car -> sb.append(car.getName()).append(", "));
+        System.out.println(sb.substring(0, sb.length() - 2) + "가 최종 우승했습니다.");
     }
 }
