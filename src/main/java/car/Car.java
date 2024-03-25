@@ -20,6 +20,15 @@ public class Car {
         }
     }
 
+    public String generateMessage() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name).append(" : ");
+        for (int i = 0; i < position; i++) {
+            sb.append("-");
+        }
+        return sb.toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
