@@ -40,4 +40,14 @@ public class Cars {
                 .max()
                 .orElseThrow(() -> new IllegalArgumentException("차량이 없습니다."));
     }
+
+    public void move() {
+        carList.forEach(car ->
+                car.forward(RandomIntegerGenerator.generateEndInclusive(0, 9))
+        );
+    }
+
+    public List<Car> getCarList() {
+        return carList;
+    }
 }
