@@ -20,6 +20,18 @@ class CarsTest {
 	@DisplayName("자동차들을 이동시킨다.")
 	void 자동차_이동_시도() {
 		Cars cars = new Cars("pohi,crong,honux");
-		cars.move();
+		cars.move(new NumberGenerator() {
+			int n = 0;
+			@Override
+			public int generateNumber() {
+				if(n<2){
+					n++;
+					return 10;
+				}
+				return 1;
+			}
+		});
+
+		assertThat(cars.getCarPositions()).containsExactly(1,1,0);
 	}
 }

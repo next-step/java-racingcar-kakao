@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Cars {
@@ -20,14 +19,15 @@ public class Cars {
 			.collect(Collectors.toList());
 	}
 
-	public void move() {
+	public void move(NumberGenerator generator) {
 		for(Car car : cars) {
-			car.move(generateNumber());
+			car.move(generator.generateNumber());
 		}
 	}
 
-	private int generateNumber(){
-		Random rand = new Random();
-		return rand.nextInt(10);
+	public List<Integer> getCarPositions() {
+		return cars.stream()
+			.map(Car::getPosition)
+			.collect(Collectors.toList());
 	}
 }
