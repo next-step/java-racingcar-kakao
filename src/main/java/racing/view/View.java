@@ -28,6 +28,10 @@ public class View {
         System.out.printf("%s : %s\n", name, "-".repeat(position + 1));
     }
 
+    public void printBlankLine() {
+        System.out.println();
+    }
+
     public void printWinners(List<String> winners) {
         System.out.print(String.join(", ", winners));
         System.out.println("가 최종 우승했습니다.");
