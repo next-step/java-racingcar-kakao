@@ -32,4 +32,10 @@ class CarTest {
         Car car = new Car("pobi");
         assertThat(car).isInstanceOf(Car.class);
     }
+
+    @Test
+    void random() {
+        int randomNumber = RandomIntegerGenerator.generateEndInclusive(0, 9);
+        assertThat(randomNumber).isBetween(0, 9);
+    }
 }
