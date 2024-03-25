@@ -14,10 +14,6 @@ public class Cars {
 		}
 	}
 
-	public List<Car> getCars(){
-		return new ArrayList<>(cars);
-	}
-
 	public List<String> getCarNames() {
 		return cars.stream()
 			.map(Car::getName)
@@ -50,5 +46,12 @@ public class Cars {
 			.mapToInt(Car::getPosition)
 			.max()
 			.orElse(0);
+	}
+
+	@Override
+	public String toString() {
+		return cars.stream()
+			.map(Car::toString)
+			.collect(Collectors.joining(System.lineSeparator()));
 	}
 }

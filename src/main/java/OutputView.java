@@ -15,9 +15,7 @@ public class OutputView {
 	}
 
 	public void printResult(Cars cars) {
-		for(Car car: cars.getCars()){
-			System.out.println(car);
-		}
+		System.out.println(cars);
 		System.out.println();
 	}
 
