@@ -34,4 +34,23 @@ class CarsTest {
 
 		assertThat(cars.getCarPositions()).containsExactly(1,1,0);
 	}
+
+	@Test
+	@DisplayName("우승자 목록을 반환한다.")
+	void 우승자_목록_반환() {
+		Cars cars = new Cars("pohi,crong,honux");
+		cars.move(new NumberGenerator() {
+			int n = 0;
+			@Override
+			public int generateNumber() {
+				if(n<2){
+					n++;
+					return 10;
+				}
+				return 1;
+			}
+		});
+
+		assertThat(cars.getWinners()).containsExactly("pohi", "crong");
+	}
 }
