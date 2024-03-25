@@ -27,4 +27,8 @@ public class CarOutputView {
         result.getWinners().forEach(car -> sb.append(car.getName()).append(", "));
         System.out.println(sb.substring(0, sb.length() - 2) + "가 최종 우승했습니다.");
     }
+
+    public void printErrorMessage(String message) {
+        System.out.println("[ERROR]: " + message);
+    }
 }
