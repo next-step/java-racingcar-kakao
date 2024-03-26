@@ -22,4 +22,13 @@ public class StringCalculatorTest {
 		StringCalculator calculator = new StringCalculator();
 		assertThat(calculator.calculate("1")).isEqualTo(1);
 	}
+
+	@Test
+	@DisplayName("기본 구분자를 기준으로 분리해 합을 계산한다.")
+	void 기본구분자_분리() {
+		StringCalculator calculator = new StringCalculator();
+		assertThat(calculator.calculate("1,2")).isEqualTo(3);
+		assertThat(calculator.calculate("1,2,3")).isEqualTo(6);
+		assertThat(calculator.calculate("1,2:3")).isEqualTo(6);
+	}
 }
