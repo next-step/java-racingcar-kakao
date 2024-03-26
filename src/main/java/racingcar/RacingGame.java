@@ -11,17 +11,15 @@ import racingcar.dto.CarState;
 
 public class RacingGame {
 
-	private List<Car> cars;
+	private final List<Car> cars;
 	private int rounds;
 	private final RacingGameUI ui;
 	private final ProceedLogic logic;
-	private final NumberGenerator numberGenerator;
 
 	public RacingGame(RacingGameUI ui, NumberGenerator numberGenerator) {
 		this.ui = ui;
 		this.cars = new ArrayList<>();
-		this.numberGenerator = numberGenerator;
-		this.logic = new ProceedLogic(this.numberGenerator);
+		this.logic = new ProceedLogic(numberGenerator);
 	}
 
 	public void play() {
@@ -43,6 +41,21 @@ public class RacingGame {
 	}
 
 	private void initialize() {
+		initCars();
+		initRounds();
+	}
+
+	private void initRounds() {
+		boolean validationPass = false;
+		String input = "";
+		while(!validationPass){
+			input = ui.getRounds();
+			validationPass = validateRounds(input);
+		}
+		rounds = Integer.parseInt(input);
+	}
+
+	private void initCars() {
 		boolean validationPass = false;
 		List<String> carNameList = null;
 		while (!validationPass) {
@@ -50,32 +63,40 @@ public class RacingGame {
 			carNameList = Arrays.stream(carNames.split(",")).map(String::trim).toList();
 			validationPass = validateCarNames(carNameList);
 		}
-		// validtion - 5글자이하, 중복
 
 		for (String name : carNameList) {
 			cars.add(new Car(name));
 		}
-		validationPass = false;
-		String input = "";
-		while(!validationPass){
-			input = ui.getRounds();
-			validationPass = validateRounds(input);
-		}
-		//validation - 숫자인지
-		rounds = Integer.parseInt(input);
 	}
 
 	private boolean validateRounds(String input) {
-		String trimmedString = input.trim();
-		if (trimmedString.isEmpty()) {
+		String round = input.trim();
+
+		return notEmptyRound(round) && notTooLongRound(round) && isNumericalRound(round);
+	}
+
+	private boolean validateCarNames(List<String> carNameList) {
+		return notEmptyCarName(carNameList) && notTooLongCarName(carNameList) && isUniqueCarName(carNameList);
+	}
+
+	private boolean notEmptyRound(String round) {
+		if (round.isEmpty()) {
 			ui.printError(ErrorType.EMPTY_ROUND);
 			return false;
 		}
-		if (trimmedString.length() > 5) {
+		return true;
+	}
+
+	private boolean notTooLongRound(String round) {
+		if (round.length() > 5) {
 			ui.printError(ErrorType.TOO_LONG_ROUND);
 			return false;
 		}
-		if (!Arrays.stream(trimmedString.split(""))
+		return true;
+	}
+
+	private boolean isNumericalRound(String round) {
+		if (!Arrays.stream(round.split(""))
 			.filter(s -> !Character.isDigit(s.charAt(0)))
 			.toList().isEmpty()){
 			ui.printError(ErrorType.NON_NUMERICAL_ROUND);
@@ -84,22 +105,28 @@ public class RacingGame {
 		return true;
 	}
 
-	private boolean validateCarNames(List<String> carNameList) {
+	private boolean notEmptyCarName(List<String> carNameList) {
 		if (carNameList.isEmpty() || !carNameList.stream().filter(String::isEmpty).toList().isEmpty()) {
 			ui.printError(ErrorType.EMPTY_CAR_NAME);
 			return false;
 		}
+		return true;
+	}
+
+	private boolean notTooLongCarName(List<String> carNameList) {
 		if (!carNameList.stream().filter(name -> name.length() > 5).toList().isEmpty()) {
 			ui.printError(ErrorType.TOO_LONG_CAR_NAME);
 			return false;
 		}
+		return true;
+	}
 
+	private boolean isUniqueCarName(List<String> carNameList) {
 		Set<String> uniqueName = new HashSet<>(carNameList);
 		if (uniqueName.size() != carNameList.size()) {
 			ui.printError(ErrorType.DUPLICATED_CAR_NAME);
 			return false;
 		}
-
 		return true;
 	}
 
