@@ -17,9 +17,17 @@ public class StrCalculator {
     private int sum(String[] numbersArray) {
         int sum = 0;
         for (String number : numbersArray) {
-            sum += Integer.parseInt(number);
+            sum += parseInt(number);
         }
         return sum;
+    }
+
+    private int parseInt(String number) {
+        int val = Integer.parseInt(number);
+        if (val < 0) {
+            throw new RuntimeException("Negative integer");
+        }
+        return val;
     }
 
     int add(CalcInput calcInput) {
