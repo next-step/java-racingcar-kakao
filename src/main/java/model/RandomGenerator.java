@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +21,10 @@ public class RandomGenerator {
         return RANDOM_NUM_LIST[0];
     }
 
-    public static List<Integer> makeRanNumList(String[] strList) {
+    public static List<Integer> makeRanNumList(int trialNum) {
         List<Integer> randomNumList = new ArrayList<>();
 
-        for (int i=0; i<strList.length; i++) {
+        for (int i=0; i<trialNum; i++) {
             randomNumList.add(makeRanNum());
         }
 
