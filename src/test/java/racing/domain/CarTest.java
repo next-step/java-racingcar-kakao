@@ -1,6 +1,7 @@
 package racing.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +13,7 @@ public class CarTest {
     void move() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car car = new Car("vector", carEngine);
+        Car car = new Car("vecto", carEngine);
 
         // when
         car.move();
@@ -25,7 +26,7 @@ public class CarTest {
     void moveFail() {
         // given
         CarEngine carEngine = new StubCarEngine(false);
-        Car car = new Car("vector", carEngine);
+        Car car = new Car("vecto", carEngine);
 
         // when
         car.move();
@@ -38,9 +39,19 @@ public class CarTest {
     void name() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car car = new Car("vector", carEngine);
+        Car car = new Car("vecto", carEngine);
 
         // when & then
-        assertThat(car.getName()).isEqualTo("vector");
+        assertThat(car.getName()).isEqualTo("vecto");
+    }
+
+    @Test
+    void exceedNameLength() {
+        // given
+        CarEngine carEngine = new StubCarEngine(true);
+
+        // when & then
+        assertThatThrownBy(() -> new Car("vector", carEngine))
+                .isInstanceOf(RuntimeException.class);
     }
 }

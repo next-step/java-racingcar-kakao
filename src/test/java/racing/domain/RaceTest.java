@@ -15,7 +15,7 @@ public class RaceTest {
     void move() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car vectorCar = new Car("vector", carEngine);
+        Car vectorCar = new Car("vecto", carEngine);
         Car sageCar = new Car("sage", carEngine);
         Race race = new Race(List.of(vectorCar, sageCar));
 
@@ -33,7 +33,7 @@ public class RaceTest {
     void moveFail() {
         // given
         CarEngine carEngine = new StubCarEngine(false);
-        Car vectorCar = new Car("vector", carEngine);
+        Car vectorCar = new Car("vecto", carEngine);
         Car sageCar = new Car("sage", carEngine);
         Race race = new Race(List.of(vectorCar, sageCar));
 
@@ -51,7 +51,7 @@ public class RaceTest {
     void winners() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car vectorCar = new Car("vector", carEngine);
+        Car vectorCar = new Car("vecto", carEngine);
         Car sageCar = new Car("sage", carEngine);
         Car amberCar = new Car("amber", carEngine);
         Race race = new Race(List.of(vectorCar, sageCar, amberCar));
@@ -68,7 +68,7 @@ public class RaceTest {
     void winners2() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car vectorCar = new Car("vector", carEngine);
+        Car vectorCar = new Car("vecto", carEngine);
         Car sageCar = new Car("sage", carEngine);
         Car amberCar = new Car("amber", carEngine);
         Race race = new Race(List.of(vectorCar, sageCar, amberCar));
@@ -86,7 +86,7 @@ public class RaceTest {
     void winners3() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-        Car vectorCar = new Car("vector", carEngine);
+        Car vectorCar = new Car("vecto", carEngine);
         Car sageCar = new Car("sage", carEngine);
         Car amberCar = new Car("amber", carEngine);
         Race race = new Race(List.of(vectorCar, sageCar, amberCar));
@@ -96,6 +96,6 @@ public class RaceTest {
         List<String> winners = race.winners();
 
         // then
-        assertThat(winners).containsExactlyInAnyOrder("sage", "amber", "vector");
+        assertThat(winners).containsExactlyInAnyOrder("sage", "amber", "vecto");
     }
 }
