@@ -20,18 +20,24 @@ public class Controller {
     public void play() {
         String carNames = view.promptCars();
         int round = view.promptRound();
+
         Race race = new Race(generator, carNames);
 
         view.printResultHeader();
+
         for (int i = 0; i < round; ++i) {
             race.move();
-            List<Car> cars = race.getCars();
-            for (Car car : cars) {
-                view.printResult(car.getName(), car.getPosition());
-            }
-            view.printBlankLine();
-
+            printResult(race);
         }
+
         view.printWinners(race.winners());
+    }
+
+    private void printResult(Race race) {
+        List<Car> cars = race.getCars();
+        for (Car car : cars) {
+            view.printResult(car.getName(), car.getPosition());
+        }
+        view.printBlankLine();
     }
 }
