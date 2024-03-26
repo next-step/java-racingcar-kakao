@@ -28,16 +28,22 @@ public class StringParser {
 			sb.append(matcher.group(2));
 		}
 
-		return "[" + sb + "]";
+		return new StringBuilder("[]")
+			.insert(1, sb)
+			.toString();
 	}
 
 	private Integer parseElement(String element) {
 		try {
 			int number = Integer.parseInt(element);
-			if (number < 0) throw new IllegalArgumentException("숫자를 입력해주세요.");
+			validateRange(number);
 			return number;
 		} catch (NumberFormatException exception) {
 			throw new IllegalArgumentException("숫자를 입력해주세요.");
 		}
+	}
+
+	private static void validateRange(int number) {
+		if (number < 0) throw new IllegalArgumentException("양수를 입력해주세요.");
 	}
 }
