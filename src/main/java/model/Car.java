@@ -9,11 +9,11 @@ import static java.util.Arrays.*;
 import static java.util.stream.Collectors.toList;
 
 public class Car {
-    public static final int START_SCORE = 1;
-
     private int score;
 
     private final String name;
+
+    public static final int START_SCORE = 1;
 
     public Car(String name, int score) {
         this.name = name;
@@ -31,8 +31,8 @@ public class Car {
     }
 
     public static List<String> getWinnerName(List<Car> carList) {
-        return getWinner(carList).stream().map(
-                     car -> car.name)
+        return getWinner(carList).stream()
+            .map(car -> car.name)
             .collect(toList());
     }
 
@@ -48,7 +48,6 @@ public class Car {
     }
 
     public static List<Car> getCar(String[] carNameList) {
-
         return stream(carNameList)
             .map(carName -> {
                 return new Car(carName, START_SCORE);
@@ -58,7 +57,6 @@ public class Car {
 
     public static void validate(String str) {
         String[] carNameList = str.split(",");
-
         HashSet<String> checker = new HashSet<>();
 
         for (String carName : carNameList) {
@@ -69,7 +67,6 @@ public class Car {
         if (checker.size() != carNameList.length) {
             throw new IllegalArgumentException("동일한 차량 이름은 불가능합니다.");
         }
-
     }
 
     private static void validateCarNameLength(String str) {
@@ -101,12 +98,14 @@ public class Car {
         String stringBuilder = car.name +
             " : " +
             makeDash(car.score);
+
         return stringBuilder;
 
     }
 
     private static String makeDash(int carScore) {
         String dash = "-";
+
         return dash.repeat(carScore);
     }
 
@@ -115,6 +114,7 @@ public class Car {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
+
         return score == car.score && Objects.equals(name, car.name);
     }
 
