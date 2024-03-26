@@ -43,4 +43,22 @@ public class CalculatorTest {
 
         assertEquals(21, result);
     }
+
+    @Test
+    @DisplayName("음수를 전달하는 경우 예외를 발생한다.")
+    void invalidNumberInputTest() {
+        String input = "//;\n-1;2:3;4,5;6";
+
+        assertThrows(RuntimeException.class,
+                () -> calculator.calculate(input));
+    }
+
+    @Test
+    @DisplayName("숫자 이외의 문자를 전달하는 경우 예외를 발생한다.")
+    void invalidInputTest() {
+        String input = "//;\nab;cd;ef";
+
+        assertThrows(RuntimeException.class,
+                () -> calculator.calculate(input));
+    }
 }
