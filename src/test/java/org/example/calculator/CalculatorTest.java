@@ -77,4 +77,11 @@ public class CalculatorTest {
         assertThatThrownBy(calculator::calculate)
                 .isInstanceOf(IllegalArgumentException.class);
     }
+    
+    @Test
+    void calculator_test() {
+        Calculator calculator = new Calculator("//'\n1'2'3");
+        int result = calculator.calculate();
+        assertThat(result).isEqualTo(6);
+    }
 }
