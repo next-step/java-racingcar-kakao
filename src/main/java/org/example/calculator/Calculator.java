@@ -7,6 +7,7 @@ public class Calculator {
 
     private static final String DEFAULT_DELIMITER = ",|:";
     private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n";
+    private static final String CUSTOM_OPERANDS_REGEX = "//.\n(.+)";
     private final String string;
 
     public Calculator(String string) {
@@ -15,7 +16,7 @@ public class Calculator {
 
     public int calculate() {
         String delimiter = getDelimiter();
-        String[] operands = string.split(delimiter);
+        String[] operands = getOperandString().split(delimiter);
         int result = 0;
         for (String operand : operands) {
             result += getParsedInt(operand);
@@ -37,5 +38,13 @@ public class Calculator {
             return m.group(1);
         }
         return DEFAULT_DELIMITER;
+    }
+
+    public String getOperandString() {
+        Matcher m = Pattern.compile(CUSTOM_OPERANDS_REGEX).matcher(this.string);
+        if (m.find()) {
+            return m.group(1);
+        }
+        return this.string;
     }
 }

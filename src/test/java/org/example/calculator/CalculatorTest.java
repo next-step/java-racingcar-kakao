@@ -47,4 +47,18 @@ public class CalculatorTest {
         String delimiter = calculator.getDelimiter();
         assertThat(delimiter).isEqualTo(",|:");
     }
+
+    @Test
+    void getOperandsTest1() {
+        Calculator calculator = new Calculator("//;\n1;2");
+        String operands = calculator.getOperandString();
+        assertThat(operands).isEqualTo("1;2");
+    }
+
+    @Test
+    void getOperandsTest2() {
+        Calculator calculator = new Calculator("1,2,3");
+        String operands = calculator.getOperandString();
+        assertThat(operands).isEqualTo("1,2,3");
+    }
 }
