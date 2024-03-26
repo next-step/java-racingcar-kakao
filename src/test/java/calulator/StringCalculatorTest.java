@@ -34,6 +34,16 @@ public class StringCalculatorTest {
             .isEqualTo("Illegal leading minus sign on unsigned string %d.", num);
     }
     @Test
+    void isSplitAndSum_ShouldThrowRuntimeExceptionString() {
+        String inputWithString = "1, one";
+        String expectedException = "one";
+
+        RuntimeException runtimeException =
+            assertThrows(RuntimeException.class, () -> StringCalculator.splitAndSum(inputWithString));
+        assertThat(runtimeException.getMessage())
+            .isEqualTo("For input string: \" %s\"", expectedException);
+    }
+    @Test
     void isSplitAndSum_ShouldCalculateByComma() {
         assertThat(StringCalculator.splitAndSum("1,2")).isEqualTo(3);
     }
