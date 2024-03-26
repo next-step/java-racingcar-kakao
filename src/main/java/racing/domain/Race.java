@@ -11,15 +11,6 @@ public class Race {
         this.cars = cars;
     }
 
-    public Race(CarEngine carEngine, String text) {
-        this(splitTextIntoCars(carEngine, text));
-    }
-
-    private static List<Car> splitTextIntoCars(CarEngine carEngine, String text) {
-        String[] names = text.split(",");
-        return Arrays.stream(names).map(name -> new Car(name, carEngine)).collect(Collectors.toList());
-    }
-
     public void move() {
         cars.forEach(Car::move);
     }

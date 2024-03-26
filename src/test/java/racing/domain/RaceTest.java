@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -46,19 +45,6 @@ public class RaceTest {
                 () -> assertThat(vectorCar.getPosition()).isEqualTo(0),
                 () -> assertThat(sageCar.getPosition()).isEqualTo(0)
         );
-    }
-
-    @Test
-    void names() {
-        // given
-        CarEngine carEngine = new StubCarEngine(true);
-        Race race = new Race(carEngine, "vector,sage");
-
-        // when
-        List<String> names = race.getCars().stream().map(Car::getName).collect(Collectors.toList());
-
-        // then
-        assertThat(names).containsExactlyInAnyOrder("vector", "sage");
     }
 
     @Test

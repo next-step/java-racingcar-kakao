@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-import racing.domain.Car;
 import racing.support.StubCarEngine;
 
 public class CarTest {
@@ -39,9 +38,9 @@ public class CarTest {
     void name() {
         // given
         CarEngine carEngine = new StubCarEngine(true);
-         Car car = new Car("vector", carEngine);
+        Car car = new Car("vector", carEngine);
 
-         // when & then
-         assertThat(car.getName()).isEqualTo("vector");
+        // when & then
+        assertThat(car.getName()).isEqualTo("vector");
     }
 }
