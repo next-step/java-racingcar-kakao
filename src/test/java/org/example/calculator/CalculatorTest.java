@@ -1,11 +1,17 @@
 package org.example.calculator;
 
+import org.example.calculator.model.Calculator;
+import org.example.calculator.model.CalculatorStringUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
+
+    private static final String DEFAULT_DELIMITER = ",|:";
+    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n";
+    private static final String CUSTOM_OPERANDS_REGEX = "//.\n(.+)";
 
     @Test
     void default_delimiter_test_1() {
@@ -45,29 +51,29 @@ public class CalculatorTest {
 
     @Test
     void getDelimiterTest() {
-        Calculator calculator = new Calculator("//;\n1;2");
-        String delimiter = calculator.getDelimiter();
+        String string = "//;\n1;2";
+        String delimiter = CalculatorStringUtils.extractDelimiterWithRegex(string, CUSTOM_DELIMITER_REGEX, DEFAULT_DELIMITER);
         assertThat(delimiter).isEqualTo(";");
     }
 
     @Test
     void getDelimiterErrorTest() {
-        Calculator calculator = new Calculator("1;2");
-        String delimiter = calculator.getDelimiter();
+        String string = "1;2";
+        String delimiter = CalculatorStringUtils.extractDelimiterWithRegex(string, CUSTOM_DELIMITER_REGEX, DEFAULT_DELIMITER);
         assertThat(delimiter).isEqualTo(",|:");
     }
 
     @Test
     void getOperandsTest1() {
-        Calculator calculator = new Calculator("//;\n1;2");
-        String operands = calculator.getOperandString();
+        String string = "//;\n1;2";
+        String operands = CalculatorStringUtils.extractOperandStringWithRegex(string, CUSTOM_OPERANDS_REGEX);
         assertThat(operands).isEqualTo("1;2");
     }
 
     @Test
     void getOperandsTest2() {
-        Calculator calculator = new Calculator("1,2,3");
-        String operands = calculator.getOperandString();
+        String string = "1,2,3";
+        String operands = CalculatorStringUtils.extractOperandStringWithRegex(string, CUSTOM_OPERANDS_REGEX);
         assertThat(operands).isEqualTo("1,2,3");
     }
 
@@ -77,7 +83,7 @@ public class CalculatorTest {
         assertThatThrownBy(calculator::calculate)
                 .isInstanceOf(IllegalArgumentException.class);
     }
-    
+
     @Test
     void calculator_test() {
         Calculator calculator = new Calculator("//'\n1'2'3");
