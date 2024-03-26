@@ -44,9 +44,17 @@ public class Calculator {
 
     private int getParsedInt(String operand) {
         try {
-            return Integer.parseInt(operand);
+            int parsedInt = Integer.parseInt(operand);
+            validateNonNegativeInteger(parsedInt);
+            return parsedInt;
         } catch (NumberFormatException e) {
             return 0;
+        }
+    }
+
+    private void validateNonNegativeInteger(int integer) {
+        if (integer < 0) {
+            throw new IllegalArgumentException(String.format("negatives not allowed: %d", integer));
         }
     }
 }

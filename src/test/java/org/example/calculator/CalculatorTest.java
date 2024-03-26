@@ -3,6 +3,7 @@ package org.example.calculator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CalculatorTest {
 
@@ -60,5 +61,12 @@ public class CalculatorTest {
         Calculator calculator = new Calculator("1,2,3");
         String operands = calculator.getOperandString();
         assertThat(operands).isEqualTo("1,2,3");
+    }
+
+    @Test
+    void negative_operands_test() {
+        Calculator calculator = new Calculator("-1,2,3");
+        assertThatThrownBy(calculator::calculate)
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
