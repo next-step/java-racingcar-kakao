@@ -15,6 +15,14 @@ public class CalculatorTest {
     }
 
     @Test
+    void default_delimiter_test_null() {
+        Calculator calculator = new Calculator(null);
+        int result = calculator.calculate();
+        assertThat(result).isZero();
+    }
+
+
+    @Test
     void default_delimiter_test_2() {
         Calculator calculator = new Calculator("1,2");
         int result = calculator.calculate();

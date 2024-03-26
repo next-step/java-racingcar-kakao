@@ -12,7 +12,7 @@ public class Calculator {
     private final String string;
 
     public Calculator(String string) {
-        this.string = string;
+        this.string = string == null ? "" : string;
     }
 
     public int calculate() {
