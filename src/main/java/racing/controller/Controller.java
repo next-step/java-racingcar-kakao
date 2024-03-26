@@ -3,16 +3,16 @@ package racing.controller;
 import java.util.List;
 
 import racing.domain.Car;
-import racing.domain.NumberGenerator;
+import racing.domain.CarEngine;
 import racing.domain.Race;
 import racing.view.View;
 
 public class Controller {
 
     private final View view;
-    private final NumberGenerator generator;
+    private final CarEngine generator;
 
-    public Controller(View view, NumberGenerator generator) {
+    public Controller(View view, CarEngine generator) {
         this.view = view;
         this.generator = generator;
     }

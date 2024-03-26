@@ -5,16 +5,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 import racing.domain.Car;
+import racing.support.StubCarEngine;
 
 public class CarTest {
 
     @Test
     void move() {
         // given
-        Car car = new Car("vector");
+        CarEngine carEngine = new StubCarEngine(true);
+        Car car = new Car("vector", carEngine);
 
         // when
-        car.move(7);
+        car.move();
 
         // then
         assertThat(car.getPosition()).isEqualTo(1);
@@ -23,10 +25,11 @@ public class CarTest {
     @Test
     void moveFail() {
         // given
-        Car car = new Car("vector");
+        CarEngine carEngine = new StubCarEngine(false);
+        Car car = new Car("vector", carEngine);
 
         // when
-        car.move(1);
+        car.move();
 
         // then
         assertThat(car.getPosition()).isEqualTo(0);
@@ -35,7 +38,8 @@ public class CarTest {
     @Test
     void name() {
         // given
-         Car car = new Car("vector");
+        CarEngine carEngine = new StubCarEngine(true);
+         Car car = new Car("vector", carEngine);
 
          // when & then
          assertThat(car.getName()).isEqualTo("vector");

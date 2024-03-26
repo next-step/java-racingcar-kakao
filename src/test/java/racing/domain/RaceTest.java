@@ -8,17 +8,17 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import racing.support.StubNumberGenerator;
+import racing.support.StubCarEngine;
 
 public class RaceTest {
 
     @Test
     void move() {
         // given
-        Car vectorCar = new Car("vector");
-        Car sageCar = new Car("sage");
-        NumberGenerator generator = new StubNumberGenerator(7);
-        Race race = new Race(generator, List.of(vectorCar, sageCar));
+        CarEngine carEngine = new StubCarEngine(true);
+        Car vectorCar = new Car("vector", carEngine);
+        Car sageCar = new Car("sage", carEngine);
+        Race race = new Race(List.of(vectorCar, sageCar));
 
         // when
         race.move();
@@ -33,10 +33,10 @@ public class RaceTest {
     @Test
     void moveFail() {
         // given
-        Car vectorCar = new Car("vector");
-        Car sageCar = new Car("sage");
-        NumberGenerator generator = new StubNumberGenerator(0);
-        Race race = new Race(generator, List.of(vectorCar, sageCar));
+        CarEngine carEngine = new StubCarEngine(false);
+        Car vectorCar = new Car("vector", carEngine);
+        Car sageCar = new Car("sage", carEngine);
+        Race race = new Race(List.of(vectorCar, sageCar));
 
         // when
         race.move();
@@ -51,8 +51,8 @@ public class RaceTest {
     @Test
     void names() {
         // given
-        NumberGenerator generator = new StubNumberGenerator(0);
-        Race race = new Race(generator, "vector,sage");
+        CarEngine carEngine = new StubCarEngine(true);
+        Race race = new Race(carEngine, "vector,sage");
 
         // when
         List<String> names = race.getCars().stream().map(Car::getName).collect(Collectors.toList());
@@ -64,14 +64,14 @@ public class RaceTest {
     @Test
     void winners() {
         // given
-        Car vectorCar = new Car("vector");
-        Car sageCar = new Car("sage");
-        Car amberCar = new Car("amber");
-        NumberGenerator generator = new StubNumberGenerator(0);
-        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+        CarEngine carEngine = new StubCarEngine(true);
+        Car vectorCar = new Car("vector", carEngine);
+        Car sageCar = new Car("sage", carEngine);
+        Car amberCar = new Car("amber", carEngine);
+        Race race = new Race(List.of(vectorCar, sageCar, amberCar));
 
         // when
-        sageCar.move(7);
+        sageCar.move();
         List<String> winners = race.winners();
 
         // then
@@ -81,15 +81,15 @@ public class RaceTest {
     @Test
     void winners2() {
         // given
-        Car vectorCar = new Car("vector");
-        Car sageCar = new Car("sage");
-        Car amberCar = new Car("amber");
-        NumberGenerator generator = new StubNumberGenerator(0);
-        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+        CarEngine carEngine = new StubCarEngine(true);
+        Car vectorCar = new Car("vector", carEngine);
+        Car sageCar = new Car("sage", carEngine);
+        Car amberCar = new Car("amber", carEngine);
+        Race race = new Race(List.of(vectorCar, sageCar, amberCar));
 
         // when
-        sageCar.move(7);
-        amberCar.move(7);
+        sageCar.move();
+        amberCar.move();
         List<String> winners = race.winners();
 
         // then
@@ -99,11 +99,11 @@ public class RaceTest {
     @Test
     void winners3() {
         // given
-        Car vectorCar = new Car("vector");
-        Car sageCar = new Car("sage");
-        Car amberCar = new Car("amber");
-        NumberGenerator generator = new StubNumberGenerator(0);
-        Race race = new Race(generator, List.of(vectorCar, sageCar, amberCar));
+        CarEngine carEngine = new StubCarEngine(true);
+        Car vectorCar = new Car("vector", carEngine);
+        Car sageCar = new Car("sage", carEngine);
+        Car amberCar = new Car("amber", carEngine);
+        Race race = new Race(List.of(vectorCar, sageCar, amberCar));
 
         // when
         race.move();

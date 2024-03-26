@@ -2,19 +2,19 @@ package racing.domain;
 
 public class Car {
 
-    private static final int MOVE_THRESHOLD = 4;
     private final String name;
+    private final CarEngine carEngine;
     private int position;
 
-
-    public Car(String name) {
+    public Car(String name, CarEngine carEngine) {
         this.position = 0;
+        this.carEngine = carEngine;
         this.name = name;
     }
 
-    public void move(int condition) {
-        if (condition >= MOVE_THRESHOLD) {
-            position++;
+    public void move() {
+        if (carEngine.canMove()) {
+            this.position++;
         }
     }
 
