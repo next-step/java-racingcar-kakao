@@ -1,4 +1,4 @@
-package org.example;
+package org.example.racinggame;
 
 public class ResultView {
     public static void printWinners(Cars cars) {

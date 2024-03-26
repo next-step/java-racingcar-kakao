@@ -1,4 +1,4 @@
-package org.example;
+package org.example.racinggame;
 
 import java.util.Scanner;
 
