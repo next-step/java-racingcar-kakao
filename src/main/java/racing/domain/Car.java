@@ -7,9 +7,9 @@ public class Car {
     private int position;
 
     public Car(String name, CarEngine carEngine) {
-        this.position = 0;
-        this.carEngine = carEngine;
         this.name = name;
+        this.carEngine = carEngine;
+        this.position = 0;
     }
 
     public void move() {
