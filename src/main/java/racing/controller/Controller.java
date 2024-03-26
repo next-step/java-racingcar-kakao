@@ -2,9 +2,9 @@ package racing.controller;
 
 import java.util.List;
 
-import racing.Car;
-import racing.NumberGenerator;
-import racing.Race;
+import racing.domain.Car;
+import racing.domain.NumberGenerator;
+import racing.domain.Race;
 import racing.view.View;
 
 public class Controller {

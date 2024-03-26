@@ -1,7 +1,8 @@
-package racing;
+package racing.infra;
 
-import java.time.LocalDateTime;
 import java.util.Random;
+
+import racing.domain.NumberGenerator;
 
 public class RandomNumberGenerator implements NumberGenerator {
 

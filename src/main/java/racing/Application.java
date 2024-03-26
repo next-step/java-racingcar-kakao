@@ -1,6 +1,8 @@
 package racing;
 
 import racing.controller.Controller;
+import racing.domain.NumberGenerator;
+import racing.infra.RandomNumberGenerator;
 import racing.view.View;
 
 public class Application {

@@ -1,4 +1,6 @@
-package racing;
+package racing.support;
+
+import racing.domain.NumberGenerator;
 
 public class StubNumberGenerator implements NumberGenerator {
 
