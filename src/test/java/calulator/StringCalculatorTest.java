@@ -25,10 +25,11 @@ public class StringCalculatorTest {
 
     @Test
     void isSplitAndSum_ShouldThrowRuntimeExceptionMinus() {
-        int num = -1;
+        String minusStr = "-1";
+        int num = Integer.parseInt(minusStr);
 
         RuntimeException runtimeException =
-            assertThrows(RuntimeException.class, () -> StringCalculator.splitAndSum(num+""));
+            assertThrows(RuntimeException.class, () -> StringCalculator.splitAndSum(minusStr));
         assertThat(runtimeException.getMessage())
             .isEqualTo("Illegal leading minus sign on unsigned string %d.", num);
     }
