@@ -8,11 +8,10 @@ public class Validator {
             num = Integer.parseInt(token);
             isMinus(num);
         } catch (Exception e) {
-            throw new IllegalArgumentException("음수 or 문자 익셉션");
+            throw new IllegalArgumentException("음수 또는 문자형이 들어가있습니다.");
         }
         return num;
     }
-
     private void isMinus(int num){
         if (num < 0) {
             throw new IllegalArgumentException();

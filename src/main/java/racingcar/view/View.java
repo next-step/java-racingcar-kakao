@@ -1,18 +1,11 @@
-package view;
+package racingcar.view;
 
-import domain.Car;
-
+import racingcar.model.Car;
 import java.util.List;
 import java.util.Scanner;
 
 public class View {
-
-    static {
-        System.out.println("레이싱 게임을 시작한다.");
-    }
-
     private final Scanner scanner;
-
     public View(){
         scanner = new Scanner(System.in);
     }
@@ -25,18 +18,19 @@ public class View {
         return "";
     }
 
-    public void displayTryCount (){
+    public int displayTryCount (){
         System.out.print("시도할 회수는 몇회인가요?");
+        return Integer.parseInt(input());
     }
-
-    public void displayInputCarName (){
+    public String displayInputCarName (){
         System.out.print("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
+        return input();
     }
     public void displayResult() {
         System.out.println("실행 결과");
     }
 
-    public void displayMoveResult(Car[] cars) {
+    public void displayMoveResult(List <Car> cars) {
         for (Car car: cars) {
             System.out.print(car.name + " : " );
             displayMoveDistance(car.position);
@@ -57,9 +51,4 @@ public class View {
         }
         System.out.print(winners.get(winners.size()-1)+"가 최종 우승했습니다.");
     }
-
-    public void printError() {
-        System.out.println("잘못된 입력이다. 다음 조건에 맞춰서 입력해라");
-    }
-
 }

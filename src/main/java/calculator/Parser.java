@@ -11,8 +11,7 @@ public class Parser {
 
         if (m.find()) {
             String customDelimiter = m.group(1);
-            String[] tokens = m.group(2).split(customDelimiter);
-            return tokens;
+            return m.group(2).split(customDelimiter);
         }
 
         return input.split("[,:;]");
