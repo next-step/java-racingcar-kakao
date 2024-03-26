@@ -31,4 +31,11 @@ public class StringCalculatorTest {
 		assertThat(calculator.calculate("1,2,3")).isEqualTo(6);
 		assertThat(calculator.calculate("1,2:3")).isEqualTo(6);
 	}
+
+	@Test
+	@DisplayName("커스텀 구분자를 기준으로 분리해 합을 계산한다.")
+	void 커스텀구분자_분리() {
+		StringCalculator calculator = new StringCalculator();
+		assertThat(calculator.calculate("//;\n1,2;3")).isEqualTo(6);
+	}
 }
