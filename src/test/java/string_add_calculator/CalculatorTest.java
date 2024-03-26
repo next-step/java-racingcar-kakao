@@ -18,4 +18,20 @@ public class CalculatorTest {
                         new Number(3)))
         ).isEqualTo(new Number(6));
     }
+
+    @Test
+    void 쉼표_구분자를_가진_문자열_입력의_경우_올바르게_더한다() {
+        Calculator calculator = new Calculator();
+
+        assertThat(calculator.sum("1,2,3"))
+                .isEqualTo(new Number(6));
+    }
+
+    @Test
+    void 커스텀_구분자를_가진_문자열_입력의_경우_올바르게_더한다() {
+        Calculator calculator = new Calculator();
+
+        assertThat(calculator.sum("//m\n1m2,3"))
+                .isEqualTo(new Number(6));
+    }
 }
