@@ -11,7 +11,14 @@ public class Number {
     }
 
     public Number(String number) {
-        this(Integer.parseInt(number));
+        this(Integer.parseInt(boundNumber(number)));
+    }
+
+    private static String boundNumber(String number) {
+        if (number == null || number.isEmpty()) {
+            number = "0";
+        }
+        return number;
     }
 
     private void validate(int number) {
