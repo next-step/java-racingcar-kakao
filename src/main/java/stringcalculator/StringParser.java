@@ -16,22 +16,34 @@ public class StringParser {
 			input = matcher.group(2);
 		}
 
-		List<Integer> result = new ArrayList<>();
 		List<String> numbers = Arrays.stream(input.split(delimiter)).map(String::trim).toList();
+		return tokenize(numbers);
+	}
+
+	private static List<Integer> tokenize(List<String> numbers) {
+		List<Integer> result = new ArrayList<>();
 		for (String number : numbers) {
-			if (number == null || number.isEmpty()) {
-				number = "0";
-			}
+			number = convertBlank(number);
 
 			int parsedInt = Integer.parseInt(number);
-
-			if (parsedInt < 0) {
-				throw new RuntimeException();
-			}
+			checkPositive(parsedInt);
 
 			result.add(parsedInt);
 		}
-
 		return result;
 	}
+
+	private static void checkPositive(int parsedInt) {
+		if (parsedInt < 0) {
+			throw new RuntimeException();
+		}
+	}
+
+	private static String convertBlank(String number) {
+		if (number == null || number.isEmpty()) {
+			return "0";
+		}
+		return number;
+	}
+
 }
