@@ -20,8 +20,23 @@ public class RacingGameController {
 
     private void setup() {
         String carNames = RacingGameView.getCarNames();
-        tryNums = RacingGameView.getTryNums();
+        while (carNames.isEmpty()) {
+            carNames = RacingGameView.getCarNames();
+        }
+        while (true){
+            if (getTryNums()) break;
+        }
         racingGame = new RacingGame(carNames);
+    }
+
+    private boolean getTryNums() {
+        try {
+            tryNums = RacingGameView.getTryNums();
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해주세요.");
+        }
+        return false;
     }
 
     private  void playround(RacingGame racingGame, int tryNums) {
