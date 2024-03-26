@@ -35,12 +35,15 @@ public class RacingGameUI {
 	}
 
 	public void printWinners(List<CarState> winners) {
-		System.out.print(winners.get(0));
-		winners.remove(0);
-		for (CarState winner : winners) {
-			System.out.printf(", %s", winner.getName());
+		System.out.print(winners.get(0).getName());
+		for (int i = 1; i < winners.size(); i++) {
+			System.out.printf(", %s", winners.get(i).getName());
 		}
 		System.out.println("가 최종 우승했습니다.");
 
+	}
+
+	public void printError(ErrorType errorType) {
+		System.out.println("[ERROR] "+ errorType.getMessage());
 	}
 }
