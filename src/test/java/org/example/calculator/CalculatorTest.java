@@ -33,4 +33,18 @@ public class CalculatorTest {
         int result = calculator.calculate();
         assertThat(result).isEqualTo(6);
     }
+
+    @Test
+    void getDelimiterTest() {
+        Calculator calculator = new Calculator("//;\n1;2");
+        String delimiter = calculator.getDelimiter();
+        assertThat(delimiter).isEqualTo(";");
+    }
+
+    @Test
+    void getDelimiterErrorTest() {
+        Calculator calculator = new Calculator("1;2");
+        String delimiter = calculator.getDelimiter();
+        assertThat(delimiter).isEqualTo(",|:");
+    }
 }
