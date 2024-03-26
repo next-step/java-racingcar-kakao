@@ -2,7 +2,7 @@ package calculator;
 
 import java.util.List;
 
-public class NumberCaculator {
+public class NumberCalculator {
 
 	public static final int DEFAULT_VALUE = 0;
 

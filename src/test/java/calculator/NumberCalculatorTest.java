@@ -13,7 +13,7 @@ public class NumberCalculatorTest {
 	@Test
 	@DisplayName("숫자 합을 계산한다.")
 	void 숫자_합() {
-		NumberCaculator numberCaculator = new NumberCaculator();
-		assertThat(numberCaculator.calculate(List.of(1,2,3))).isEqualTo(6);
+		NumberCalculator numberCalculator = new NumberCalculator();
+		assertThat(numberCalculator.calculate(List.of(1,2,3))).isEqualTo(6);
 	}
 }

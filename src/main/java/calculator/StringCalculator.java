@@ -5,7 +5,7 @@ import java.util.Objects;
 public class StringCalculator {
 	public static final int DEFAULT_VALUE = 0;
 
-	private final NumberCaculator calculator = new NumberCaculator();
+	private final NumberCalculator calculator = new NumberCalculator();
 	private final StringParser parser = new StringParser();
 
 	public int calculate(String numberSequence) {
