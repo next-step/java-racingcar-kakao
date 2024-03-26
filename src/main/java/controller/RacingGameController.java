@@ -49,7 +49,7 @@ public class RacingGameController {
     }
 
     private  void result(RacingGame racingGame) {
-        List<Car> winners = racingGame.winners();
+        List<Car> winners = racingGame.getWinners();
         RacingGameView.displayWinners(winners);
     }
 }
