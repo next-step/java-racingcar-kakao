@@ -1,3 +1,5 @@
+package racingCar;
+
 public class RacingCarGame {
 
 	private static final InputView inputView = new InputView();
