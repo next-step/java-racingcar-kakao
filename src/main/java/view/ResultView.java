@@ -3,20 +3,20 @@ package view;
 import java.util.List;
 import java.util.StringJoiner;
 
-import model.Player;
+import model.Car;
 
 public class ResultView {
-    public static void printCars(List<Player> playerList) {
-        playerList.forEach(
-            player -> System.out.println(Player.makeCarPrint(player))
+    public static void printCars(List<Car> carList) {
+        carList.forEach(
+            car -> System.out.println(Car.makeCarPrint(car))
         );
         System.out.println();
     }
 
-    public static void printWinners(List<String> playerNameList) {
+    public static void printWinners(List<String> carNameList) {
         StringJoiner joiner = new StringJoiner(",");
-        for (String playerName : playerNameList) {
-            joiner.add(playerName);
+        for (String carName : carNameList) {
+            joiner.add(carName);
         }
 
         System.out.println(joiner + " 가 최종 우승했습니다.");

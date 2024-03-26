@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Player;
+import model.Car;
 import model.RandomGenerator;
 
 import static view.ResultView.printCars;
@@ -12,28 +12,28 @@ public class RacingGame {
     private final int tryNo;
     private int gameCount;
 
-    public static List<Player> playerList = new ArrayList<>();
+    public static List<Car> carList = new ArrayList<>();
 
     public RacingGame(String carNames, int tryNo) {
         this.carNames = carNames;
         this.tryNo = tryNo;
-        makePlayer();
-        printCars(playerList);
+        makeCar();
+        printCars(carList);
     }
 
-    private void makePlayer() {
+    private void makeCar() {
         String[] split = carNames.split(",");
-        playerList = Player.getPlayer(split);
+        carList = Car.getCar(split);
     }
 
     public void race() {
         List<Integer> ranNumList = RandomGenerator.makeRanNumList(tryNo);
-        playerList = Player.updatePlayerList(playerList, ranNumList);
+        carList = Car.updateCarList(carList, ranNumList);
         gameCount++;
     }
 
-    public List<Player> getCars() {
-        return playerList;
+    public List<Car> getCars() {
+        return carList;
     }
 
     public boolean isEnd() {
@@ -41,6 +41,6 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        return Player.getWinnerName(playerList);
+        return Car.getWinnerName(carList);
     }
 }
