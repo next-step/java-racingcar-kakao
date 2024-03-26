@@ -2,21 +2,25 @@ package controller;
 
 import model.Car;
 import model.RacingGame;
+import service.RacingService;
 import view.CarInputView;
 import view.CarOutputView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingController {
     private final CarInputView carInputView;
     private final CarOutputView carOutputView;
+    private final RacingService racingService;
+
 
     public RacingController(CarInputView carInputView,
-                            CarOutputView carOutputView) {
+                            CarOutputView carOutputView,
+                            RacingService racingService) {
         this.carInputView = carInputView;
         this.carOutputView = carOutputView;
+        this.racingService = racingService;
     }
 
     public void start() {
@@ -44,31 +48,12 @@ public class RacingController {
     private List<Car> createCars() {
         carOutputView.printCarNameMessage();
         String carNames = carInputView.getCarNameInput();
-        return extractCarNames(carNames)
+        return racingService.extractCarNames(carNames)
                 .stream().map(Car::new).collect(Collectors.toList());
-    }
-
-    private List<String> extractCarNames(String input) {
-        List<String> carNames = Arrays.asList(input.split(","));
-        carNames.forEach(this::validateCarName);
-        return carNames;
-    }
-
-    private void validateCarName(String carName) {
-        if (carName.length() > 5) {
-            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
-        }
-    }
-
-    private int validateTryNumber(int tryNumber) {
-        if (tryNumber < 1) {
-            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
-        }
-        return tryNumber;
     }
 
     private int getTryNumber() {
         carOutputView.printTryNumberMessage();
-        return validateTryNumber(carInputView.getNumberInput());
+        return racingService.validateTryNumber(carInputView.getNumberInput());
     }
 }
