@@ -1,4 +1,4 @@
-package org.example.racinggame;
+package org.example.racinggame.model;
 
 public class Car {
 

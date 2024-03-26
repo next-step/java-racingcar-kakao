@@ -1,8 +1,12 @@
-package org.example.racinggame;
+package org.example.racinggame.model;
 
 import java.util.Random;
 
 public class RandomIntegerGenerator {
+
+    private RandomIntegerGenerator() {
+        // utility class
+    }
 
     private static final Random random = new Random();
 

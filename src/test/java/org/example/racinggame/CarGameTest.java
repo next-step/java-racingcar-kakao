@@ -1,5 +1,7 @@
 package org.example.racinggame;
 
+import org.example.racinggame.model.Car;
+import org.example.racinggame.model.Cars;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class CarGameTest {
     void carGameTest() {
         Cars cars = new Cars("pobi1,pobi2,pobi3,pobi4");
 
-        Car car = cars.getCar("pobi1");
+        Car car = cars.getCarFromName("pobi1");
         car.forward(5);
 
         List<String> winners = cars.getWinners();
@@ -33,10 +35,10 @@ public class CarGameTest {
     void carGameTest_multipleWinner() {
         Cars cars = new Cars("pobi1,pobi2,pobi3,pobi4");
 
-        Car car = cars.getCar("pobi1");
+        Car car = cars.getCarFromName("pobi1");
         car.forward(5);
 
-        Car car2 = cars.getCar("pobi2");
+        Car car2 = cars.getCarFromName("pobi2");
         car2.forward(5);
 
         List<String> winners = cars.getWinners();

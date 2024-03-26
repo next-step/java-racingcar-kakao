@@ -1,4 +1,4 @@
-package org.example.racinggame;
+package org.example.racinggame.model;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Cars {
         return carList.size();
     }
 
-    public Car getCar(String carName) {
+    public Car getCarFromName(String carName) {
         return carList.stream()
                 .filter(car -> car.getName().equals(carName))
                 .findFirst()

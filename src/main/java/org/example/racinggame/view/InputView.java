@@ -1,8 +1,8 @@
-package org.example.racinggame;
+package org.example.racinggame.view;
 
 import java.util.Scanner;
 
-public class InputController {
+public class InputView {
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -11,9 +11,8 @@ public class InputController {
         return scanner.nextInt();
     }
 
-    public Cars getCarsFromUserInput() {
+    public String getCarNamesFromUserInput() {
         System.out.println("경주할 자동차 이름을 입력하세요. (이름은 쉼표(,) 기준으로 구분).");
-        String inputCarNames = scanner.nextLine();
-        return new Cars(inputCarNames);
+        return scanner.nextLine();
     }
 }
