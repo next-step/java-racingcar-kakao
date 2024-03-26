@@ -9,6 +9,9 @@ public class Calculator {
     private static String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
 
     public int calculate(String input) {
+        if (input == null || input.isEmpty()) {
+            return 0;
+        }
         Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(input);
         if (matcher.find()) {
             SEPARATOR += "|" + matcher.group(1);

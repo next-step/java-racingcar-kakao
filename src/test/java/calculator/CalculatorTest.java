@@ -45,6 +45,24 @@ public class CalculatorTest {
     }
 
     @Test
+    @DisplayName("한 자리 숫자를 입력할 경우 해당 숫자를 반환한다.")
+    void numberInputTest() {
+        String input = "1";
+
+        assertEquals(1, calculator.calculate(input));
+    }
+
+    @Test
+    @DisplayName("빈 문자열 또는 null을 전달하는 경우 0을 반환한다.")
+    void blankInputTest() {
+        String empty = "";
+        String nullInput = null;
+
+        assertEquals(0, calculator.calculate(empty));
+        assertEquals(0, calculator.calculate(nullInput));
+    }
+
+    @Test
     @DisplayName("음수를 전달하는 경우 예외를 발생한다.")
     void invalidNumberInputTest() {
         String input = "//;\n-1;2:3;4,5;6";
