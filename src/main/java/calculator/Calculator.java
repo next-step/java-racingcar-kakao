@@ -5,8 +5,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calculator {
-    private static String SEPARATOR = ",|:";
-    private static String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
+    private static final String DEFAULT_SEPARATOR = ",|:";
+    private static final String CUSTOM_SEPARATOR_REGEX = "//(.)\n(.*)";
 
     public int calculate(String input) {
         if (input == null || input.isEmpty()) {
@@ -14,10 +14,10 @@ public class Calculator {
         }
         Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(input);
         if (matcher.find()) {
-            SEPARATOR += "|" + matcher.group(1);
-            return add(matcher.group(2).split(SEPARATOR));
+            String customSeparator = DEFAULT_SEPARATOR + "|" + matcher.group(1);
+            return add(matcher.group(2).split(customSeparator));
         }
-        return add(input.split(SEPARATOR));
+        return add(input.split(DEFAULT_SEPARATOR));
     }
 
     private int add(String[] numbers) {
