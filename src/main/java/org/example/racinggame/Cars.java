@@ -1,18 +1,17 @@
 package org.example.racinggame;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
 
-    private final List<Car> carList = new ArrayList<>();
+    private final List<Car> carList;
 
     public Cars(String inputString) {
-        String[] carNames = inputString.split(",");
-        for (String carName : carNames) {
-            carList.add(new Car(carName));
-        }
+        this.carList = Arrays.stream(inputString.split(","))
+                .map(Car::new)
+                .collect(Collectors.toList());
     }
 
     public int getCarSize() {
@@ -34,13 +33,6 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    private int getMaxPosition() {
-        return carList.stream()
-                .mapToInt(Car::getPosition)
-                .max()
-                .orElseThrow(() -> new IllegalArgumentException("차량이 없습니다."));
-    }
-
     public void move() {
         carList.forEach(car ->
                 car.forward(RandomIntegerGenerator.generateEndInclusive(0, 9))
@@ -49,5 +41,12 @@ public class Cars {
 
     public List<Car> getCarList() {
         return carList;
+    }
+
+    private int getMaxPosition() {
+        return carList.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException("차량이 없습니다."));
     }
 }
