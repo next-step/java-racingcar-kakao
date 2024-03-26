@@ -38,4 +38,20 @@ public class StringCalculatorTest {
 		StringCalculator calculator = new StringCalculator();
 		assertThat(calculator.calculate("//;\n1,2;3")).isEqualTo(6);
 	}
+
+	@Test
+	@DisplayName("숫자 이의외 값을 전달할 경우 RuntimeException 예외를 던진다.")
+	void 숫자_이외의_값() {
+		StringCalculator calculator = new StringCalculator();
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> calculator.calculate("ㄱ,1,2"));
+	}
+
+	@Test
+	@DisplayName("음수 값을 전달할 경우 RuntimeException 예외를 던진다.")
+	void 음수_값() {
+		StringCalculator calculator = new StringCalculator();
+		assertThatExceptionOfType(RuntimeException.class)
+			.isThrownBy(() -> calculator.calculate("1,-3,2"));
+	}
 }

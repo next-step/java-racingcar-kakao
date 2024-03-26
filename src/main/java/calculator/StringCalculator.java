@@ -34,7 +34,17 @@ public class StringCalculator {
 
 		String numbers = matcher.group(3);
 		return Arrays.stream(numbers.split("[" + sb + "]"))
-			.map(Integer::parseInt)
+			.map(this::parseElement)
 			.collect(Collectors.toList());
+	}
+
+	private Integer parseElement(String element) {
+		try {
+			int number = Integer.parseInt(element);
+			if (number < 0) throw new IllegalArgumentException("숫자를 입력해주세요.");
+			return number;
+		} catch (NumberFormatException exception) {
+			throw new IllegalArgumentException("숫자를 입력해주세요.");
+		}
 	}
 }
