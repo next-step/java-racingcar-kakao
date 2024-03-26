@@ -1,5 +1,6 @@
 package org.example.calculator;
 
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,20 +17,13 @@ public class Calculator {
 
     public int calculate() {
         String delimiter = getDelimiter();
-        String[] operands = getOperandString().split(delimiter);
-        int result = 0;
-        for (String operand : operands) {
-            result += getParsedInt(operand);
-        }
-        return result;
-    }
+        String operandString = getOperandString();
+        String[] operands = operandString.split(delimiter);
 
-    private static int getParsedInt(String operand) {
-        try {
-            return Integer.parseInt(operand);
-        } catch (NumberFormatException e) {
-            return 0;
-        }
+        return Arrays.stream(operands)
+                .map(this::getParsedInt)
+                .reduce(Integer::sum)
+                .orElse(0);
     }
 
     public String getDelimiter() {
@@ -46,5 +40,13 @@ public class Calculator {
             return m.group(1);
         }
         return this.string;
+    }
+
+    private int getParsedInt(String operand) {
+        try {
+            return Integer.parseInt(operand);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
     }
 }
