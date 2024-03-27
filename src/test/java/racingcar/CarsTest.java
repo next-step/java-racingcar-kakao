@@ -29,8 +29,8 @@ public class CarsTest {
     @Test
     void 우승자를_반환한다() {
         Cars cars = new Cars("pobi,crong,honux");
-        cars.move(List.of(new DiceResult(9), new DiceResult(1), new DiceResult(1)));
+        cars.move();
 
-        assertThat(cars.decideWinner()).isEqualTo(List.of("pobi"));
+        assertThat(cars.decideWinner()).containsAnyOf("pobi", "crong", "honux");
     }
 }

@@ -2,6 +2,7 @@ package racingcar;
 
 public class Car {
     public static final int MAX_NAME_LENGTH = 5;
+    public static final int CAN_MOVE_BOUND = 4;
 
     private final String name;
     private int position = 1;
@@ -28,8 +29,8 @@ public class Car {
         return position;
     }
 
-    public void move(DiceResult diceResult) {
-        if (diceResult.isMove()) {
+    public void move(int randomNumber) {
+        if (randomNumber >= CAN_MOVE_BOUND) {
             position++;
         }
     }

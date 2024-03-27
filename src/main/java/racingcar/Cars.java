@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private static final Dice dice = new Dice();
+
     private final List<Car> cars;
 
     public Cars(List<Car> cars) {
@@ -26,9 +28,9 @@ public class Cars {
         return cars.size();
     }
 
-    public void move(List<DiceResult> diceResults) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(diceResults.get(i));
+    public void move() {
+        for (Car car : cars) {
+            car.move(dice.throwOnce());
         }
     }
 

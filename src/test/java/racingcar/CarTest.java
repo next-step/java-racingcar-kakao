@@ -10,6 +10,8 @@ public class CarTest {
     @Test
     void 이름_길이가_다섯_글자_이하면_정상적으로_생성한다() {
         Car car = new Car("Mark");
+
+        assertThat(car.getName()).isEqualTo("Mark");
     }
 
     @Test
@@ -23,7 +25,7 @@ public class CarTest {
         Car car = new Car("Move");
         int previousPosition = car.getPosition();
 
-        car.move(new DiceResult(5));
+        car.move(5);
         assertThat(car.getPosition()).isEqualTo(previousPosition + 1);
     }
 
@@ -32,7 +34,7 @@ public class CarTest {
         Car car = new Car("NoMov");
         int previousPosition = car.getPosition();
 
-        car.move(new DiceResult(0));
+        car.move(0);
         assertThat(car.getPosition()).isEqualTo(previousPosition);
     }
 
@@ -47,7 +49,7 @@ public class CarTest {
     @Test
     void 문자열화하면_자신의_이름과_함께_위치를_반환한다() {
         Car car = new Car("Mark");
-        car.move(new DiceResult(7));
+        car.move(7);
 
         assertThat(car.toString()).isEqualTo("Mark : --");
     }

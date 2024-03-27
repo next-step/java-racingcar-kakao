@@ -8,8 +8,6 @@ import java.util.List;
 
 public class RacingCarGame {
 
-    private final Dice dice = new Dice();
-
     public void startGame() {
         Cars cars = new Cars(Input.getRacingCarsLine());
         int count = Input.getGameCount();
@@ -23,11 +21,7 @@ public class RacingCarGame {
     }
 
     private void playProcess(Cars cars) {
-        List<DiceResult> diceResults = new ArrayList<>();
-        for (int j = 0; j < cars.count(); j++) {
-            diceResults.add(new DiceResult(dice.throwOnce()));
-        }
-        cars.move(diceResults);
+        cars.move();
         Output.printGameProcessResult(cars.toString());
     }
 }
