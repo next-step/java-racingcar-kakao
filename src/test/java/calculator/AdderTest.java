@@ -10,7 +10,7 @@ import java.util.List;
 public class AdderTest {
     @Test
     void sum_메서드는_주어진_정수_리스트의_합을_반환할_수_있습니다() {
-        List<Integer> numbers = List.of(1, 2, 3);
-        Assertions.assertThat(Adder.sum(numbers)).isEqualTo(6);
+        Numbers n = Numbers.of(List.of(1, 2, 3));
+        Assertions.assertThat(Adder.sum(n)).isEqualTo(6);
     }
 }

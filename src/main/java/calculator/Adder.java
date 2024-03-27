@@ -1,10 +1,8 @@
 package calculator;
 
-import java.util.List;
-
 public final class Adder {
-    public static int sum(List<Integer> numbers) {
-        return numbers.stream()
+    public static int sum(Numbers numbers) {
+        return numbers.list().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
