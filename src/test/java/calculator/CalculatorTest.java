@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class CalculatorTest {
     private Calculator calculator;
@@ -21,7 +21,7 @@ public class CalculatorTest {
 
         int result = calculator.calculate(input);
 
-        assertEquals(21, result);
+        assertThat(result).isEqualTo(21);
     }
 
     @Test
@@ -31,7 +31,7 @@ public class CalculatorTest {
 
         int result = calculator.calculate(input);
 
-        assertEquals(21, result);
+        assertThat(result).isEqualTo(21);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class CalculatorTest {
 
         int result = calculator.calculate(input);
 
-        assertEquals(21, result);
+        assertThat(result).isEqualTo(21);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class CalculatorTest {
     void numberInputTest() {
         String input = "1";
 
-        assertEquals(1, calculator.calculate(input));
+        assertThat(calculator.calculate(input)).isEqualTo(1);
     }
 
     @Test
@@ -58,8 +58,8 @@ public class CalculatorTest {
         String empty = "";
         String nullInput = null;
 
-        assertEquals(0, calculator.calculate(empty));
-        assertEquals(0, calculator.calculate(nullInput));
+        assertThat(calculator.calculate(empty)).isEqualTo(0);
+        assertThat(calculator.calculate(nullInput)).isEqualTo(0);
     }
 
     @Test
@@ -67,8 +67,8 @@ public class CalculatorTest {
     void invalidNumberInputTest() {
         String input = "//;\n-1;2:3;4,5;6";
 
-        assertThrows(RuntimeException.class,
-                () -> calculator.calculate(input));
+        assertThatThrownBy(() -> calculator.calculate(input))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class CalculatorTest {
     void invalidInputTest() {
         String input = "//;\nab;cd;ef";
 
-        assertThrows(RuntimeException.class,
-                () -> calculator.calculate(input));
+        assertThatThrownBy(() -> calculator.calculate(input))
+                .isInstanceOf(RuntimeException.class);
     }
 }
