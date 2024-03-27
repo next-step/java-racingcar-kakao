@@ -16,6 +16,9 @@ public class Car {
     }
 
     private void validateName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Car name cant be blank.");
+        }
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("Car name length should be below 6.");
         }
