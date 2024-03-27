@@ -1,18 +1,16 @@
 package calculator;
 
-import calculator.domains.Adder;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-@DisplayName("덧셈기 유틸 테스트")
+@DisplayName("Adder 관련 테스트")
 public class AdderTest {
     @Test
-    @DisplayName("덧셈 정적 메서드는 리스트를 입력 받아 합산 결과를 반환")
-    void addIntegerList() {
-        assertThat(Adder.sum(List.of(1, 2, 3))).isEqualTo(6);
+    void sum_메서드는_주어진_정수_리스트의_합을_반환할_수_있습니다() {
+        List<Integer> numbers = List.of(1, 2, 3);
+        Assertions.assertThat(Adder.sum(numbers)).isEqualTo(6);
     }
 }
