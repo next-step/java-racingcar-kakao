@@ -28,14 +28,18 @@ public class Car {
     private void checkNullOrBlank() {
         Objects.requireNonNull(name);
         if (name.isBlank()) {
-            throw new IllegalArgumentException("자동차 소유주는 빈 문자열일 수 없습니다.");
+            throw new IllegalArgumentException("자동차 이름은 빈 문자열일 수 없습니다.");
         }
     }
 
     private void checkLength() {
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException("자동차 소유주는 5글자 이하여야 합니다.");
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하여야 합니다.");
         }
+    }
+
+    public String name() {
+        return name;
     }
 
     public int offset() {

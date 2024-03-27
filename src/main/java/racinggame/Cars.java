@@ -5,8 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Cars {
-
+public final class Cars {
     private final List<Car> list;
 
     public static Cars of(List<Car> cars) {
@@ -31,5 +30,13 @@ public class Cars {
 
     public void moveAll() {
         list.forEach(Car::move);
+    }
+
+    public String statusAll() {
+        StringBuilder sb = new StringBuilder();
+        for (Car car : list) {
+            sb.append(car.status()).append('\n');
+        }
+        return sb.toString();
     }
 }

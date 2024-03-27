@@ -26,7 +26,7 @@ class ParserTest {
     void of는_input_문자열을_이용하여_Parser_객체를_생성() {
         assertThatCode(() -> Parser.of("1,2,3")).doesNotThrowAnyException();
     }
-    
+
     @Test
     void parse_메서드는_입력_값을_이용하여_Numbers_객체를_생성() {
         assertThat(Parser.of("1").parse()).isInstanceOf(Numbers.class);
@@ -38,7 +38,7 @@ class ParserTest {
         assertThat(Parser.of(input).parse()).isEqualTo(Numbers.of(list));
     }
 
-    public static Stream<Arguments> getParserToNumbersInput() {
+    private static Stream<Arguments> getParserToNumbersInput() {
         return Stream.of(
                 Arguments.of("1,2,3", Arrays.asList(1, 2, 3)),
                 Arguments.of("1", List.of(1))

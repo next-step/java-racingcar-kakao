@@ -52,4 +52,24 @@ public class CarsTest {
             }
         };
     }
+
+    @Test
+    void statusAll_메서드를_이용하여_자동차들의_상태를_일괄적으로_파악() {
+        Cars cars = Cars.of(
+                List.of(overriddenCar("jseo"), overriddenCar("glen"), overriddenCar("sage"))
+        );
+        cars.moveAll();
+        assertThat(cars.statusAll()).isEqualTo("jseo : -\nglen : -\nsage : -\n");
+    }
+
+    @Test
+    void 자동차들의_list의_불변성을_확인() {
+        Cars cars = Cars.of(
+                Stream.of("jseo", "glen", "sage")
+                        .map(Car::of)
+                        .collect(Collectors.toList())
+        );
+        assertThatThrownBy(() -> cars.list().add(Car.of("fail")))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
 }
