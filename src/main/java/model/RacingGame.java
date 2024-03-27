@@ -13,6 +13,11 @@ public class RacingGame {
         this.cars = cars;
     }
 
+    public RacingGame(List<Car> cars, int tryNumber) {
+        validateTryNumber(tryNumber);
+        this.cars = cars;
+    }
+
     public List<String> generateRacingMessage() {
         return cars.stream().map(Car::generateMessage)
                 .collect(Collectors.toList());
@@ -33,5 +38,12 @@ public class RacingGame {
                 .forEach(winners::add);
 
         return winners;
+    }
+
+    public int validateTryNumber(int tryNumber) {
+        if (tryNumber < 1) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상이어야 합니다.");
+        }
+        return tryNumber;
     }
 }

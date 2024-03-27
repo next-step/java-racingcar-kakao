@@ -2,7 +2,6 @@ package controller;
 
 import model.Car;
 import model.RacingGame;
-import service.RacingService;
 import view.CarInputView;
 import view.CarOutputView;
 
@@ -13,14 +12,11 @@ import java.util.stream.Collectors;
 public class RacingController {
     private final CarInputView carInputView;
     private final CarOutputView carOutputView;
-    private final RacingService racingService;
 
     public RacingController(CarInputView carInputView,
-                            CarOutputView carOutputView,
-                            RacingService racingService) {
+                            CarOutputView carOutputView) {
         this.carInputView = carInputView;
         this.carOutputView = carOutputView;
-        this.racingService = racingService;
     }
 
     public void start() {
@@ -33,8 +29,8 @@ public class RacingController {
     }
 
     private void play() {
-        RacingGame racingGame = new RacingGame(createCars());
         int tryNumber = getTryNumber();
+        RacingGame racingGame = new RacingGame(createCars(), tryNumber);
 
         carOutputView.printResultMessage();
         for (int i = 0; i < tryNumber; i++) {
@@ -54,6 +50,6 @@ public class RacingController {
 
     private int getTryNumber() {
         carOutputView.printTryNumberMessage();
-        return racingService.validateTryNumber(carInputView.getNumberInput());
+        return carInputView.getNumberInput();
     }
 }
