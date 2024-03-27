@@ -1,6 +1,6 @@
 package racingcar.view;
 
-import racingcar.CarInfo;
+import racingcar.CarResponse;
 
 import java.util.List;
 
@@ -19,9 +19,9 @@ public class OutputView {
         System.out.println(PLAY_RESULT_MESSAGE);
     }
 
-    public static void printRoundResult(final List<CarInfo> carInfos) {
-        for (final CarInfo carInfo : carInfos) {
-            System.out.println(carInfo.getName() + RESULT_SEPARATOR + MOVING_BAR.repeat(carInfo.getPosition()));
+    public static void printRoundResult(final List<CarResponse> carResponses) {
+        for (final CarResponse carResponse : carResponses) {
+            System.out.println(carResponse.getName() + RESULT_SEPARATOR + MOVING_BAR.repeat(carResponse.getPosition()));
         }
         System.out.println();
     }

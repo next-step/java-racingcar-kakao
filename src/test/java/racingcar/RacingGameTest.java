@@ -3,6 +3,7 @@ package racingcar;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.CustomNumberGenerator;
+import racingcar.model.RacingGame;
 
 import java.util.List;
 

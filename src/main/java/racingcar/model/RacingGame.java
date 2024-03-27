@@ -1,5 +1,6 @@
-package racingcar;
+package racingcar.model;
 
+import racingcar.CarResponse;
 import racingcar.model.NumberGenerator;
 import racingcar.model.Cars;
 import racingcar.model.StepCount;
@@ -28,9 +29,9 @@ public class RacingGame {
         return stepCount.isZero();
     }
 
-    public List<CarInfo> extractCarInfos() {
+    public List<CarResponse> extractCarInfos() {
         return cars.getValues().stream()
-                .map(CarInfo::new)
+                .map(CarResponse::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
