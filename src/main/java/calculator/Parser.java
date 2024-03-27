@@ -5,9 +5,11 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
+    private final Pattern pattern = Pattern.compile("//(.)\n(.*)");
+
     public String[] split(String input) {
 
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher m = pattern.matcher(input);
 
         if (m.find()) {
             String customDelimiter = m.group(1);

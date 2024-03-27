@@ -26,15 +26,15 @@ public class RacingTest {
     @Test
     @DisplayName("전진 테스트")
     void forwardTest() {
-        car.checkForwardMotion(5);
-        assertThat(car.position).isEqualTo(1);
+        car.decideMovement(5);
+        assertThat(car.getPosition()).isEqualTo(1);
     }
 
     @Test
     @DisplayName("정지 테스트")
     void stayTest() {
-        car.checkForwardMotion(3);
-        assertThat(car.position).isEqualTo(0);
+        car.decideMovement(3);
+        assertThat(car.getPosition()).isEqualTo(0);
     }
 
 
@@ -43,7 +43,7 @@ public class RacingTest {
     void createCarNameTest() {
         String input = "test";
         car = new Car(input);
-        assertThat(car.name).isEqualTo(input);
+        assertThat(car.getName()).isEqualTo(input);
     }
 
     @Test
@@ -68,9 +68,11 @@ public class RacingTest {
     @DisplayName("우승자 테스트")
     void winnerTest() {
         racingGame = new RacingGame(inputValidator.createCarsFromUserInput("fre,bas,123"), 3);
-        for (int i = 0; i < racingGame.cars.size(); i++) {
-            racingGame.cars.get(i).position = i;
+
+        for (int i = 0; i < racingGame.getCars().size(); i++) {
+            racingGame.getCars().get(i).decideMovement(i+2);
         }
+
         List<String> winners = racingGame.selectWinners();
         assertThat(winners.get(0)).isEqualTo("123");
     }

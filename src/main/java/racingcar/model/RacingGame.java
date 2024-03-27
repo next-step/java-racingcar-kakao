@@ -6,8 +6,16 @@ import java.util.stream.Stream;
 
 public class RacingGame {
 
-    public List<Car> cars;
-    public int round;
+    private List<Car> cars;
+    private int round;
+
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public int getRound() {
+        return round;
+    }
 
     public RacingGame() {
     }
@@ -25,7 +33,7 @@ public class RacingGame {
 
     public void move() {
         for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).checkForwardMotion(createRandomNumber());
+            cars.get(i).decideMovement(createRandomNumber());
         }
     }
 
@@ -36,14 +44,14 @@ public class RacingGame {
     public List<String> selectWinners() {
         int maxPosition = getMaxPosition();
         return cars.stream()
-                .filter(car -> car.position == maxPosition)
-                .map(car -> car.name)
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
     private int getMaxPosition(){
         return cars.stream()
-                .mapToInt(car -> car.position)
+                .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow(()-> new IllegalStateException("있을 수 없는 상황이다."));
     }

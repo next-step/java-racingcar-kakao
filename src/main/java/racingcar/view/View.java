@@ -3,6 +3,7 @@ package racingcar.view;
 import racingcar.model.Car;
 import java.util.List;
 import java.util.Scanner;
+import static java.util.stream.Collectors.joining;
 
 public class View {
     private final Scanner scanner;
@@ -32,8 +33,8 @@ public class View {
 
     public void displayMoveResult(List <Car> cars) {
         for (Car car: cars) {
-            System.out.print(car.name + " : " );
-            displayMoveDistance(car.position);
+            System.out.print(car.getName() + " : " );
+            displayMoveDistance(car.getPosition());
             System.out.println();
         }
         System.out.println();
@@ -46,9 +47,9 @@ public class View {
     }
 
     public void displayWinners(List<String> winners) {
-        for (int i = 0; i < winners.size() - 1; i++) {
-            System.out.print(winners.get(i)+", ");
-        }
-        System.out.print(winners.get(winners.size()-1)+"가 최종 우승했습니다.");
+        String result = winners.stream()
+                .collect(joining(", ", "", "가 최종 우승했습니다."));
+
+        System.out.println(result);
     }
 }

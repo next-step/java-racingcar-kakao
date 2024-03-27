@@ -16,7 +16,8 @@ public class CalculateController {
             return 0;
         }
 
-        String [] tokens = parser.split(input);
+        String[] tokens = parser.split(input);
+
         return calculator.sum(tokens);
     }
 }

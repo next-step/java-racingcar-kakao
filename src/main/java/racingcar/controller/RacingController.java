@@ -5,7 +5,7 @@ import racingcar.view.InputValidator;
 import racingcar.view.View;
 
 public class RacingController {
-    RacingGame racingGame;
+    private RacingGame racingGame;
     private final View view;
     private final InputValidator inputValidator;
 
@@ -29,9 +29,10 @@ public class RacingController {
 
     private void gameStart(){
         view.displayResult();
-        while (racingGame.round-- > 0) {
+        int round = racingGame.getRound();
+        while (round-- > 0) {
             racingGame.move();
-            view.displayMoveResult(racingGame.cars);
+            view.displayMoveResult(racingGame.getCars());
         }
     }
 }

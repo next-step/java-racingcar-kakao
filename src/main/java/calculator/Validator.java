@@ -2,7 +2,9 @@ package calculator;
 
 public class Validator {
 
-    public int check(String token){
+    private static final int NUMBER_ZERO = 0;
+
+    public static int check(String token){
         int num = 0;
         try {
             num = Integer.parseInt(token);
@@ -12,8 +14,9 @@ public class Validator {
         }
         return num;
     }
-    private void isMinus(int num){
-        if (num < 0) {
+
+    private static void isMinus(int num){
+        if (num < NUMBER_ZERO) {
             throw new IllegalArgumentException();
         }
     }
