@@ -34,10 +34,10 @@ class CarsTest {
 
         // then
         assertAll(
-                () -> assertThat(carsValues.get(0).getPosition()).usingRecursiveComparison().isEqualTo(onePosition),
-                () -> assertThat(carsValues.get(1).getPosition()).usingRecursiveComparison().isEqualTo(onePosition),
-                () -> assertThat(carsValues.get(2).getPosition()).usingRecursiveComparison().isEqualTo(zreoPosition),
-                () -> assertThat(carsValues.get(3).getPosition()).usingRecursiveComparison().isEqualTo(zreoPosition)
+                () -> assertThat(carsValues.get(0).getPosition()).isEqualTo(onePosition),
+                () -> assertThat(carsValues.get(1).getPosition()).isEqualTo(onePosition),
+                () -> assertThat(carsValues.get(2).getPosition()).isEqualTo(zreoPosition),
+                () -> assertThat(carsValues.get(3).getPosition()).isEqualTo(zreoPosition)
         );
     }
 

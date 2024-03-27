@@ -18,6 +18,6 @@ class CarTest {
         car.move();
 
         // then
-        assertThat(car.getPosition()).usingRecursiveComparison().isEqualTo(expected);
+        assertThat(car.getPosition()).isEqualTo(expected);
     }
 }

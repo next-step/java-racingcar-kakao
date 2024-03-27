@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import java.util.Objects;
+
 public class StepCount {
 
     private static final String COUNT_UNDER_ZERO_MESSAGE = "시도 횟수는 음수일 수 없습니다.";
@@ -25,5 +27,18 @@ public class StepCount {
 
     public boolean isZero() {
         return count == ZERO;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final StepCount stepCount = (StepCount) o;
+        return count == stepCount.count;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(count);
     }
 }
