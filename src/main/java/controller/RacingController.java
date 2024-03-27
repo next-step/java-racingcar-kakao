@@ -39,7 +39,7 @@ public class RacingController {
         carOutputView.printResultMessage();
         for (int i = 0; i < tryNumber; i++) {
             racingGame.moveCars();
-            carOutputView.printCarResult(racingGame.generateRacingMessage());
+            carOutputView.printCarResult(racingGame.getRacingCars());
         }
 
         carOutputView.printWinnerMessage(racingGame);

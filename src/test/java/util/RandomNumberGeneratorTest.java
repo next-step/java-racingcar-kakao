@@ -3,7 +3,7 @@ package util;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 public class RandomNumberGeneratorTest {
     @Test
@@ -11,6 +11,6 @@ public class RandomNumberGeneratorTest {
     void generateRandomNumberTest() {
         int randomNumber = RandomNumberGenerator.generate();
 
-        assertTrue(randomNumber >= 0 && randomNumber <= 9);
+        assertThat(randomNumber).isBetween(0, 9);
     }
 }

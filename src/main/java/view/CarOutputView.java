@@ -1,5 +1,6 @@
 package view;
 
+import model.Car;
 import model.RacingGame;
 
 import java.util.List;
@@ -17,8 +18,10 @@ public class CarOutputView {
         System.out.println("실행 결과");
     }
 
-    public void printCarResult(List<String> carMessages) {
-        carMessages.forEach(System.out::println);
+    public void printCarResult(List<Car> cars) {
+        cars.forEach(car -> {
+            System.out.println(car.getName() + " : " + "-".repeat(car.getPosition()));
+        });
         System.out.println();
     }
 

@@ -3,6 +3,8 @@ package calculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,14 +54,10 @@ public class CalculatorTest {
         assertEquals(1, calculator.calculate(input));
     }
 
-    @Test
-    @DisplayName("빈 문자열 또는 null을 전달하는 경우 0을 반환한다.")
-    void blankInputTest() {
-        String empty = "";
-        String nullInput = null;
-
-        assertEquals(0, calculator.calculate(empty));
-        assertEquals(0, calculator.calculate(nullInput));
+    @ParameterizedTest
+    @NullAndEmptySource
+    void blankInputTest(String input) {
+        assertEquals(0, calculator.calculate(input));
     }
 
     @Test

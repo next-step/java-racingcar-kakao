@@ -13,13 +13,12 @@ public class RacingGame {
         this.cars = cars;
     }
 
-    public List<String> generateRacingMessage() {
-        return cars.stream().map(Car::generateMessage)
-                .collect(Collectors.toList());
-    }
-
     public void moveCars() {
         cars.forEach(car -> car.run(RandomNumberGenerator.generate()));
+    }
+
+    public List<Car> getRacingCars() {
+        return this.cars;
     }
 
     public List<Car> getWinners() {
@@ -29,7 +28,7 @@ public class RacingGame {
 
         List<Car> winners = new ArrayList<>();
         cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.hasSamePosition(maxPosition))
                 .forEach(winners::add);
 
         return winners;

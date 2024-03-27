@@ -5,19 +5,18 @@ import java.util.Objects;
 public class Car {
     private int position;
     private final String name;
+    private static final int MAX_NAME_LENGTH = 5;
+    public static final int CAR_MOVE_THRESHOLD = 4;
 
     public Car(String name) {
+        validateName(name);
         this.name = name;
     }
 
-    public void run(int randomNumber) {
-        if (randomNumber >= 4) {
+    public void run(int decider) {
+        if (decider >= CAR_MOVE_THRESHOLD) {
             position += 1;
         }
-    }
-
-    public String generateMessage() {
-        return name + " : " + "-".repeat(position);
     }
 
     public String getName() {
@@ -26,6 +25,16 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    public boolean hasSamePosition(int position) {
+        return this.position == position;
+    }
+
+    private void validateName(String name) {
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
+        }
     }
 
     @Override
