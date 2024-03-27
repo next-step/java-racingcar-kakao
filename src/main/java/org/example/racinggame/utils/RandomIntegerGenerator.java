@@ -1,4 +1,4 @@
-package org.example.racinggame.model;
+package org.example.racinggame.utils;
 
 import java.util.Random;
 

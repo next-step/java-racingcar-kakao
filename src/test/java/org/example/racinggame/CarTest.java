@@ -1,7 +1,7 @@
 package org.example.racinggame;
 
 import org.example.racinggame.model.Car;
-import org.example.racinggame.model.RandomIntegerGenerator;
+import org.example.racinggame.utils.RandomIntegerGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
