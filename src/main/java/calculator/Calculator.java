@@ -12,6 +12,7 @@ public class Calculator {
         if (input == null || input.isEmpty()) {
             return 0;
         }
+
         Matcher matcher = Pattern.compile(CUSTOM_SEPARATOR_REGEX).matcher(input);
         if (matcher.find()) {
             String customSeparator = DEFAULT_SEPARATOR + "|" + matcher.group(1);
@@ -22,7 +23,8 @@ public class Calculator {
 
     private int add(String[] numbers) {
         return Arrays.stream(numbers)
-                .map(this::validateInput).reduce(Integer::sum)
+                .map(this::validateInput)
+                .reduce(Integer::sum)
                 .orElse(0);
     }
 
