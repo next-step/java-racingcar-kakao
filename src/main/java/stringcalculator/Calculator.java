@@ -10,13 +10,14 @@ public class Calculator {
 
     private static final String REGEX = "[,;]";
     private static final String CUSTOM_REGEX = "//(.)\\\\n(.*)";
+    private static final Pattern CUSTOM_PATTERN = Pattern.compile(CUSTOM_REGEX);
+
 
     public int calculate(final String text) {
         if (text == null || text.isEmpty()) {
             return 0;
         }
-
-        final Matcher m = Pattern.compile(CUSTOM_REGEX).matcher(text);
+        final Matcher m = CUSTOM_PATTERN.matcher(text);
         if (m.find()) {
             final String customDelimiter = m.group(1);
             final String[] tokens = m.group(2).split(customDelimiter);
