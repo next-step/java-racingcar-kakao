@@ -1,25 +1,41 @@
 package strcalc;
 
+import java.util.Arrays;
+
 public class StrCalculator {
 
     public int add(String input) {
         return add(CalcParser.parseInput(input));
     }
 
-    int add(String text, String delimiter) {
+    private int add(String text, String delimiter) {
         if (text.isEmpty()) {
             return 0;
         }
-        String[] numbersArray = text.split(delimiter);
-        return sum(numbersArray);
+        String[] numbers = text.split(delimiter);
+        return sum(numbers);
     }
 
-    private int sum(String[] numbersArray) {
-        int sum = 0;
-        for (String number : numbersArray) {
-            sum += parseInt(number);
-        }
-        return sum;
+    private int add(CalcInput calcInput) {
+        return add(calcInput.getText(), calcInput.getDelimiter());
+    }
+
+    private int sum(String[] numbers) {
+        validateInput(numbers);
+        return Arrays.stream(numbers)
+                .map(this::parseInt)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
+    private static void validateInput(String[] input) {
+        Arrays.stream(input)
+                .mapToInt(Integer::parseInt)
+                .forEach(number -> {
+                    if (number < 0) {
+                        throw new RuntimeException("Negative integer");
+                    }
+                });
     }
 
     private int parseInt(String number) {
@@ -28,9 +44,5 @@ public class StrCalculator {
             throw new RuntimeException("Negative integer");
         }
         return val;
-    }
-
-    int add(CalcInput calcInput) {
-        return add(calcInput.getText(), calcInput.getDelimiter());
     }
 }
