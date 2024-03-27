@@ -28,7 +28,7 @@ public class CarRaceController {
 	}
 
 	private List<Car> createCars(List<String> carNames) {
-		return carNames.stream().map(Car::new).collect(Collectors.toList());
+		return carNames.stream().map(Car::new).collect(Collectors.toUnmodifiableList());
 	}
 
 	private int initRound() {
@@ -48,6 +48,6 @@ public class CarRaceController {
 		view.displayWinnerNames(carRace.getWinningCars()
 				.stream()
 				.map(Car::getName)
-				.collect(Collectors.toList()));
+				.collect(Collectors.toUnmodifiableList()));
 	}
 }

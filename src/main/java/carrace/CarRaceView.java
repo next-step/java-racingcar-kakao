@@ -2,10 +2,7 @@ package carrace;
 
 import carrace.domain.Car;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -20,7 +17,7 @@ public class CarRaceView {
 			validateName(carName);
 		}
 		validateDuplicateNames(carNames);
-		return carNames;
+		return Collections.unmodifiableList(carNames);
 	}
 
 	public void validateName(String carName) {
