@@ -6,54 +6,54 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
-	private final List<Car> cars=new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
-	public Cars(String s) {
-		String[] carNames = s.split(",");
-		for(String carName : carNames){
-			Car car=new Car(carName);
-			this.cars.add(car);
-		}
-	}
+    public Cars(String s) {
+        String[] carNames = s.split(",");
+        for (String carName : carNames) {
+            Car car = new Car(carName);
+            this.cars.add(car);
+        }
+    }
 
-	public List<String> getCarNames() {
-		return cars.stream()
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
+    public List<String> getCarNames() {
+        return cars.stream()
+            .map(Car::getName)
+            .collect(Collectors.toList());
+    }
 
-	public void move(NumberGenerator generator) {
-		for(Car car : cars) {
-			car.move(generator.generateNumber());
-		}
-	}
+    public void move(NumberGenerator generator) {
+        for (Car car : cars) {
+            car.move(generator.generateNumber());
+        }
+    }
 
-	public List<Integer> getCarPositions() {
-		return cars.stream()
-			.map(Car::getPosition)
-			.collect(Collectors.toList());
-	}
+    public List<Integer> getCarPositions() {
+        return cars.stream()
+            .map(Car::getPosition)
+            .collect(Collectors.toList());
+    }
 
-	public List<String> getWinners() {
-		int maxPosition = getMaxPosition();
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
 
-		return cars.stream()
-			.filter(car -> car.getPosition() == maxPosition)
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
+        return cars.stream()
+            .filter(car -> car.getPosition() == maxPosition)
+            .map(Car::getName)
+            .collect(Collectors.toList());
+    }
 
-	private int getMaxPosition() {
-		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElse(0);
-	}
+    private int getMaxPosition() {
+        return cars.stream()
+            .mapToInt(Car::getPosition)
+            .max()
+            .orElse(0);
+    }
 
-	@Override
-	public String toString() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.joining(System.lineSeparator()));
-	}
+    @Override
+    public String toString() {
+        return cars.stream()
+            .map(Car::toString)
+            .collect(Collectors.joining(System.lineSeparator()));
+    }
 }
