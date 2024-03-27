@@ -1,8 +1,10 @@
 package view;
 
 import model.RacingGame;
+import model.Car;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarOutputView {
     public void printCarNameMessage() {
@@ -23,9 +25,8 @@ public class CarOutputView {
     }
 
     public void printWinnerMessage(RacingGame racingGame) {
-        StringBuilder sb = new StringBuilder();
-        racingGame.getWinners().forEach(car -> sb.append(car.getName()).append(", "));
-        System.out.println(sb.substring(0, sb.length() - 2) + "가 최종 우승했습니다.");
+        String winners = racingGame.getWinners().stream().map(Car::getName).collect(Collectors.joining(", "));
+        System.out.println(winners + "가 최종 우승했습니다.");
     }
 
     public void printErrorMessage(String message) {
