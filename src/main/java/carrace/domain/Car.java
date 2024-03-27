@@ -7,6 +7,17 @@ public class Car {
 
     public Car(String name) {
         this.name = name;
+        validateName();
+    }
+
+    private void validateName() {
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("자동차의 이름은 5자이하여야 합니다.");
+        }
+
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("자동차의 이름은 공백이 아니여야 합니다.");
+        }
     }
 
     public String getName() {

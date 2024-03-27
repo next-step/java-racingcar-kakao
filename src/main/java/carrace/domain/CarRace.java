@@ -12,6 +12,13 @@ public class CarRace {
 	public CarRace(CarMoveRule carMoveRule, List<Car> cars) {
 		this.carMoveRule = carMoveRule;
 		this.cars = cars;
+		validateDuplicateNames();
+	}
+
+	private void validateDuplicateNames() {
+		if (cars.size() != cars.stream().distinct().count()) {
+			throw new IllegalArgumentException("중복된 이름이 존재합니다.");
+		}
 	}
 
 	public void runRound() {
