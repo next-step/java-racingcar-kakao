@@ -1,4 +1,4 @@
-package racing_car;
+package racingcar;
 
 public class Main {
     public static void main(String[] args) {

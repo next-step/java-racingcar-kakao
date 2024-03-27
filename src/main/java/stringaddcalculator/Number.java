@@ -1,4 +1,4 @@
-package string_add_calculator;
+package stringaddcalculator;
 
 import java.util.Objects;
 
@@ -11,14 +11,7 @@ public class Number {
     }
 
     public Number(String number) {
-        this(Integer.parseInt(boundNumber(number)));
-    }
-
-    private static String boundNumber(String number) {
-        if (number == null || number.isEmpty()) {
-            number = "0";
-        }
-        return number;
+        this(Integer.parseInt(number));
     }
 
     private void validate(int number) {

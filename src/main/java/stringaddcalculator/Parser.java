@@ -1,4 +1,4 @@
-package string_add_calculator;
+package stringaddcalculator;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -9,12 +9,14 @@ import static java.util.Arrays.stream;
 
 public class Parser {
 
+    public static Pattern pattern = Pattern.compile("//(.)\n(.*)");
+
     public static List<Number> parseNumbers(String input) {
         if (input == null || input.isEmpty()) {
             return List.of(new Number(0));
         }
 
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
             String customRegex = matcher.group(1);

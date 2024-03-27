@@ -1,15 +1,21 @@
-package racing_car;
+package racingcar;
 
 public class Car {
+
+    private static final int NAME_LENGTH_LIMIT = 5;
 
     private final String name;
     private int position = 1;
 
     public Car(String name) {
-        if (name.length() > 5) {
-            throw new IllegalArgumentException();
-        }
+        validate(name);
         this.name = name;
+    }
+
+    private void validate(String name) {
+        if (name.length() > NAME_LENGTH_LIMIT) {
+            throw new IllegalArgumentException("이름은 5글자 이하만 가능합니다.");
+        }
     }
 
     public String getName() {
@@ -20,10 +26,8 @@ public class Car {
         return position;
     }
 
-    public void move(DiceResult diceResult) {
-        if (diceResult.isMove()) {
-            position++;
-        }
+    public void move() {
+        position++;
     }
 
     @Override

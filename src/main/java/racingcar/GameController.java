@@ -1,34 +1,33 @@
-package racing_car;
+package racingcar;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Cars {
+public class GameController {
 
     private final List<Car> cars;
 
-    public Cars(List<Car> cars) {
+    public GameController(List<Car> cars) {
         this.cars = cars;
     }
 
-    public Cars(String[] inputs) {
+    public GameController(String[] inputs) {
         this(Arrays.stream(inputs)
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }
 
-    public Cars(String input) {
+    public GameController(String input) {
         this(input.split(","));
     }
 
-    public int count() {
-        return cars.size();
-    }
-
-    public void move(List<DiceResult> diceResults) {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).move(diceResults.get(i));
+    public void processOneTurn() {
+        for (Car car : cars) {
+            int diceResult = RacingCarDice.throwOnce();
+            if (RacingCarDice.isMove(diceResult)) {
+                car.move();
+            }
         }
     }
 
@@ -44,11 +43,15 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public String toString() {
+    public String makeGameBoard() {
         return cars.stream()
                 .map(Car::toString)
                 .reduce("", (prev, next) -> prev + next + "\n")
                 .trim();
+    }
+
+    // Only for Test
+    public List<Car> getCars() {
+        return cars;
     }
 }
