@@ -19,17 +19,16 @@ public class Calculator {
         String operandString = CalculatorStringUtils.extractOperandStringWithRegex(string, CUSTOM_OPERANDS_REGEX);
         String[] operands = splitOperandStringWithDelimiter(operandString, delimiter);
 
-        int[] integerOperands = parseStringToIntegerAndValidate(operands);
-        return Arrays.stream(integerOperands).sum();
+        return getStringOperandsSum(operands);
     }
 
-    private int[] parseStringToIntegerAndValidate(String[] operands) {
+    private int getStringOperandsSum(String[] operands) {
         return Arrays.stream(operands)
                 .map(emptyStringToZero())
                 .map(Integer::parseInt)
                 .peek(this::validateNonNegativeInteger)
                 .mapToInt(Integer::intValue)
-                .toArray();
+                .sum();
     }
 
     private Function<String, String> emptyStringToZero() {

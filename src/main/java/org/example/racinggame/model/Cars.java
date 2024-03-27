@@ -1,5 +1,7 @@
 package org.example.racinggame.model;
 
+import org.example.racinggame.utils.RandomIntegerGenerator;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;

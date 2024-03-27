@@ -8,12 +8,20 @@ public class OutputView {
         System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 
-    public void printCarPositions(String positionString) {
-        System.out.println(positionString);
+    public void printCarPosition(String name, int position) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name)
+                .append(" : ")
+                .append("-".repeat(position));
+        System.out.println(sb);
     }
 
     public void printResult() {
         System.out.println();
         System.out.println("실행 결과");
+    }
+
+    public void newLine() {
+        System.out.println();
     }
 }

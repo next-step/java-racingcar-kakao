@@ -1,8 +1,10 @@
 package org.example.racinggame;
 
 import org.example.racinggame.model.Car;
-import org.example.racinggame.model.RandomIntegerGenerator;
+import org.example.racinggame.utils.RandomIntegerGenerator;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -21,6 +23,13 @@ class CarTest {
         Car car = new Car("pobi");
         car.forward(5);
         assertThat(car.getPosition()).isEqualTo(1);
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void car_name_test(String name) {
+        assertThatThrownBy(() ->
+                new Car(name)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test

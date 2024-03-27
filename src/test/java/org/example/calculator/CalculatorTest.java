@@ -3,6 +3,8 @@ package org.example.calculator;
 import org.example.calculator.model.Calculator;
 import org.example.calculator.model.CalculatorStringUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -13,20 +15,13 @@ public class CalculatorTest {
     private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n";
     private static final String CUSTOM_OPERANDS_REGEX = "//.\n(.+)";
 
-    @Test
-    void default_delimiter_test_1() {
-        Calculator calculator = new Calculator("");
+    @ParameterizedTest
+    @NullAndEmptySource
+    void default_delimiter_test_empty(String input) {
+        Calculator calculator = new Calculator(input);
         int result = calculator.calculate();
         assertThat(result).isZero();
     }
-
-    @Test
-    void default_delimiter_test_null() {
-        Calculator calculator = new Calculator(null);
-        int result = calculator.calculate();
-        assertThat(result).isZero();
-    }
-
 
     @Test
     void default_delimiter_test_2() {
