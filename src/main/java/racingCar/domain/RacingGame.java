@@ -1,7 +1,7 @@
-package racingCar;
+package racingCar.domain;
 
 import java.util.List;
-import racingCar.domain.Cars;
+import racingCar.NumberGenerator;
 
 public class RacingGame {
 

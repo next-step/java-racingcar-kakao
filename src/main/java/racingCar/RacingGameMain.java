@@ -1,5 +1,6 @@
 package racingCar;
 
+import racingCar.domain.RacingGame;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
