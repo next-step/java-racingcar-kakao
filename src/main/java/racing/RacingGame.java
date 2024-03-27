@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 public class RacingGame {
 
     private final List<Car> cars;
-    private final RandomStrategy rs;
+    private final MovingStrategy movingStrategy;
 
-    public RacingGame(List<Car> cars, RandomStrategy rs) {
+    public RacingGame(List<Car> cars, MovingStrategy movingStrategy) {
         this.cars = cars;
-        this.rs = rs;
+        this.movingStrategy = movingStrategy;
     }
 
     public RacingGame(String carNames) {
@@ -23,7 +23,7 @@ public class RacingGame {
                 .collect(Collectors.toList()));
     }
     public RacingGame(List<Car> cars) {
-        this(cars, new RealRandomStrategy());
+        this(cars, new RandomStrategy());
     }
 
     public List<Car> getCars() {
@@ -49,6 +49,6 @@ public class RacingGame {
     }
 
     public void moveCars() {
-        cars.forEach(car -> car.moveForward(rs));
+        cars.forEach(car -> car.moveForward(movingStrategy.generateNumber()));
     }
 }

@@ -52,8 +52,8 @@ public class CarTest {
     void moveRandom() {
         Car car = new Car("pobi", 0);
         List<Integer> numbers = List.of(4, 3, 4, 3, 4, 3);
-        RandomStrategy rs = new FakeRandomStrategy(numbers);
-        numbers.forEach(i -> car.moveForward(rs));
+        MovingStrategy rs = new FakeMovingStrategy(numbers);
+        numbers.forEach(i -> car.moveForward(rs.generateNumber()));
         assertThat(car.getPosition()).isEqualTo(3);
     }
 }

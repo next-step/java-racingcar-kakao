@@ -2,6 +2,8 @@ package racing;
 
 public class Car {
 
+    private static final int MOVE_THRESHOLD = 4;
+    private static final int MAX_NAME_LENGTH = 5;
     private final String name;
     private int position;
 
@@ -10,7 +12,7 @@ public class Car {
     }
 
     public Car(String name, int position) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
         }
         this.name = name;
@@ -22,7 +24,7 @@ public class Car {
     }
 
     public void moveForward(int num) {
-        if (num >= 4) {
+        if (num >= MOVE_THRESHOLD) {
             position++;
         }
     }
@@ -33,9 +35,5 @@ public class Car {
 
     public String display() {
         return name + " : " + "-".repeat(position + 1);
-    }
-
-    public void moveForward(RandomStrategy rs) {
-        moveForward(rs.generateRandomNumber());
     }
 }

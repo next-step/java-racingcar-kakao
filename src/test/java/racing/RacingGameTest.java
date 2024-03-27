@@ -34,7 +34,7 @@ public class RacingGameTest {
 
     @Test
     void moveCars() {
-        RandomStrategy rs = new FakeRandomStrategy(List.of(4, 4, 3));
+        MovingStrategy rs = new FakeMovingStrategy(List.of(4, 4, 3));
         RacingGame racingGame = new RacingGame(
                 List.of(new Car("pobi", 0),
                         new Car("crong", 0),
