@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 @DisplayName("숫자 계산기 단위 테스트")
 public class NumberCalculatorTest {
 
-	@Test
-	@DisplayName("숫자 합을 계산한다.")
-	void 숫자_합() {
-		NumberCalculator numberCalculator = new NumberCalculator();
-		assertThat(numberCalculator.calculate(List.of(1,2,3))).isEqualTo(6);
-	}
+    @Test
+    @DisplayName("숫자 합을 계산한다.")
+    void 숫자_합() {
+        NumberCalculator numberCalculator = new NumberCalculator();
+        assertThat(numberCalculator.calculate(List.of(1, 2, 3))).isEqualTo(6);
+    }
 }
