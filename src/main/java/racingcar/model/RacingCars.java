@@ -24,7 +24,7 @@ public class RacingCars {
             .orElse(0);
 
         return racingCars.stream()
-            .filter(car -> car.getMoves() == maxMoves)
+            .filter(car -> car.isAt(maxMoves))
             .collect(Collectors.toList());
     }
 }

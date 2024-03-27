@@ -18,7 +18,7 @@ public class RacingCarTest {
     @Test
     void moveTest() {
         for (int i = 4; i < 10; i++) {
-            boolean moveOrNot = racingCar.moveOrNot(i);
+            boolean moveOrNot = racingCar.isMove(i);
             Assertions.assertTrue(moveOrNot);
         }
     }
@@ -26,7 +26,7 @@ public class RacingCarTest {
     @Test
     void stopTest() {
         for (int i = 0; i < 4; i++) {
-            boolean moveOrNot = racingCar.moveOrNot(i);
+            boolean moveOrNot = racingCar.isMove(i);
             Assertions.assertFalse(moveOrNot);
         }
     }
