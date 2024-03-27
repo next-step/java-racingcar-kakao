@@ -17,15 +17,7 @@ public class CarRaceView {
 
 	public int getCarRaceRound() {
 		System.out.println("시도할 횟수는 몇회인가요?");
-		int round = Integer.parseInt(scanner.nextLine());
-		validateRaceRound(round);
-		return round;
-	}
-
-	public void validateRaceRound(int round) {
-		if (round <= 0) {
-			throw new IllegalArgumentException("라운드는 양수여야 합니다.");
-		}
+        return Integer.parseInt(scanner.nextLine());
 	}
 
 	public void displayResultStartMessage() {

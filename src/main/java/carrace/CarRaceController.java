@@ -38,9 +38,16 @@ public class CarRaceController {
 	private void proceedRounds(CarRace carRace, int round) {
 		view.displayResultStartMessage();
 		view.displayRoundResult(carRace.getCars());
+		validateRaceRound(round);
 		for (int r = 0; r < round; r++) {
 			carRace.runRound();
 			view.displayRoundResult(carRace.getCars());
+		}
+	}
+
+	private void validateRaceRound(int round) {
+		if (round <= 0) {
+			throw new IllegalArgumentException("라운드는 양수여야 합니다.");
 		}
 	}
 

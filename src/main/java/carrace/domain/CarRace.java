@@ -34,7 +34,7 @@ public class CarRace {
 	}
 
 	public List<Car> getWinningCars() {
-		int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElse(0);
+		int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElseThrow();
         return cars.stream().filter(car -> car.getPosition() == maxPosition).collect(Collectors.toUnmodifiableList());
 	}
 
