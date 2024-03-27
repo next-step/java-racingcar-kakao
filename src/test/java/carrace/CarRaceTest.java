@@ -7,6 +7,7 @@ import java.util.List;
 
 import carrace.domain.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -26,6 +27,7 @@ public class CarRaceTest {
         cars = List.of(car1, car2, car3);
     }
 
+    @DisplayName("자동차 목록을 반환한다")
     @Test
     void getCars() {
         CarRace carRace = new CarRace(new CarMoveRule(randomNumberGenerator), cars);
@@ -35,6 +37,7 @@ public class CarRaceTest {
         assertThat(result).containsAll(cars);
     }
 
+    @DisplayName("생성되는 숫자값에 따라 모든 자동차가 움직인다.")
     @CsvSource({"4, 2", "3, 1"})
     @ParameterizedTest
     void runRound(int generatedNumber, int position) {
@@ -45,6 +48,7 @@ public class CarRaceTest {
         assertThat(carRace.getCars()).extracting(Car::getPosition).containsOnly(position);
     }
 
+    @DisplayName("1대의 자동차가 우승한 경우, 해당 차량만을 포함하는 List를 반환한다")
     @Test
     void getWinningCars_singleWinner() {
         Car winnerCar = cars.get(0);
@@ -64,6 +68,7 @@ public class CarRaceTest {
         return new CarRace(new CarMoveRule(randomNumberGenerator), cars);
     }
 
+    @DisplayName("여러대의 자동차가 우승한 경우, 우승한 모든 차량을 포함하는 List를 반환한다")
     @Test
     void getWinningCars_multipleWinner() {
         Car winnerCar1 = cars.get(0);
