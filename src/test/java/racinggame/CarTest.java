@@ -29,6 +29,11 @@ public class CarTest {
     }
 
     @Test
+    void 자동차의_동치_테스트() {
+        assertThat(Car.of("jseo")).isEqualTo(Car.of("jseo"));
+    }
+
+    @Test
     void 자동차는_4이상의_입력에서_전진_가능() {
         Car car = new Car("jseo") {
             @Override
