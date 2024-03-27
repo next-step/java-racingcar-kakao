@@ -2,6 +2,7 @@ package racing.infra;
 
 import java.util.Random;
 
+import racing.config.Constant;
 import racing.domain.CarEngine;
 
 public class RandomCarEngine implements CarEngine {
@@ -20,6 +21,6 @@ public class RandomCarEngine implements CarEngine {
 
     @Override
     public boolean canMove() {
-        return random.nextInt(10) > this.threshold;
+        return random.nextInt(Constant.CAR_MOVE_MAX) > this.threshold;
     }
 }
