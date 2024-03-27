@@ -2,54 +2,44 @@ package controller;
 
 import model.Car;
 import model.RacingGame;
-import view.CarInputView;
-import view.CarOutputView;
+import view.View;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class RacingController {
-    private final CarInputView carInputView;
-    private final CarOutputView carOutputView;
+    private final View view;
 
-    public RacingController(CarInputView carInputView,
-                            CarOutputView carOutputView) {
-        this.carInputView = carInputView;
-        this.carOutputView = carOutputView;
+    public RacingController(View view) {
+        this.view = view;
     }
 
     public void start() {
         try {
             play();
         } catch (IllegalArgumentException e) {
-            carOutputView.printErrorMessage(e.getMessage());
+            view.printErrorMessage(e.getMessage());
             start();
         }
     }
 
     private void play() {
-        int tryNumber = getTryNumber();
+        int tryNumber = view.getTryNumberInput();
         RacingGame racingGame = new RacingGame(createCars(), tryNumber);
 
-        carOutputView.printResultMessage();
+        view.printResultMessage();
         for (int i = 0; i < tryNumber; i++) {
             racingGame.moveCars();
-            carOutputView.printCarResult(racingGame.generateRacingMessage());
+            view.printCarResult(racingGame.generateRacingMessage());
         }
 
-        carOutputView.printWinnerMessage(racingGame);
+        view.printWinnerMessage(racingGame);
     }
 
     private List<Car> createCars() {
-        carOutputView.printCarNameMessage();
-        String carNamesInput = carInputView.getCarNameInput();
+        String carNamesInput = view.getCarNameInput();
         List<String> carNames = Arrays.asList(carNamesInput.split(","));
         return carNames.stream().map(Car::new).collect(Collectors.toList());
-    }
-
-    private int getTryNumber() {
-        carOutputView.printTryNumberMessage();
-        return carInputView.getNumberInput();
     }
 }

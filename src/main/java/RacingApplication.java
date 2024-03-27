@@ -1,13 +1,11 @@
 import controller.RacingController;
-import view.CarInputView;
-import view.CarOutputView;
+import view.View;
 
 public class RacingApplication {
     public static void main(String[] args) {
-        CarInputView carInputView = new CarInputView();
-        CarOutputView carOutputView = new CarOutputView();
+        View view = new View();
         RacingController racingController =
-                new RacingController(carInputView, carOutputView);
+                new RacingController(view);
 
         racingController.start();
     }
