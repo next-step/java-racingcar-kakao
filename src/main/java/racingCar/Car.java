@@ -33,6 +33,10 @@ public class Car {
         return name;
     }
 
+    public boolean isSamePosition(int position) {
+        return this.position == position;
+    }
+
     @Override
     public String toString() {
         return name + " : " + "-".repeat(position);
