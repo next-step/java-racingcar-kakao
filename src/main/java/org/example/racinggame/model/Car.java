@@ -3,6 +3,7 @@ package org.example.racinggame.model;
 public class Car {
 
     private static final int FORWARD_THRESHOLD = 4;
+    private static final int CAR_NAME_MAX_LENGTH = 5;
     private final String name;
     private int position;
 
@@ -27,7 +28,7 @@ public class Car {
     }
 
     private void validateName(String name) {
-        if (name.length() > 5) {
+        if (name.length() > CAR_NAME_MAX_LENGTH) {
             throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
         }
     }
