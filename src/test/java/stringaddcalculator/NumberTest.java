@@ -19,20 +19,4 @@ public class NumberTest {
         assertThatThrownBy(() -> new Number(-1))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void construct_fail2() {
-        assertThatThrownBy(() -> new Number("q"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    @Test
-    void 빈_문자열의_경우_0으로_치환한다() {
-        assertThat(new Number("")).isEqualTo(new Number(0));
-    }
-
-    @Test
-    void 널의_경우_0으로_치환한다() {
-        assertThat(new Number(null)).isEqualTo(new Number(0));
-    }
 }

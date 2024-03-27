@@ -14,11 +14,11 @@ public class Input {
     public static int getGameCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String input = scanner.nextLine();
-        validate(input);
+        validateGameCount(input);
         return Integer.parseInt(input);
     }
 
-    private static void validate(String input) {
+    private static void validateGameCount(String input) {
         int count = Integer.parseInt(input);
         if (count < 0) {
             throw new IllegalArgumentException();

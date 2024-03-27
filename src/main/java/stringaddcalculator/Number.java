@@ -6,22 +6,11 @@ public class Number {
     private final int number;
 
     public Number(int number) {
-        validate(number);
+        validateBound(number);
         this.number = number;
     }
 
-    public Number(String number) {
-        this(Integer.parseInt(boundNumber(number)));
-    }
-
-    private static String boundNumber(String number) {
-        if (number == null || number.isEmpty()) {
-            number = "0";
-        }
-        return number;
-    }
-
-    private void validate(int number) {
+    private void validateBound(int number) {
         if (number < 0) {
             throw new IllegalArgumentException("음수가 될 수 없습니다.");
         }

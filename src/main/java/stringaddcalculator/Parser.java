@@ -12,7 +12,7 @@ public class Parser {
     public static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public static List<Number> parseNumbers(String input) {
-        if (input == null || input.isEmpty()) {
+        if (isNullOrEmpty(input)) {
             return List.of(new Number(0));
         }
 
@@ -23,6 +23,10 @@ public class Parser {
             return convertToIntegers(matcher.group(2), customRegex);
         }
         return convertToIntegers(input);
+    }
+
+    private static boolean isNullOrEmpty(String input) {
+        return input == null || input.isEmpty();
     }
 
     private static List<Number> convertToIntegers(String input, String customRegex) {
