@@ -1,33 +1,31 @@
 package racingCar;
 
-import racingCar.domain.Cars;
 import racingCar.view.InputView;
 import racingCar.view.OutputView;
 
-public class RacingCarGame {
+public class RacingGameMain {
 
     private static final InputView inputView = new InputView();
     private static final OutputView outputView = new OutputView();
 
     public static void main(String[] args) {
         outputView.printGuide();
-        String names = inputView.getNames();
-        Cars cars = new Cars(names);
+        String carNames = inputView.getNames();
 
         outputView.printTryCount();
         int tryCount = inputView.getNumber();
 
-        playGame(tryCount, cars);
+        playGame(new RacingGame(carNames, tryCount));
     }
 
-    private static void playGame(int tryCount, Cars cars) {
+    private static void playGame(RacingGame game) {
         outputView.printResultGuide();
 
-        for (int i = 0; i < tryCount; i++) {
-            cars.move(new NumberGenerator());
-            outputView.printResult(cars);
+        while (!game.isGameEnd()) {
+            game.race();
+            outputView.printResult(game.getCars());
         }
 
-        outputView.printWinners(cars.getWinners());
+        outputView.printWinners(game.getWinners());
     }
 }
