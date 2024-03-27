@@ -1,5 +1,9 @@
 package racingCar;
 
+import racingCar.domain.Cars;
+import racingCar.view.InputView;
+import racingCar.view.OutputView;
+
 public class RacingCarGame {
 
     private static final InputView inputView = new InputView();

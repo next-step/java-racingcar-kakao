@@ -1,11 +1,10 @@
-package racingCar;
+package racingCar.domain;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import racingCar.Car;
 
 @DisplayName("자동차 테스트")
 public class CarTest {
