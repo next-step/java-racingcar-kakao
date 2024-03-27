@@ -46,4 +46,4 @@
 ## 리팩토링 및 피드백
 - [x] validate이랑 parseInt 합치기
 - [x] 10 상수로 빼기
-- [ ] fallBack Throw로 변경하기
+- [x] fallBack Throw로 변경하기
