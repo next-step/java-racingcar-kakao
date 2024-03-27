@@ -14,7 +14,7 @@ public class RacingCarApplication {
         int trialInput = ConsoleView.getTrialInput();
 
         ConsoleView.printResultPrompt();
-        for (int reps = 0; reps < trialInput; reps++) {
+        for (int i = 0; i < trialInput; i++) {
             racingCarGame.processTurn();
             ConsoleView.printCarOffset(racingCarGame);
         }
