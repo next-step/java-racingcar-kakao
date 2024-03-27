@@ -9,12 +9,14 @@ import static java.util.Arrays.stream;
 
 public class Parser {
 
+    public static final Pattern PATTERN = Pattern.compile("//(.)\n(.*)");
+
     public static List<Number> parseNumbers(String input) {
         if (input == null || input.isEmpty()) {
             return List.of(new Number(0));
         }
 
-        Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
 
         if (matcher.find()) {
             String customRegex = matcher.group(1);
