@@ -5,11 +5,12 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
+    private static final int EMPTY_INPUT_RETURN_VALUE = 0;
     private static final Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
     public static int calculate(String input) {
         if (isNullOrBlank(input)) {
-            return 0;
+            return EMPTY_INPUT_RETURN_VALUE;
         }
 
         Matcher m = pattern.matcher(input);
