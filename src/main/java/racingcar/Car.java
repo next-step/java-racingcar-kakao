@@ -1,11 +1,10 @@
 package racingcar;
 
 public class Car {
+    public static final int MAX_NAME_LENGTH = 5;
 
     private final String name;
     private int position = 1;
-
-    public static final int MAX_NAME_LENGTH = 5;
 
     public Car(String name) {
         validateCarName(name);
