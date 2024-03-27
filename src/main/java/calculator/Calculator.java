@@ -2,7 +2,7 @@ package calculator;
 
 import java.util.Objects;
 
-public class Calculator {
+public final class Calculator {
     public static int sum(String input) {
         try {
             validate(input);
