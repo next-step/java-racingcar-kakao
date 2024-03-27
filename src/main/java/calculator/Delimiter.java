@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Delimiter {
 
-    List<String> delimiters;
+    private static final List<String> INITIAL_DELIMITERS = Arrays.asList(",", ":");
+    private final List<String> delimiters;
 
     public Delimiter() {
-        delimiters = new ArrayList<>(Arrays.asList(",", ":"));
+        delimiters = new ArrayList<>(INITIAL_DELIMITERS);
     }
 
     public List<String> split(String s) {
