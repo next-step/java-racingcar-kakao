@@ -30,6 +30,10 @@ public class Car {
         return position;
     }
 
+    public boolean isAtPosition(int position) {
+        return this.position == position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

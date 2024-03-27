@@ -29,7 +29,7 @@ public class RacingGame {
 
         List<Car> winners = new ArrayList<>();
         cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isAtPosition(maxPosition))
                 .forEach(winners::add);
 
         return winners;
