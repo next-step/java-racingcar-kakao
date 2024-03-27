@@ -3,8 +3,13 @@ import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCars;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RacingCarTest {
 
@@ -15,20 +20,16 @@ public class RacingCarTest {
         racingCar = new RacingCar();
     }
 
-    @Test
-    void moveTest() {
-        for (int i = 4; i < 10; i++) {
-            boolean moveOrNot = racingCar.isMove(i);
-            Assertions.assertTrue(moveOrNot);
-        }
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void moveTest(int number) {
+        assertTrue(racingCar.isMove(number));
     }
 
-    @Test
-    void stopTest() {
-        for (int i = 0; i < 4; i++) {
-            boolean moveOrNot = racingCar.isMove(i);
-            Assertions.assertFalse(moveOrNot);
-        }
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void stopTest(int number) {
+        assertFalse(racingCar.isMove(number));
     }
 
     @Test
