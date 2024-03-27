@@ -7,12 +7,15 @@ import racing.view.CarView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CarController {
     private final CarView carView;
+    private List<Map<String, Integer>> gameLogs;
 
     public CarController() {
         carView = new CarView();
+        gameLogs = new ArrayList<>();
     }
 
     public void run() {
@@ -21,18 +24,12 @@ public class CarController {
 
         int turn = carView.getTryCount();
 
-        carView.printResultDescription();
         for (int i = 0; i < turn; i++) {
-            runOneTurn(carList);
+            gameLogs.add(carList.proceed());
         }
 
+        carView.printGameLogs(gameLogs);
         carView.printWinner(carList);
-    }
-
-    private void runOneTurn(CarList carList) {
-        carList.proceed();
-        carView.printCarList(carList);
-
     }
 
     private List<Car> createCarList(String carNames) {

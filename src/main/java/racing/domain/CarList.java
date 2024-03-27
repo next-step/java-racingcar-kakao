@@ -1,13 +1,10 @@
 package racing.domain;
 
-import racing.generator.NumberGenerator;
-import racing.generator.RandomNumberGenerator;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class CarList {
-    Map<String, Car> carHashMap;
+    private final Map<String, Car> carHashMap;
 
     public CarList(List<Car> carList) {
         this.carHashMap = createCarHashMap(carList);
@@ -19,10 +16,14 @@ public class CarList {
                 .collect(Collectors.toMap(Car::getCarName, car->car, (x, y) -> y, LinkedHashMap::new));
     }
 
-    public void proceed() {
+    public Map<String, Integer> proceed() {
+        Map<String, Integer> result = new LinkedHashMap<>();
+
         for (Car car : getCarList()) {
-            car.proceed();
+            result.put(car.getCarName(), car.proceed());
         }
+
+        return result;
     }
 
     public Car findByName(String name) {

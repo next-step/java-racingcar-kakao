@@ -8,6 +8,7 @@ import racing.validator.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CarView {
@@ -21,16 +22,27 @@ public class CarView {
         scanner = new Scanner(System.in);
     }
 
-    public void printCarList(CarList carList) {
-        for (Car car : carList.getCarList()) {
-            printCar(car);
+    private void printResultDescription() {
+        System.out.println("\n실행결과");
+    }
+
+    public void printGameLogs(List<Map<String, Integer>> gameLogs) {
+        printResultDescription();
+        for (Map<String, Integer> gameLog : gameLogs) {
+            printGameLog(gameLog);
+        }
+    }
+
+    private void printGameLog(Map<String, Integer> gameLog) {
+        for (Map.Entry<String, Integer> log : gameLog.entrySet()) {
+            printCar(log);
         }
         System.out.println();
     }
 
-    private void printCar(Car car) {
-        StringBuilder status = new StringBuilder(car.getCarName() + " : ");
-        status.append("-".repeat(car.getPosition()));
+    private void printCar(Map.Entry<String, Integer> log) {
+        StringBuilder status = new StringBuilder(log.getKey() + " : ");
+        status.append("-".repeat(log.getValue()));
 
         System.out.println(status);
     }
@@ -74,9 +86,5 @@ public class CarView {
         if (!validated) {
             System.out.println(errorMessage);
         }
-    }
-
-    public void printResultDescription() {
-        System.out.println("\n실행결과");
     }
 }

@@ -14,11 +14,13 @@ public class Car {
         this.position = 0;
     }
 
-    public void proceed() {
+    public int proceed() {
         int number = numberGenerator.generate();
         if (this.canGo(number)) {
             this.position++;
         }
+
+        return this.position;
     }
 
     public String getCarName() {
