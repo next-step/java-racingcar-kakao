@@ -1,38 +1,41 @@
 package racingcar.controller;
 
 import java.util.List;
+import java.util.stream.IntStream;
+
 import racingcar.exception.InValidInputException;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCars;
 import racingcar.view.RacingCarView;
 
 public class RacingCarController {
-
-    RacingCars racingCars;
     RacingCarView racingCarView;
 
     public RacingCarController(RacingCarView racingCarView) {
         this.racingCarView = racingCarView;
-        this.racingCars = new RacingCars(requestCarNames());
     }
 
     public void playGame() {
         int trial = racingCarView.requestTrial();
-        List<RacingCar> participants = racingCars.getRacingCars();
+        RacingCars racingCars = initializeRacingCars();
 
-        racingCarView.startGameRound();
-
-        for (int i = 0; i < trial; i++) {
-            playGameRound(participants);
-        }
+        performRacingRounds(trial, racingCars.getRacingCars());
 
         racingCarView.displayWinners(racingCars.findWinners());
     }
 
+    private RacingCars initializeRacingCars() {
+        List<String> carNames = requestCarNames();
+        racingCarView.startGameRound();
+        return new RacingCars(carNames);
+    }
+
+    private void performRacingRounds(int trial, List<RacingCar> participants) {
+        IntStream.range(0, trial).forEach(i -> playGameRound(participants));
+    }
+
     private void playGameRound(List<RacingCar> participants) {
-        for (RacingCar racingCar : participants) {
-            racingCar.move();
-        }
+        participants.forEach(RacingCar::move);
         racingCarView.displayRacingCarStatus(participants);
     }
 
