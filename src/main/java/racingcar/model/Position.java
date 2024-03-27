@@ -2,7 +2,7 @@ package racingcar.model;
 
 import java.util.Objects;
 
-public class Position {
+public class Position implements Comparable<Position>{
 
     private static final int ZERO = 0;
     private static final String POSITION_UNDER_ZERO_MESSAGE = "위치는 음수일 수 없습니다.";
@@ -20,12 +20,17 @@ public class Position {
         }
     }
 
+    public void moveFront() {
+        value++;
+    }
+
     public int getValue() {
         return value;
     }
 
-    public void moveFront() {
-        value++;
+    @Override
+    public int compareTo(final Position otherPosition) {
+        return Integer.compare(this.value, otherPosition.value);
     }
 
     @Override

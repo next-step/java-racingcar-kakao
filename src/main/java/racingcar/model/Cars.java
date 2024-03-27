@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Cars {
 
     private static final String SPLIT_REGEX = ",";
-    private static final String INVALID_CARS_STATE_MESSAGE = "올바르지 않은 자동차 구성입니다.";
+    private static final String INVALID_POSITION_MESSAGE = "1등에 해당하는 위치가 존재하지 않습니다.";
 
     private final List<Car> values;
 
@@ -32,13 +32,18 @@ public class Cars {
     }
 
     public Winners getWinners() {
+        final Position winnerPosition = findWinnerPosition();
         return new Winners(values.stream()
-                .max(Comparator.comparingInt(car -> car.getPosition().getValue()))
-                .map(car -> values.stream()
-                        .filter(c -> c.getPosition().getValue() == car.getPosition().getValue())
-                        .map(Car::getName)
-                        .collect(Collectors.toUnmodifiableList()))
-                .orElseThrow(() -> new IllegalArgumentException(INVALID_CARS_STATE_MESSAGE)));
+                .filter(car -> car.isAt(winnerPosition))
+                .map(Car::getName)
+                .collect(Collectors.toUnmodifiableList()));
+    }
+
+    private Position findWinnerPosition() {
+        return values.stream()
+                .max(Comparator.comparing(Car::getPosition))
+                .map(Car::getPosition)
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_POSITION_MESSAGE));
     }
 
     public List<Car> getValues() {

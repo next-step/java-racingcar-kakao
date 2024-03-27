@@ -20,6 +20,10 @@ public class Car {
         position.moveFront();
     }
 
+    public boolean isAt(final Position otherPosition) {
+        return this.position.compareTo(otherPosition) == 0;
+    }
+
     public Position getPosition() {
         return position;
     }
