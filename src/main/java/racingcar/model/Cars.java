@@ -25,7 +25,8 @@ public class Cars {
     }
 
     private void moveOrStandCar(final NumberGenerator numberGenerator, final Car car) {
-        if (CarAction.isMove(CarAction.generate(numberGenerator.generate()))) {
+        final CarAction carAction = CarAction.generate(numberGenerator.generate());
+        if (carAction.isMove()) {
             car.move();
         }
     }

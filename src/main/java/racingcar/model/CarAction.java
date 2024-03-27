@@ -24,7 +24,7 @@ public enum CarAction {
         }
     }
 
-    public static boolean isMove(final CarAction targetCarAction) {
-        return targetCarAction.equals(MOVE);
+    public boolean isMove() {
+        return this == MOVE;
     }
 }
