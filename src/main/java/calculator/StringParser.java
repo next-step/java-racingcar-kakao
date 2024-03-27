@@ -11,6 +11,7 @@ public class StringParser {
 
     private static final String DEFAULT_DELIMITER = ",:";
     private static final Pattern PATTERN = Pattern.compile("(//(.+)\\n)?(.*)");
+    private static final int NUMBER_THRESHOLD = 0;
 
     public List<Integer> parse(String numberSequence) {
         Matcher matcher = PATTERN.matcher(numberSequence);
@@ -45,7 +46,7 @@ public class StringParser {
     }
 
     private static void validateRange(int number) {
-		if (number < 0) {
+		if (number < NUMBER_THRESHOLD) {
 			throw new IllegalArgumentException("양수를 입력해주세요.");
 		}
     }

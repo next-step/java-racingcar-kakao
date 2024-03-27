@@ -4,7 +4,7 @@ import java.util.List;
 
 public class NumberCalculator {
 
-    public static final int DEFAULT_VALUE = 0;
+    private static final int DEFAULT_VALUE = 0;
 
     public int calculate(List<Integer> numbers) {
         return numbers
