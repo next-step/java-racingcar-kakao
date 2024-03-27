@@ -1,6 +1,6 @@
 package calculator;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -8,7 +8,7 @@ public final class Numbers {
     private final List<Integer> list;
 
     public Numbers(List<Integer> numbers) {
-        this.list = new ArrayList<>(numbers);
+        this.list = Collections.unmodifiableList(numbers);
     }
 
     public static Numbers of(List<Integer> numbers) {

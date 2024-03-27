@@ -9,7 +9,9 @@ public final class Calculator {
             validate(input);
             Numbers numbers = Parser.of(input).parse();
             validate(numbers);
-            return Adder.sum(numbers);
+            return numbers.list().stream()
+                    .mapToInt(Integer::intValue)
+                    .sum();
         } catch (NullPointerException | IllegalArgumentException ex) {
             return 0;
         }

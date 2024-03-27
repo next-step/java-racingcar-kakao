@@ -9,10 +9,10 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public final class Parser {
-    private static final Pattern forbiddenDelimiterPattern = Pattern.compile("\\.|\\?|\\+|\\*|\\^|\\$|\\|");
-    private static final Pattern customDelimiterPattern = Pattern.compile("//(.)\n(.*)");
-    private static final String customDelimiterPrefix = "//";
-    private static final String defaultDelimiter = ",|:";
+    private static final Pattern FORBIDDEN_DELIMITER_PATTERN = Pattern.compile("\\.|\\?|\\+|\\*|\\^|\\$|\\|");
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
+    private static final String CUSTOM_DELIMITER_PREFIX = "//";
+    private static final String DEFAULT_DELIMITER = ",|:";
     private final String input;
     private final String target;
     private final String delimiter;
@@ -20,8 +20,8 @@ public final class Parser {
     private Parser(String input) {
         this.input = input;
         validateInput();
-        if (!input.startsWith(customDelimiterPrefix)) {
-            this.delimiter = defaultDelimiter;
+        if (!input.startsWith(CUSTOM_DELIMITER_PREFIX)) {
+            this.delimiter = DEFAULT_DELIMITER;
             target = input;
             return;
         }
@@ -31,7 +31,7 @@ public final class Parser {
     }
 
     private Matcher getCustomMatcher() {
-        Matcher m = customDelimiterPattern.matcher(input);
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
         if (!m.find()) {
             throw new InputMismatchException("커스텀 구분자로 입력 값을 판별할 수 없습니다.");
         }
@@ -55,7 +55,7 @@ public final class Parser {
     }
 
     private void checkInputContainsRegex() {
-        Matcher matcher = forbiddenDelimiterPattern.matcher(input);
+        Matcher matcher = FORBIDDEN_DELIMITER_PATTERN.matcher(input);
         if (matcher.find()) {
             throw new IllegalArgumentException("입력 값에는 정규표현식 예약어를 사용할 수 없습니다.");
         }
