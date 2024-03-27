@@ -14,7 +14,6 @@ public class RacingController {
     private final CarOutputView carOutputView;
     private final RacingService racingService;
 
-
     public RacingController(CarInputView carInputView,
                             CarOutputView carOutputView,
                             RacingService racingService) {
