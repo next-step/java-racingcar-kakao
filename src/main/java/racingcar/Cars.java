@@ -33,13 +33,13 @@ public class Cars {
     }
 
     public List<String> decideWinner() {
-        int max = cars.stream()
+        int maxScore = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
                 .orElseThrow();
 
         return cars.stream()
-                .filter(it -> it.getPosition() == max)
+                .filter(it -> it.getPosition() == maxScore)
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

@@ -5,11 +5,20 @@ public class Car {
     private final String name;
     private int position = 1;
 
+    public static final int MAX_NAME_LENGTH = 5;
+
     public Car(String name) {
-        if (name.length() > 5) {
+        validateCarName(name);
+        this.name = name;
+    }
+
+    private static void validateCarName(String name) {
+        if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException();
         }
-        this.name = name;
+        if (name.length() > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public String getName() {
