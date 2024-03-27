@@ -19,7 +19,7 @@ public class Race {
     }
 
     public List<String> winners() {
-        int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElse(-1);
+        int maxPosition = cars.stream().mapToInt(Car::getPosition).max().orElseThrow(IllegalStateException::new);
         return cars.stream().filter(car -> car.getPosition() == maxPosition).map(Car::getName).collect(Collectors.toList());
     }
 }

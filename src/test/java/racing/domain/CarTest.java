@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import racing.support.StubCarEngine;
 
@@ -43,6 +45,17 @@ public class CarTest {
 
         // when & then
         assertThat(car.getName()).isEqualTo("vecto");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    void nameBlank(String name) {
+        // given
+        CarEngine carEngine = new StubCarEngine(true);
+
+        // when & then
+        assertThatThrownBy(() -> new Car(name, carEngine))
+                .isInstanceOf(RuntimeException.class);
     }
 
     @Test
