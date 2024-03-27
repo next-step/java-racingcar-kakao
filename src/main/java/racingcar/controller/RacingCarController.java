@@ -1,12 +1,12 @@
 package racingcar.controller;
 
-import java.util.List;
-import java.util.stream.IntStream;
-
 import racingcar.exception.InValidInputException;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCars;
 import racingcar.view.RacingCarView;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class RacingCarController {
     RacingCarView racingCarView;
@@ -40,12 +40,11 @@ public class RacingCarController {
     }
 
     private List<String> requestCarNames() {
-        while (true) {
-            try {
-                return racingCarView.requestCarNames();
-            } catch (InValidInputException e) {
-                System.out.println(e.getMessage());
-            }
+        try {
+            return racingCarView.requestCarNames();
+        } catch (InValidInputException e) {
+            System.out.println(e.getMessage());
+            return requestCarNames();
         }
     }
 }
