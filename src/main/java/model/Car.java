@@ -6,12 +6,14 @@ public class Car {
     private int position;
     private final String name;
 
+    private static final int MOVE_THRESHOLD = 4;
+
     public Car(String name) {
         this.name = name;
     }
 
-    public void run(int randomNumber) {
-        if (randomNumber >= 4) {
+    public void run(int number) {
+        if (number >= MOVE_THRESHOLD) {
             position += 1;
         }
     }
