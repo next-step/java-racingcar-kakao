@@ -6,14 +6,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Parser {
+public class Numbers {
     private static final Pattern defaultInputFormatPattern = Pattern.compile("//(.)\n(.*)");
     private static final Pattern forbiddenDelimiterPattern = Pattern.compile("\\.|\\^|\\$|\\*|\\+|\\?|\\|");
 
     private final List<Integer> numbers;
 
-
-    private Parser(String delimiter, String targetString) {
+    private Numbers(String delimiter, String targetString) {
         try {
             numbers = Arrays.stream(targetString.split(delimiter))
                     .map(Integer::parseInt)
@@ -32,16 +31,16 @@ public class Parser {
                 });
     }
 
-    public static Parser of(String input) {
+    public static Numbers of(String input) {
         validateRegex(input);
         if (!input.startsWith("//")) {
-            return new Parser(",|:", input);
+            return new Numbers(",|:", input);
         }
         Matcher m = defaultInputFormatPattern.matcher(input);
         if (!m.find()) {
-            throw new RuntimeException("");
+            throw new RuntimeException("커스텀 구분자로 입력 값을 판별할 수 없습니다.");
         }
-        return new Parser(m.group(1), m.group(2));
+        return new Numbers(m.group(1), m.group(2));
     }
 
     private static void validateRegex(String input) {

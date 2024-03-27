@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public final class Car implements Comparable<Car> {
     private final String owner;
-
     private int offset;
 
     public Car(String owner, int offset) {

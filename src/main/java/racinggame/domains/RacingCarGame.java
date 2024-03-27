@@ -29,16 +29,13 @@ public final class RacingCarGame {
     }
 
     public void processTurn() {
-        cars.list()
-                .stream()
+        cars.list().stream()
                 .filter(e -> MoveChecker.check(randomGenerator.generate()))
                 .forEach(Car::move);
     }
 
     public void showStatus() {
-        cars
-                .list()
-                .stream()
+        cars.list()
                 .forEach(e -> System.out.println(e.owner() + " : " + "-".repeat(e.offset())));
     }
 }
