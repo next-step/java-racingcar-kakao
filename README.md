@@ -42,3 +42,8 @@
   - RandomNumberGenerator 시드관련 -> -1이면 현재 시간, 아니면 지정 값
   - 패키지 리팩토링
   - 코드 리팩토링
+
+## 리팩토링 및 피드백
+- [x] validate이랑 parseInt 합치기
+- [ ] 10 상수로 빼기
+- [ ] fallBack Throw로 변경하기
