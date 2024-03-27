@@ -1,4 +1,4 @@
-package string_add_calculator;
+package stringaddcalculator;
 
 import java.util.List;
 import java.util.regex.Matcher;
