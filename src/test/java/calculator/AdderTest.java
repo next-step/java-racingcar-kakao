@@ -9,7 +9,7 @@ import java.util.List;
 @DisplayName("Adder 관련 테스트")
 public class AdderTest {
     @Test
-    void sum_메서드는_주어진_정수_리스트의_합을_반환할_수_있습니다() {
+    void sum_메서드는_주어진_정수_리스트의_합을_반환_가능() {
         Numbers n = Numbers.of(List.of(1, 2, 3));
         Assertions.assertThat(Adder.sum(n)).isEqualTo(6);
     }

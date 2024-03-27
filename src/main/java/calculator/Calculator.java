@@ -10,7 +10,7 @@ public final class Calculator {
             Numbers numbers = Parser.of(input).parse();
             validate(numbers);
             return Adder.sum(numbers);
-        } catch (RuntimeException ex) {
+        } catch (NullPointerException | IllegalArgumentException ex) {
             return 0;
         }
     }
