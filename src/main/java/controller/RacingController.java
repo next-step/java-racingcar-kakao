@@ -6,6 +6,7 @@ import service.RacingService;
 import view.CarInputView;
 import view.CarOutputView;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,9 +47,9 @@ public class RacingController {
 
     private List<Car> createCars() {
         carOutputView.printCarNameMessage();
-        String carNames = carInputView.getCarNameInput();
-        return racingService.extractCarNames(carNames)
-                .stream().map(Car::new).collect(Collectors.toList());
+        String carNamesInput = carInputView.getCarNameInput();
+        List<String> carNames = Arrays.asList(carNamesInput.split(","));
+        return carNames.stream().map(Car::new).collect(Collectors.toList());
     }
 
     private int getTryNumber() {

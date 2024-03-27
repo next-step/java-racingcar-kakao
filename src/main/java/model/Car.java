@@ -9,12 +9,19 @@ public class Car {
     private static final int MOVE_THRESHOLD = 4;
 
     public Car(String name) {
+        validateCarName(name);
         this.name = name;
     }
 
     public void run(int number) {
         if (number >= MOVE_THRESHOLD) {
             position += 1;
+        }
+    }
+
+    public void validateCarName(String carName) {
+        if (carName.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이하만 가능합니다.");
         }
     }
 
