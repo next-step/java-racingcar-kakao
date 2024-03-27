@@ -1,17 +1,22 @@
 package racingCar;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
 
     private static final int DEFAULT_CAR_POSITION = 0;
+    private static final String CAR_NAME_DElIMITER = ",";
 
     private final List<Car> cars = new ArrayList<>();
 
-    public Cars(String s) {
-        String[] carNames = s.split(",");
+    public Cars(String carNames) {
+        this(Arrays.asList(carNames.split(CAR_NAME_DElIMITER)));
+    }
+
+    private Cars(List<String> carNames) {
         for (String carName : carNames) {
             Car car = new Car(carName);
             this.cars.add(car);
