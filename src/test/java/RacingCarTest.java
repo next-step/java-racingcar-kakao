@@ -1,15 +1,15 @@
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.RacingCar;
 import racingcar.model.RacingCars;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RacingCarTest {
 
@@ -32,6 +32,19 @@ public class RacingCarTest {
         assertFalse(racingCar.isMove(number));
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "12", "123", "1234", "12345"})
+    void whenNameIsValid_thenDoesNotThrowException(String input) {
+        assertDoesNotThrow(() -> new RacingCar(input));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"123456"})
+    void whenNameIsInvalid_thenThrowsException(String input) {
+        assertThrows(IllegalArgumentException.class, () -> new RacingCar(input));
+    }
+
     @Test
     void determineWinnerTest() {
         List<String> racingCarNames = Arrays.asList("car1", "car2", "car3");
@@ -43,8 +56,8 @@ public class RacingCarTest {
 
         List<RacingCar> winners = racingCars.findWinners();
 
-        Assertions.assertEquals(2, winners.size());
-        Assertions.assertEquals("car1", winners.get(0).getName());
-        Assertions.assertEquals("car3", winners.get(1).getName());
+        assertEquals(2, winners.size());
+        assertEquals("car1", winners.get(0).getName());
+        assertEquals("car3", winners.get(1).getName());
     }
 }
