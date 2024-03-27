@@ -14,10 +14,10 @@ public class Car {
 
     private static void validateCarName(String name) {
         if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름은 널 또는 빈 값이 될 수 없습니다.");
         }
         if (name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("자동차 이름의 최대 길이는" + MAX_NAME_LENGTH + "입니다.");
         }
     }
 

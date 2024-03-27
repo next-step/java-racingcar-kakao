@@ -21,7 +21,7 @@ public class Input {
     private static void validateGameCount(String input) {
         int count = Integer.parseInt(input);
         if (count < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("게임 진행 횟수는 음수가될 수 없습니다.");
         }
     }
 }
