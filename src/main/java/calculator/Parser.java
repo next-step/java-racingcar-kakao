@@ -13,9 +13,15 @@ public final class Parser {
     private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
     private static final String CUSTOM_DELIMITER_PREFIX = "//";
     private static final String DEFAULT_DELIMITER = ",|:";
+    private static final int DELIMITER_CAPTURE_POSITION = 1;
+    private static final int TARGET_CAPTURE_POSITION = 2;
     private final String input;
     private final String target;
     private final String delimiter;
+
+    public static Parser of(String input) {
+        return new Parser(input);
+    }
 
     private Parser(String input) {
         this.input = input;
@@ -26,22 +32,10 @@ public final class Parser {
             return;
         }
         Matcher m = getCustomMatcher();
-        this.delimiter = m.group(1);
-        this.target = m.group(2);
+        this.delimiter = m.group(DELIMITER_CAPTURE_POSITION);
+        this.target = m.group(TARGET_CAPTURE_POSITION);
     }
-
-    private Matcher getCustomMatcher() {
-        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
-        if (!m.find()) {
-            throw new InputMismatchException("커스텀 구분자로 입력 값을 판별할 수 없습니다.");
-        }
-        return m;
-    }
-
-    public static Parser of(String input) {
-        return new Parser(input);
-    }
-
+    
     private void validateInput() {
         checkInputBlank();
         checkInputContainsRegex();
@@ -59,6 +53,14 @@ public final class Parser {
         if (matcher.find()) {
             throw new IllegalArgumentException("입력 값에는 정규표현식 예약어를 사용할 수 없습니다.");
         }
+    }
+
+    private Matcher getCustomMatcher() {
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(input);
+        if (!m.find()) {
+            throw new InputMismatchException("커스텀 구분자로 입력 값을 판별할 수 없습니다.");
+        }
+        return m;
     }
 
     public Numbers parse() {

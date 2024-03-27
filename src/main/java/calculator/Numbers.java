@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public final class Numbers {
     private final List<Integer> list;
-
-    public Numbers(List<Integer> numbers) {
-        this.list = Collections.unmodifiableList(numbers);
-    }
-
+    
     public static Numbers of(List<Integer> numbers) {
         return new Numbers(numbers);
+    }
+
+    private Numbers(List<Integer> numbers) {
+        this.list = Collections.unmodifiableList(numbers);
     }
 
     public List<Integer> list() {

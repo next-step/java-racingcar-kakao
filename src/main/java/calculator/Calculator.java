@@ -4,6 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 
 public final class Calculator {
+    private Calculator() {
+        throw new AssertionError("Calculator는 상태를 갖지 않는 유틸 객체입니다.");
+    }
+
     public static int sum(String input) {
         try {
             validate(input);

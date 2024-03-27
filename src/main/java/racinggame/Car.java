@@ -11,6 +11,10 @@ public class Car {
     private final String name;
     private int offset;
 
+    public static Car of(String owner) {
+        return new Car(owner);
+    }
+
     protected Car(String name) {
         this.name = name;
         validateOwner();
@@ -32,10 +36,6 @@ public class Car {
         if (name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 소유주는 5글자 이하여야 합니다.");
         }
-    }
-
-    public static Car of(String owner) {
-        return new Car(owner);
     }
 
     public int offset() {
