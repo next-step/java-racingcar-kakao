@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RacingTest {
     @Test
@@ -26,7 +26,7 @@ public class RacingTest {
         third.run(3);
 
         RacingGame result = new RacingGame(Arrays.asList(first, second, third));
-        assertTrue(result.getWinners().contains(first));
+        assertThat(result.getWinners()).containsExactly(first);
     }
 
     @Test
@@ -47,7 +47,6 @@ public class RacingTest {
         third.run(3);
 
         RacingGame result = new RacingGame(Arrays.asList(first, second, third));
-        assertTrue(result.getWinners().contains(first));
-        assertTrue(result.getWinners().contains(second));
+        assertThat(result.getWinners()).containsExactlyInAnyOrder(first, second);
     }
 }
