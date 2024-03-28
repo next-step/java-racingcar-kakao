@@ -1,4 +1,4 @@
-package racingCar;
+package racingcar;
 
 public class RacingCarGame {
 
@@ -20,10 +20,10 @@ public class RacingCarGame {
         outputView.printResultGuide();
 
         for (int i = 0; i < tryCount; i++) {
-            cars.move(new NumberGenerator());
+            cars.moveAll(new NumberGenerator());
             outputView.printResult(cars);
         }
 
-        outputView.printWinners(cars.getWinners());
+        outputView.printWinners(cars.pickWinners());
     }
 }

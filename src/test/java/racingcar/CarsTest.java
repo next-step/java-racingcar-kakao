@@ -1,4 +1,4 @@
-package racingCar;
+package racingcar;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import racingCar.Cars;
-import racingCar.NumberGenerator;
 
 @DisplayName("Cars 딘위 테스트")
 class CarsTest {
@@ -32,7 +29,7 @@ class CarsTest {
     @DisplayName("자동차들을 이동시킨다.")
     void 자동차_이동_시도() {
         Cars cars = new Cars("pohi,crong,honux");
-        cars.move(new NumberGenerator() {
+        cars.moveAll(new NumberGenerator() {
             int n = 0;
 
             @Override
@@ -52,7 +49,7 @@ class CarsTest {
     @DisplayName("우승자 목록을 반환한다.")
     void 우승자_목록_반환() {
         Cars cars = new Cars("pohi,crong,honux");
-        cars.move(new NumberGenerator() {
+        cars.moveAll(new NumberGenerator() {
             int n = 0;
 
             @Override
@@ -65,6 +62,6 @@ class CarsTest {
             }
         });
 
-        assertThat(cars.getWinners()).containsExactly("pohi", "crong");
+        assertThat(cars.pickWinners()).containsExactly("pohi", "crong");
     }
 }

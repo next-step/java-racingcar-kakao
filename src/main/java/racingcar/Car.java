@@ -1,4 +1,4 @@
-package racingCar;
+package racingcar;
 
 public class Car {
     private static final int INITIAL_POSITION = 0;

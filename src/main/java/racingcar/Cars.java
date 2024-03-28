@@ -1,4 +1,4 @@
-package racingCar;
+package racingcar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +32,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public void move(NumberGenerator generator) {
+    public void moveAll(NumberGenerator generator) {
         for (Car car : cars) {
             car.move(generator.generateNumber());
         }
@@ -44,7 +44,7 @@ public class Cars {
                 .collect(Collectors.toList());
     }
 
-    public List<String> getWinners() {
+    public List<String> pickWinners() {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
