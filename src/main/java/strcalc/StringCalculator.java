@@ -1,9 +1,9 @@
 package strcalc;
 
-public class StrCalculator {
+public class StringCalculator {
 
     public int add(String input) {
-        return add(CalcParser.parseInput(input));
+        return add(CalculatorParser.parseInput(input));
     }
 
     int add(String text, String delimiter) {
@@ -30,7 +30,7 @@ public class StrCalculator {
         return val;
     }
 
-    int add(CalcInput calcInput) {
-        return add(calcInput.getText(), calcInput.getDelimiter());
+    int add(CalculatorInput calculatorInput) {
+        return add(calculatorInput.getText(), calculatorInput.getDelimiter());
     }
 }

@@ -1,10 +1,10 @@
 package strcalc;
 
-public class CalcInput {
+public class CalculatorInput {
     private final String text;
     private final String delimiter;
 
-    public CalcInput(String text, String delimiter) {
+    public CalculatorInput(String text, String delimiter) {
         this.text = text;
         this.delimiter = delimiter;
     }
