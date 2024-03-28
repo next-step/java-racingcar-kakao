@@ -2,10 +2,12 @@ package util;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+import model.NumberGenerator;
+
+public class RandomNumberGenerator implements NumberGenerator {
     private final static Random random = new Random();
 
-    public static int generate() {
+    public int generate() {
         return random.nextInt(10);
     }
 }
