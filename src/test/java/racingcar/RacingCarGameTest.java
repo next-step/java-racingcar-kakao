@@ -6,18 +6,18 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameManagerTest {
+public class RacingCarGameTest {
 
     @Test
     void 우승자를_반환한다() {
         Car winner = new Car("Mark", 3);
-        GameManager gameManager = new GameManager(List.of(
+        RacingCarGame racingCarGame = new RacingCarGame(List.of(
                 winner,
                 new Car("Daisy", 1),
                 new Car("Rosie", 1)
         ));
 
-        List<Car> winners = gameManager.decideWinner();
+        List<Car> winners = racingCarGame.decideWinner();
         assertThat(winners).containsExactly(winner);
     }
 }
