@@ -9,11 +9,9 @@ import static java.util.Arrays.*;
 import static java.util.stream.Collectors.toList;
 
 public class Car {
-    private int score;
-
-    private final String name;
-
     public static final int START_SCORE = 1;
+    private int score;
+    private final String name;
 
     public Car(String name, int score) {
         this.name = name;
@@ -88,6 +86,7 @@ public class Car {
         List<Car> updatedCarList = new ArrayList<>();
 
         for (int i=0; i<initCarList.size(); i++) {
+            // void로 차 한칸 이동 -> 객체를 넣기
             updatedCarList.add(updateCarScore(initCarList.get(i), randomNumList.get(i)));
         }
 
