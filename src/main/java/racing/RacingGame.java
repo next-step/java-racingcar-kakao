@@ -26,10 +26,13 @@ public class RacingGame {
         this(cars, new RandomStrategy());
     }
 
-    public List<Car> getWinners() {
+    public List<String> getWinners() {
         Map<Integer, List<Car>> groupByPosition = cars.stream().collect(Collectors.groupingBy(Car::getPosition));
         int winnerPosition = getWinnerPosition(groupByPosition);
-        return getWinnerSortedByName(groupByPosition, winnerPosition);
+        List<Car> winner =  getWinnerSortedByName(groupByPosition, winnerPosition);
+        return winner.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
     }
 
     private static int getWinnerPosition(Map<Integer, List<Car>> groupByPosition) {
@@ -50,5 +53,11 @@ public class RacingGame {
 
     public List<Car> getCars() {
         return cars;
+    }
+
+    public List<String> getCarsPositionInfos() {
+        return cars.stream()
+                .map(Car::display)
+                .collect(Collectors.toList());
     }
 }
