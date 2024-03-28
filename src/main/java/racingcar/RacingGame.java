@@ -13,13 +13,13 @@ public class RacingGame {
 
 	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private final RacingGameUI ui;
-	private final ProceedLogic logic;
+	private final RacingGameRule rule;
 	private final List<Car> cars = new ArrayList<>();
 	private int rounds;
 
-	public RacingGame(RacingGameUI ui, NumberGenerator numberGenerator) {
+	public RacingGame(RacingGameUI ui, RacingGameRule rule) {
 		this.ui = ui;
-		this.logic = new ProceedLogic(numberGenerator);
+		this.rule = rule;
 	}
 
 	public void play() {
@@ -149,7 +149,7 @@ public class RacingGame {
 
 	private void playRound() {
 		cars.stream()
-				.filter(car -> logic.askProceed())
+				.filter(car -> rule.decideProceed())
 				.forEach(Car::proceed);
 	}
 

@@ -1,13 +1,14 @@
 package racingcar;
 
-public class ProceedLogic {
+public class DefaultRacingGameRule implements RacingGameRule{
 	private static final int PROCEED_THRESHOLD = 3;
 	private final NumberGenerator numberGenerator;
-	public ProceedLogic(NumberGenerator numberGenerator) {
+	public DefaultRacingGameRule(NumberGenerator numberGenerator) {
 		this.numberGenerator = numberGenerator;
 	}
 
-	public boolean askProceed() {
+	@Override
+	public boolean decideProceed() {
 		return numberGenerator.generate() > PROCEED_THRESHOLD;
 	}
 }
