@@ -11,10 +11,6 @@ public class Race {
         this.cars = cars;
     }
 
-    public void move() {
-        cars.forEach(Car::move);
-    }
-
 	public List<Car> nextRound() {
         cars.forEach(Car::move);
         return Collections.unmodifiableList(cars);
