@@ -13,8 +13,14 @@ public class Car {
         this.position = 0;
     }
 
-    public void forward(int randomNumber) {
-        if (randomNumber >= FORWARD_THRESHOLD) {
+    private void validateName(String name) {
+        if (name.length() > CAR_NAME_MAX_LENGTH) {
+            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
+        }
+    }
+
+    public void forward(int number) {
+        if (number >= FORWARD_THRESHOLD) {
             position++;
         }
     }
@@ -27,9 +33,7 @@ public class Car {
         return name;
     }
 
-    private void validateName(String name) {
-        if (name.length() > CAR_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
-        }
+    public boolean isCarNameIs(String targetName) {
+        return this.name.equals(targetName);
     }
 }

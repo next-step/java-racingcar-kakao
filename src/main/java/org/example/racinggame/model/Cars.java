@@ -20,12 +20,12 @@ public class Cars {
 
     public Car getCarFromName(String carName) {
         return carList.stream()
-                .filter(car -> car.getName().equals(carName))
+                .filter(car -> car.isCarNameIs(carName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("해당 이름의 차량이 없습니다."));
     }
 
-    public List<String> getWinners() {
+    public List<String> selectWinners() {
         int maxPosition = getMaxPosition();
         return carList.stream()
                 .filter(car -> car.getPosition() == maxPosition)

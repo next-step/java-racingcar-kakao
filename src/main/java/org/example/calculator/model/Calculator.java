@@ -5,26 +5,23 @@ import java.util.function.Function;
 
 public class Calculator {
 
-    private static final String DEFAULT_DELIMITER = ",|:";
-    private static final String CUSTOM_DELIMITER_REGEX = "//(.)\n";
-    private static final String CUSTOM_OPERANDS_REGEX = "//.\n(.+)";
     private final String string;
 
     public Calculator(String string) {
-        this.string = string == null ? "" : string;
+        this.string = string;
     }
 
     public int calculate() {
-        String delimiter = CalculatorStringUtils.extractDelimiterWithRegex(string, CUSTOM_DELIMITER_REGEX, DEFAULT_DELIMITER);
-        String operandString = CalculatorStringUtils.extractOperandStringWithRegex(string, CUSTOM_OPERANDS_REGEX);
-        String[] operands = splitOperandStringWithDelimiter(operandString, delimiter);
+        String delimiter = CalculatorStringUtils.extractDelimiterWithRegex(string, CalculatorStringUtils.CUSTOM_DELIMITER_REGEX, CalculatorStringUtils.DEFAULT_DELIMITER);
+        String operandString = CalculatorStringUtils.extractOperandStringWithRegex(string, CalculatorStringUtils.CUSTOM_OPERANDS_REGEX);
+        String[] operands = operandString.split(delimiter);
 
-        return getStringOperandsSum(operands);
+        return sumStringOperands(operands);
     }
 
-    private int getStringOperandsSum(String[] operands) {
+    private int sumStringOperands(String[] operands) {
         return Arrays.stream(operands)
-                .map(emptyStringToZero())
+                .filter(operand -> !operand.isBlank())
                 .map(Integer::parseInt)
                 .peek(this::validateNonNegativeInteger)
                 .mapToInt(Integer::intValue)
@@ -35,13 +32,9 @@ public class Calculator {
         return s -> s.isBlank() ? "0" : s;
     }
 
-    private String[] splitOperandStringWithDelimiter(String operandString, String delimiter) {
-        return operandString.split(delimiter);
-    }
-
     private void validateNonNegativeInteger(Integer integer) {
         if (integer < 0) {
-            throw new IllegalArgumentException(String.format("negatives not allowed: %d", integer));
+            throw new IllegalArgumentException("negatives not allowed: " + integer);
         }
     }
 }

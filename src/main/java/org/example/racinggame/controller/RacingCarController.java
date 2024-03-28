@@ -15,10 +15,10 @@ public class RacingCarController {
     }
 
     public void play() {
-        String carNamesInputString = inputView.getCarNamesFromUserInput();
+        String carNames = inputView.getCarNamesFromUserInput();
         int tryCount = inputView.getTryCountFromUserInput();
 
-        Cars cars = inputStringToCars(carNamesInputString);
+        Cars cars = new Cars(carNames);
 
         outputView.printResult();
         for (int i = 0; i < tryCount; i++) {
@@ -27,16 +27,12 @@ public class RacingCarController {
         }
 
         printCarPositions(cars);
-        outputView.printWinners(cars.getWinners());
+        outputView.printWinners(cars.selectWinners());
     }
 
     private void printCarPositions(Cars cars) {
         cars.getCarList()
                 .forEach(car -> outputView.printCarPosition(car.getName(), car.getPosition()));
         outputView.newLine();
-    }
-
-    private Cars inputStringToCars(String carNamesInputString) {
-        return new Cars(carNamesInputString);
     }
 }

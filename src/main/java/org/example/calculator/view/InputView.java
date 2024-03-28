@@ -4,11 +4,16 @@ import java.util.Scanner;
 
 public class InputView {
 
-    private static final Scanner sc = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public String getInputString() {
         System.out.println("inputString을 입력하세요 : ");
-        String inputString = sc.nextLine();
+        String inputString = SCANNER.nextLine();
+
+        if (inputString == null) {
+            inputString = "";
+        }
+
         return inputString.replace("\\n", "\n");
     }
 }
