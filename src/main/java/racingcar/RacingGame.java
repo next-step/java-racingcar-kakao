@@ -9,9 +9,10 @@ import java.util.Set;
 
 import racingcar.dto.CarState;
 
+import static racingcar.Car.MAX_CAR_NAME_LENGTH;
+
 public class RacingGame {
 
-	private static final int MAX_CAR_NAME_LENGTH = 5;
 	private final RacingGameUI ui;
 	private final RacingGameRule rule;
 	private final List<Car> cars = new ArrayList<>();

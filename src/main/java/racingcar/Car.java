@@ -5,6 +5,7 @@ import racingcar.dto.CarState;
 
 public class Car {
 
+	public static final int MAX_CAR_NAME_LENGTH = 5;
 	private final String name;
 	private int position;
 
@@ -13,8 +14,15 @@ public class Car {
 	}
 
 	public Car(String name, int position) {
+		validateCarName(name);
 		this.name = name;
 		this.position = position;
+	}
+
+	private void validateCarName(String name) {
+		if (name.length() > MAX_CAR_NAME_LENGTH) {
+			throw new RuntimeException(ErrorType.TOO_LONG_CAR_NAME.getMessage());
+		}
 	}
 
 	public CarState getState() {
