@@ -1,20 +1,20 @@
 package caculator;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
 
     public static int splitAndSum(String text) {
-        if (isBlank(text)) {
+        if (text == null || text.isEmpty()) {
             return 0;
         }
         return sum(toInts(split(text)));
     }
 
-    private static boolean isBlank(String text) {
-        return text == null || text.isEmpty();
-    }
 
     private static String[] split(String text) {
 
