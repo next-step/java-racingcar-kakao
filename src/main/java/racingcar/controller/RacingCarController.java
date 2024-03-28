@@ -16,7 +16,7 @@ public class RacingCarController {
     }
 
     public void playGame() {
-        int trial = racingCarView.requestTrial();
+        int trial = requestTrial();
         RacingCars racingCars = initializeRacingCars();
 
         performRacingRounds(trial, racingCars.getRacingCars());
@@ -37,6 +37,15 @@ public class RacingCarController {
     private void playGameRound(List<RacingCar> participants) {
         participants.forEach(RacingCar::move);
         racingCarView.displayRacingCarStatus(participants);
+    }
+
+    private int requestTrial() {
+        try {
+            return racingCarView.requestTrial();
+        } catch (InValidInputException e) {
+            System.out.println(e.getMessage());
+            return requestTrial();
+        }
     }
 
     private List<String> requestCarNames() {

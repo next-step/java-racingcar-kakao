@@ -1,10 +1,11 @@
 package racingcar.view;
 
+import racingcar.exception.InValidInputException;
+import racingcar.model.RacingCar;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import racingcar.exception.InValidInputException;
-import racingcar.model.RacingCar;
 
 public class RacingCarView {
 
@@ -12,6 +13,12 @@ public class RacingCarView {
 
     public RacingCarView() {
         sc = new Scanner(System.in);
+    }
+
+    private static void checkCarName(String carName) {
+        if (carName.length() > 5) {
+            throw new InValidInputException("[ERROR] 이름은 5자 이하만 가능하다.");
+        }
     }
 
     public List<String> requestCarNames() {
@@ -25,20 +32,20 @@ public class RacingCarView {
         return carNames;
     }
 
-    private static void checkCarName(String carName) {
-        if (carName.length() > 5) {
-            throw new InValidInputException("[ERROR] 이름은 5자 이하만 가능하다.");
-        }
-    }
-
     public int requestTrial() {
         System.out.println("시도할 회수는 몇회인가요?");
-        return Integer.parseInt(sc.nextLine());
+        int numberOfTrials = Integer.parseInt(sc.nextLine());
+
+        if (numberOfTrials <= 0) {
+            throw new InValidInputException("[ERROR] 회수는 0보다 커야합니다.");
+        }
+
+        return numberOfTrials;
     }
 
     public void displayRacingCarStatus(List<RacingCar> racingCarList) {
         racingCarList.forEach(racingCar -> System.out.println(
-            racingCar.getName() + " : " + "-".repeat(racingCar.getMoves())));
+                racingCar.getName() + " : " + "-".repeat(racingCar.getMoves())));
         System.out.println();
     }
 
@@ -48,8 +55,8 @@ public class RacingCarView {
 
     public void displayWinners(List<RacingCar> racingCars) {
         String winners = racingCars.stream()
-            .map(RacingCar::getName)
-            .collect(Collectors.joining(", "));
+                .map(RacingCar::getName)
+                .collect(Collectors.joining(", "));
         System.out.println(winners + "가 최종 우승했습니다.");
     }
 }
