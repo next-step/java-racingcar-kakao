@@ -1,37 +1,38 @@
 package racingcar;
 
+import racingcar.view.Output;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GameController {
+public class GameManager {
 
     private final List<Car> cars;
 
-    public GameController(List<Car> cars) {
+    public GameManager(List<Car> cars) {
         this.cars = cars;
     }
 
-    public GameController(String[] inputs) {
+    public GameManager(String[] inputs) {
         this(Arrays.stream(inputs)
+                .map(String::trim)
                 .map(Car::new)
                 .collect(Collectors.toList()));
     }
 
-    public GameController(String input) {
+    public GameManager(String input) {
         this(input.split(","));
     }
 
     public void processOneTurn() {
         for (Car car : cars) {
             int diceResult = RacingCarDice.throwOnce();
-            if (RacingCarDice.isMove(diceResult)) {
-                car.move();
-            }
+            car.moveWithDiceNum(diceResult);
         }
     }
 
-    public List<String> decideWinner() {
+    public List<Car> decideWinner() {
         int max = cars.stream()
                 .mapToInt(Car::getPosition)
                 .max()
@@ -39,19 +40,11 @@ public class GameController {
 
         return cars.stream()
                 .filter(it -> it.getPosition() == max)
-                .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    public String makeGameBoard() {
-        return cars.stream()
-                .map(Car::toString)
-                .reduce("", (prev, next) -> prev + next + "\n")
-                .trim();
-    }
-
-    // Only for Test
-    public List<Car> getCars() {
-        return cars;
+    public void printGameBoard() {
+        cars.forEach(car -> Output.printCarProcessLine(car.getName(), car.getPosition()));
+        System.out.println();
     }
 }

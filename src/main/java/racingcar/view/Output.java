@@ -9,9 +9,8 @@ public class Output {
         System.out.println("실행 결과");
     }
 
-    public static void printGameProcessResult(String processResult) {
-        System.out.println(processResult);
-        System.out.println();
+    public static void printCarProcessLine(String carName, int position) {
+        System.out.println(carName + " : " + "-".repeat(position));
     }
 
     public static void printGameWinner(List<String> winners) {

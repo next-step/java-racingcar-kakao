@@ -3,18 +3,20 @@ package racingcar;
 import racingcar.view.Input;
 import racingcar.view.Output;
 
+import java.util.stream.Collectors;
+
 public class RacingCarGame {
 
     public void startGame() {
-        GameController gameController = new GameController(Input.getRacingCars());
+        GameManager gameManager = new GameManager(Input.getRacingCars());
         int count = Input.getGameCount();
 
         Output.printGameProcessTitle();
-        Output.printGameProcessResult(gameController.makeGameBoard());
+        gameManager.printGameBoard();
         for (int i = 0; i < count; i++) {
-            gameController.processOneTurn();
-            Output.printGameProcessResult(gameController.makeGameBoard());
+            gameManager.processOneTurn();
+            gameManager.printGameBoard();
         }
-        Output.printGameWinner(gameController.decideWinner());
+        Output.printGameWinner(gameManager.decideWinner().stream().map(Car::getName).collect(Collectors.toList()));
     }
 }

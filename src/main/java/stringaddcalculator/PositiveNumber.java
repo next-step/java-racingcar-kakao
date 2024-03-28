@@ -2,15 +2,15 @@ package stringaddcalculator;
 
 import java.util.Objects;
 
-public class Number {
+public class PositiveNumber {
     private final int number;
 
-    public Number(int number) {
+    public PositiveNumber(int number) {
         validate(number);
         this.number = number;
     }
 
-    public Number(String number) {
+    public PositiveNumber(String number) {
         this(Integer.parseInt(number));
     }
 
@@ -20,16 +20,16 @@ public class Number {
         }
     }
 
-    public Number add(Number targetNumber) {
-        return new Number(this.number + targetNumber.number);
+    public PositiveNumber add(PositiveNumber targetPositiveNumber) {
+        return new PositiveNumber(this.number + targetPositiveNumber.number);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Number number1 = (Number) o;
-        return number == number1.number;
+        PositiveNumber positiveNumber1 = (PositiveNumber) o;
+        return number == positiveNumber1.number;
     }
 
     @Override
