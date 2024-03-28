@@ -28,18 +28,14 @@ public class StringCalculator {
         return text.split(",|;");
     }
 
-    private static int[] toInts(String[] values) {
-        int[] num = new int[values.length];
-
-        for (int i=0; i<values.length; i++) {
-            int valueNum = Integer.parseUnsignedInt(values[i]);
-            num[i] = valueNum;
-        }
-
-        return num;
+    private static List<Integer> toInts(String[] values) {
+        return Arrays.stream(values)
+                .map(Integer::parseUnsignedInt)
+                .collect(Collectors.toList());
     }
 
-    private static int sum(int[] numbers) {
+
+    private static int sum(List<Integer> numbers) {
         int sum = 0;
 
         for (int number : numbers) {
