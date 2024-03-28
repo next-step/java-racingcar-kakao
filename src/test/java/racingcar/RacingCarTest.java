@@ -1,10 +1,13 @@
+package racingcar;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.generator.RandomNumberGenerator;
 import racingcar.model.RacingCar;
-import racingcar.model.RacingCars;
+import racingcar.model.RacingGame;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,10 +17,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RacingCarTest {
 
     private RacingCar racingCar;
+    private RandomNumberGenerator randomNumberGenerator;
 
     @BeforeEach
     void setUp() {
         racingCar = new RacingCar();
+        randomNumberGenerator = new RandomNumberGenerator();
     }
 
     @ParameterizedTest
@@ -35,29 +40,42 @@ public class RacingCarTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "12", "123", "1234", "12345"})
     void whenNameIsValid_thenDoesNotThrowException(String input) {
-        assertDoesNotThrow(() -> new RacingCar(input));
+        assertDoesNotThrow(() -> new RacingCar(input, randomNumberGenerator));
     }
 
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {"123456"})
     void whenNameIsInvalid_thenThrowsException(String input) {
-        assertThrows(IllegalArgumentException.class, () -> new RacingCar(input));
+        assertThrows(IllegalArgumentException.class, () -> new RacingCar(input, randomNumberGenerator));
     }
 
     @Test
     void determineWinnerTest() {
         List<String> racingCarNames = Arrays.asList("car1", "car2", "car3");
-        RacingCars racingCars = new RacingCars(racingCarNames);
+        RacingGame racingGame = new RacingGame(racingCarNames);
 
-        racingCars.getRacingCars().get(0).getNumAndMove(9);
-        racingCars.getRacingCars().get(1).getNumAndMove(2);
-        racingCars.getRacingCars().get(2).getNumAndMove(8);
+        racingGame.getRacingCars().get(0).getNumAndMove(9);
+        racingGame.getRacingCars().get(1).getNumAndMove(2);
+        racingGame.getRacingCars().get(2).getNumAndMove(8);
 
-        List<RacingCar> winners = racingCars.findWinners();
+        List<RacingCar> winners = racingGame.findWinners();
 
         assertEquals(2, winners.size());
         assertEquals("car1", winners.get(0).getName());
         assertEquals("car3", winners.get(1).getName());
+    }
+
+    @Test
+    public void testPerformRacingRound() {
+        List<String> carNames = Arrays.asList("car1", "car2", "car3");
+        RacingGame racingGame = new RacingGame(carNames, new TestNumberGenerator(5));
+
+        racingGame.performRacingRound();
+
+        List<RacingCar> racingCars = racingGame.getRacingCars();
+        for (RacingCar car : racingCars) {
+            assertEquals(1, car.getMoves());
+        }
     }
 }

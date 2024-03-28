@@ -1,11 +1,13 @@
 package racingcar.model;
 
-import java.util.Random;
+import racingcar.generator.NumberGenerator;
+import racingcar.generator.RandomNumberGenerator;
 
 public class RacingCar {
     private static final int MAX_NAME_LENGTH = 5;
     private static final int MIN_MOVE_THRESHOLD = 4;
     private static final int MAX_MOVE_THRESHOLD = 9;
+    private NumberGenerator numberGenerator;
     private String name;
     private int moves = 0;
 
@@ -13,10 +15,15 @@ public class RacingCar {
     }
 
     public RacingCar(String name) {
-        validateName(name);
-        this.name = name;
+        this(name, new RandomNumberGenerator());
     }
 
+    public RacingCar(String name, NumberGenerator numberGenerator) {
+        validateName(name);
+        this.name = name;
+        this.numberGenerator = numberGenerator;
+    }
+    
     public void getNumAndMove(int num) {
         if (isMove(num)) {
             this.moves++;
@@ -24,7 +31,7 @@ public class RacingCar {
     }
 
     public void move() {
-        int num = makeRandomNumber();
+        int num = numberGenerator.generate();
         getNumAndMove(num);
     }
 
@@ -40,7 +47,7 @@ public class RacingCar {
         return moves;
     }
 
-    public boolean isAt(int moves){
+    public boolean isAt(int moves) {
         return this.moves == moves;
     }
 
@@ -48,10 +55,5 @@ public class RacingCar {
         if (name == null || name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름이 적절하지 않습니다.");
         }
-    }
-
-    private static int makeRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(9);
     }
 }
