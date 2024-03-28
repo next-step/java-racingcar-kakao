@@ -30,18 +30,22 @@ public class RacingGame {
         Map<Integer, List<Car>> groupByPosition = cars.stream().collect(Collectors.groupingBy(Car::getPosition));
         int winnerPosition = getWinnerPosition(groupByPosition);
         List<Car> winner =  getWinnerSortedByName(groupByPosition, winnerPosition);
+        return getWinnerNames(winner);
+    }
+
+    private List<String> getWinnerNames(List<Car> winner) {
         return winner.stream()
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }
 
-    private static int getWinnerPosition(Map<Integer, List<Car>> groupByPosition) {
+    private int getWinnerPosition(Map<Integer, List<Car>> groupByPosition) {
         List<Integer> positions = new ArrayList<>(groupByPosition.keySet());
         positions.sort(Collections.reverseOrder());
         return positions.get(0);
     }
 
-    private static List<Car> getWinnerSortedByName(Map<Integer, List<Car>> groupByPosition, int winnerPosition) {
+    private List<Car> getWinnerSortedByName(Map<Integer, List<Car>> groupByPosition, int winnerPosition) {
         List<Car> winners = groupByPosition.get(winnerPosition);
         winners.sort(Comparator.comparing(Car::getName));
         return winners;
