@@ -44,13 +44,17 @@ public class CarTest {
 
     @Test
     void displayWhenPositionIs3() {
-        Car car = new Car("pobi", 3);
+        Car car = new Car("pobi");
+        car.moveForward(5);
+        car.moveForward(5);
+        car.moveForward(5);
+
         assertThat(car.display()).isEqualTo("pobi : ----");
     }
 
     @Test
     void moveRandom() {
-        Car car = new Car("pobi", 0);
+        Car car = new Car("pobi");
         List<Integer> numbers = List.of(4, 3, 4, 3, 4, 3);
         RandomStrategy rs = new FakeRandomStrategy(numbers);
         numbers.forEach(i -> car.moveForward(rs));

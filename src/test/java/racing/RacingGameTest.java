@@ -20,11 +20,14 @@ public class RacingGameTest {
 
     @Test
     void winner() {
+        RandomStrategy rs = new FakeRandomStrategy(List.of(3, 4, 4));
         RacingGame racingGame = new RacingGame(
-                List.of(new Car("pobi", 4),
-                new Car("crong", 5),
-                new Car("honux", 5)));
-
+                List.of(new Car("pobi"),
+                        new Car("crong"),
+                        new Car("honux")),
+                rs
+        );
+        racingGame.moveCars();
         List<Car> winners = racingGame.getWinners();
 
         assertThat(winners.size()).isEqualTo(2);
@@ -36,9 +39,9 @@ public class RacingGameTest {
     void moveCars() {
         RandomStrategy rs = new FakeRandomStrategy(List.of(4, 4, 3));
         RacingGame racingGame = new RacingGame(
-                List.of(new Car("pobi", 0),
-                        new Car("crong", 0),
-                        new Car("honux", 0)),
+                List.of(new Car("pobi"),
+                        new Car("crong"),
+                        new Car("honux")),
                 rs
         );
         racingGame.moveCars();

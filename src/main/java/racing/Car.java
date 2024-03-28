@@ -2,19 +2,17 @@ package racing;
 
 public class Car {
 
+    public static final int MAX_CAR_NAME_LENGTH = 5;
+    public static final int MOVE_FORWARD_THRESHOLD = 4;
     private final String name;
     private int position;
 
     public Car(String name) {
-        this(name, 0);
-    }
-
-    public Car(String name, int position) {
-        if (name.length() > 5) {
+        if (name.length() > MAX_CAR_NAME_LENGTH) {
             throw new IllegalArgumentException("이름은 5자 이하만 가능합니다.");
         }
         this.name = name;
-        this.position = position;
+        this.position = 0;
     }
 
     public String getName() {
@@ -22,7 +20,7 @@ public class Car {
     }
 
     public void moveForward(int num) {
-        if (num >= 4) {
+        if (num >= MOVE_FORWARD_THRESHOLD) {
             position++;
         }
     }
