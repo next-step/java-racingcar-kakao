@@ -19,9 +19,9 @@ public class Controller {
 
     public void play() {
         String carNames = view.promptCars();
-        int round = view.promptRound();
-
         Race race = new Race(carFactory.fromCsvNames(carNames));
+
+        int round = view.promptRound();
 
         view.printResultHeader();
 
