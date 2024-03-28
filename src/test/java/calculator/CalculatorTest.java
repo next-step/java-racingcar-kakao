@@ -1,9 +1,10 @@
-import calculator.CalculatorController;
-import calculator.Delimiter;
-import java.util.List;
+package calculator;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class CalculatorTest {
 
@@ -39,9 +40,9 @@ public class CalculatorTest {
         CalculatorController calculatorController = new CalculatorController();
 
         String customDelimiter1 = calculatorController.parseCustomDelimiter("//;\\n1,2:3")
-            .orElse("fail");
+                .orElse("fail");
         String customDelimiter2 = calculatorController.parseCustomDelimiter("/;\\n1,2:3")
-            .orElse("fail");
+                .orElse("fail");
 
         Assertions.assertEquals(";", customDelimiter1);
         Assertions.assertEquals("fail", customDelimiter2);
@@ -52,7 +53,7 @@ public class CalculatorTest {
         CalculatorController calculatorController = new CalculatorController();
 
         String customDelimiter = calculatorController.parseCustomDelimiter("//;\\n1,2:3")
-            .orElse("fail");
+                .orElse("fail");
         delimiter.addCustomDelimiter(customDelimiter);
 
         List<String> nums = delimiter.split("1;2:3");
@@ -75,8 +76,8 @@ public class CalculatorTest {
         CalculatorController calculatorController = new CalculatorController();
 
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> calculatorController.validateInput("000:1:1"));
+                () -> calculatorController.validateInput("000:1:1"));
         Assertions.assertThrows(IllegalArgumentException.class,
-            () -> calculatorController.validateInput("//;\n1:1:1-"));
+                () -> calculatorController.validateInput("//;\n1:1:1-"));
     }
 }

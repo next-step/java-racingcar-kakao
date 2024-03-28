@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import racingcar.generator.NumberGenerator;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +11,12 @@ public class RacingGame {
     public RacingGame(List<String> carNames) {
         this.racingCars = carNames.stream()
                 .map(RacingCar::new)
+                .collect(Collectors.toList());
+    }
+
+    public RacingGame(List<String> carNames, NumberGenerator numberGenerator) {
+        this.racingCars = carNames.stream()
+                .map(name -> new RacingCar(name, numberGenerator))
                 .collect(Collectors.toList());
     }
 

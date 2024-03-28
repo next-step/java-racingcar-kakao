@@ -16,7 +16,7 @@ public class RacingGameController {
     public void playGame() {
         int trial = requestTrial();
 
-        RacingGame racingGame = initializeRacingCars();
+        RacingGame racingGame = initializeRacingGame();
 
         for (int i = 0; i < trial; i++) {
             racingGame.performRacingRound();
@@ -44,7 +44,7 @@ public class RacingGameController {
         }
     }
 
-    private RacingGame initializeRacingCars() {
+    private RacingGame initializeRacingGame() {
         List<String> carNames = requestCarNames();
         racingGameView.startGameRound();
         return new RacingGame(carNames);
