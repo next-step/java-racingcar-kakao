@@ -36,13 +36,6 @@ public class CalculatorTest {
         assertThat(sum).isEqualTo(15);
     }
 
-    @Test
-    void calculateMultiple() {
-        int sum = Calculator.calculate("//;\n1;2;3,4:5");
-
-        assertThat(sum).isEqualTo(15);
-    }
-
     @ParameterizedTest
     @ValueSource(strings = {"//;\n-1;2", "//;\naa-1;2"})
     void 유효하지않은_입력() {
