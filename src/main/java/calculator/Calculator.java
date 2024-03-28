@@ -10,7 +10,7 @@ public class Calculator {
         int sum = 0;
 
         for (String token : tokens) {
-            sum += Validator.check(token);
+            sum += Validator.isPositiveInteger(token);
         }
 
         return sum;
