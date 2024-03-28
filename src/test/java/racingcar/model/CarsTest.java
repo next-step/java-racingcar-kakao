@@ -29,7 +29,7 @@ class CarsTest {
         final Position onePosition = new Position(1);
 
         // when
-        cars.step(new CustomNumberGenerator(List.of(9, 4, 2, 0)));
+        cars.step(new CustomCarMoveStrategy(List.of(true, true, false, false)));
         final List<Car> carsValues = cars.getValues();
 
         // then
@@ -48,7 +48,7 @@ class CarsTest {
         final Cars cars = new Cars("lucas,dino,eve,helen");
 
         // when
-        cars.step(new CustomNumberGenerator(List.of(9, 4, 2, 0)));
+        cars.step(new CustomCarMoveStrategy(List.of(true, true, false, false)));
 
         // then
         assertAll(

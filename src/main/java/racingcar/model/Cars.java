@@ -18,14 +18,14 @@ public class Cars {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public void step(final NumberGenerator numberGenerator) {
+    public void step(final CarMoveStrategy carMoveStrategy) {
         for (final Car car : values) {
-            moveOrStandCar(numberGenerator, car);
+            moveOrStandCar(carMoveStrategy, car);
         }
     }
 
-    private void moveOrStandCar(final NumberGenerator numberGenerator, final Car car) {
-        if (CarAction.isMove(CarAction.generate(numberGenerator.generate()))) {
+    private void moveOrStandCar(final CarMoveStrategy carMoveStrategy, final Car car) {
+        if (carMoveStrategy.evaluateMove()) {
             car.move();
         }
     }

@@ -1,8 +1,12 @@
 package racingcar;
 
-import racingcar.model.RandomNumberGenerator;
+import racingcar.dto.CarDTO;
+import racingcar.model.RacingGame;
+import racingcar.model.RandomCarMoveStrategy;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
+
+import java.util.stream.Collectors;
 
 public class RacingGameApplication {
 
@@ -15,14 +19,14 @@ public class RacingGameApplication {
     private static RacingGame initializeGame() {
         final String carNames = InputView.readCarNames();
         final int stepCount = InputView.readStepCount();
-        return new RacingGame(carNames, new RandomNumberGenerator(), stepCount);
+        return new RacingGame(carNames, new RandomCarMoveStrategy(), stepCount);
     }
 
     private static void runGame(final RacingGame racingGame) {
         OutputView.printPlayTitle();
         while (!racingGame.isEnd()) {
             racingGame.play();
-            OutputView.printRoundResult(racingGame.extractCarInfos());
+            OutputView.printRoundResult(racingGame.getCars().stream().map(CarDTO::from).collect(Collectors.toUnmodifiableList()));
         }
     }
 }

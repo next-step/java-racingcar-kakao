@@ -1,17 +1,21 @@
-package racingcar;
+package racingcar.dto;
 
 import racingcar.model.Car;
 import racingcar.model.Name;
 import racingcar.model.Position;
 
-public class CarInfo {
+public class CarDTO {
 
     private final Name name;
     private final Position position;
 
-    public CarInfo(final Car car) {
-        this.name = car.getName();
-        this.position = car.getPosition();
+    private CarDTO(final Name name, final Position position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    public static CarDTO from(final Car car) {
+        return new CarDTO(car.getName(), car.getPosition());
     }
 
     public String getName() {

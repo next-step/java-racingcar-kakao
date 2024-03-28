@@ -2,7 +2,8 @@ package racingcar;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.model.CustomNumberGenerator;
+import racingcar.model.CustomCarMoveStrategy;
+import racingcar.model.RacingGame;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ class RacingGameTest {
     @Test
     void winnersTest() {
         // given
-        final RacingGame racingGame = new RacingGame("lucas,dino,helen,eve", new CustomNumberGenerator(List.of(2, 9, 2, 1, 2, 9, 2, 1)), 2);
+        final RacingGame racingGame = new RacingGame("lucas,dino,helen,eve", new CustomCarMoveStrategy(List.of(false, true, false, false, false, true, false, false)), 2);
 
         // when
         racingGame.play();
