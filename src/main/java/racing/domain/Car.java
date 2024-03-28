@@ -13,9 +13,7 @@ public class Car {
     }
 
     public void move() {
-        if (carEngine.canMove()) {
-            this.position++;
-        }
+        position += carEngine.getSpeed();
     }
 
     public int getPosition() {
