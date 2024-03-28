@@ -17,12 +17,14 @@ public class StringCalculator {
 
 
     private static String[] split(String text) {
+        int CUSTOM_DELIMITER_GROUPINDEX = 1;
+        int TEXT_GROUPINDEX = 2;
 
         Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
 
         if (m.find()) {
-            String customDelimiter = m.group(1) + "|,|;";
-            return m.group(2).split(customDelimiter);
+            String customDelimiter = m.group(CUSTOM_DELIMITER_GROUPINDEX) + "|,|;";
+            return m.group(TEXT_GROUPINDEX).split(customDelimiter);
         }
 
         return text.split(",|;");
