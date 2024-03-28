@@ -26,7 +26,7 @@ public final class Calculator {
     }
 
     private static void validate(Numbers numbers) {
-        checkNegative(numbers);
+        checkNonNegative(numbers);
     }
 
     private static void checkNonBlank(String input) {
@@ -35,7 +35,7 @@ public final class Calculator {
         }
     }
 
-    private static void checkNegative(Numbers numbers) {
+    private static void checkNonNegative(Numbers numbers) {
         numbers.list().stream()
                 .filter(e -> e < 0)
                 .findFirst()
