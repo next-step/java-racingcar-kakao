@@ -10,7 +10,6 @@ public class Cars {
 
     private final List<Car> cars;
 
-
     public Cars(String s) {
         this(Arrays.asList(s.split(CAR_NAME_DELIMITER)));
     }
@@ -48,7 +47,7 @@ public class Cars {
         int maxPosition = getMaxPosition();
 
         return cars.stream()
-                .filter(car -> car.getPosition() == maxPosition)
+                .filter(car -> car.isWinner(maxPosition))
                 .map(Car::getName)
                 .collect(Collectors.toList());
     }

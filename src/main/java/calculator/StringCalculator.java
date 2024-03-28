@@ -4,15 +4,13 @@ import java.util.Objects;
 
 public class StringCalculator {
     public static final int DEFAULT_VALUE = 0;
-
-    private final NumberCalculator calculator = new NumberCalculator();
-    private final StringParser parser = new StringParser();
+    private static final StringParser stringParser = new StringParser();
 
     public int calculate(String numberSequence) {
         if (Objects.isNull(numberSequence) || numberSequence.isEmpty()) {
             return DEFAULT_VALUE;
         }
 
-        return calculator.calculate(parser.parse(numberSequence));
+        return NumberCalculator.calculate(stringParser.parse(numberSequence));
     }
 }
