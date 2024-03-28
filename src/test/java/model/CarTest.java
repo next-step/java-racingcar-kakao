@@ -34,7 +34,7 @@ public class CarTest {
     void isUpdateCarScore_ShouldIncreaseScoreGreaterOrEqualWithFour(int num) {
         Car car = new Car("name",0);
         Car expectedMove = new Car("name",1);
-        Car afterMove = Car.updateCarScore(car, num);
+        Car afterMove = Car.updatePosition(car,num);
         assertThat(expectedMove).isEqualTo(afterMove);
     }
 
@@ -44,7 +44,7 @@ public class CarTest {
     void isUpdateCarScore_ShouldNotIncreaseScoreLessOrEqualWithThree(int num) {
         Car car = new Car("name",0);
         Car expectedMove = new Car("name",0);
-        Car afterMove = Car.updateCarScore(car, num);
+        Car afterMove = Car.updatePosition(car, num);
         assertThat(expectedMove).isEqualTo(afterMove);
     }
 
