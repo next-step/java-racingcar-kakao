@@ -6,6 +6,8 @@ import racing.domain.CarEngine;
 
 public class RandomCarEngine implements CarEngine {
 
+    public static final int MOVE_THRESHOLD = 4;
+    public static final int RANDOM_BOUND = 10;
     private final Random random;
 
     public RandomCarEngine() {
@@ -13,12 +15,12 @@ public class RandomCarEngine implements CarEngine {
     }
 
     protected int generateRandomCondition() {
-        return random.nextInt(10);
+        return random.nextInt(RANDOM_BOUND);
     }
 
     @Override
     public int getSpeed() {
-        if (generateRandomCondition() < 4) {
+        if (generateRandomCondition() < MOVE_THRESHOLD) {
             return 0;
         }
         return 1;
