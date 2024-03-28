@@ -29,21 +29,14 @@ public class RacingGame {
     }
 
     public List<Car> getWinners() {
-        Map<Integer, List<Car>> groupByPosition = cars.stream().collect(Collectors.groupingBy(Car::getPosition));
-        int winnerPosition = getWinnerPosition(groupByPosition);
-        return getWinnerSortedByName(groupByPosition, winnerPosition);
-    }
-
-    private static List<Car> getWinnerSortedByName(Map<Integer, List<Car>> groupByPosition, int winnerPosition) {
-        List<Car> winners = groupByPosition.get(winnerPosition);
-        winners.sort(Comparator.comparing(Car::getName));
-        return winners;
-    }
-
-    private static int getWinnerPosition(Map<Integer, List<Car>> groupByPosition) {
-        ArrayList<Integer> positions = new ArrayList<>(groupByPosition.keySet());
-        positions.sort(Collections.reverseOrder());
-        return positions.get(0);
+        Integer maxPosition = cars.stream()
+                .max(Comparator.comparingInt(Car::getPosition))
+                .map(Car::getPosition)
+                .orElseThrow(() -> new RuntimeException("unreachable"));
+        return cars.stream()
+                .filter(c -> c.getPosition() == maxPosition)
+                .sorted(Comparator.comparing(Car::getName))
+                .collect(Collectors.toList());
     }
 
     public void moveCars() {
