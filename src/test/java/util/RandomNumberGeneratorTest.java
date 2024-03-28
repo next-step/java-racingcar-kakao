@@ -6,18 +6,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+import model.NumberGenerator;
+
 public class RandomNumberGeneratorTest {
-    private RandomNumberGenerator randomNumberGenerator;
+    private NumberGenerator numberGenerator;
 
     @BeforeEach
     void setUp() {
-        this.randomNumberGenerator = new RandomNumberGenerator();
+        this.numberGenerator = new RandomNumberGenerator();
     }
 
     @Test
     @DisplayName("0부터 9까지 랜덤한 숫자를 생성한다")
     void generateRandomNumberTest() {
-        int randomNumber = randomNumberGenerator.generate();
+        int randomNumber = numberGenerator.generate();
 
         assertThat(randomNumber).isBetween(0, 9);
     }

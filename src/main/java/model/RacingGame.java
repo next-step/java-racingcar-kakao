@@ -13,7 +13,7 @@ public class RacingGame {
         this.cars = cars;
     }
 
-    public void moveCars(RandomNumberGenerator numberGenerator) {
+    public void moveCars(NumberGenerator numberGenerator) {
         cars.forEach(car -> car.run(numberGenerator.generate()));
     }
 

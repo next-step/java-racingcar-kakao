@@ -1,6 +1,7 @@
 package controller;
 
 import model.Car;
+import model.NumberGenerator;
 import model.RacingGame;
 import service.RacingService;
 import util.RandomNumberGenerator;
@@ -12,15 +13,15 @@ import java.util.stream.Collectors;
 public class RacingController {
     private final RacingGameView racingGameView;
     private final RacingService racingService;
-    private final RandomNumberGenerator randomNumberGenerator;
+    private final NumberGenerator numberGenerator;
 
 
     public RacingController(RacingGameView racingGameView,
                             RacingService racingService,
-                            RandomNumberGenerator randomNumberGenerator) {
+                            NumberGenerator numberGenerator) {
         this.racingGameView = racingGameView;
         this.racingService = racingService;
-        this.randomNumberGenerator = randomNumberGenerator;
+        this.numberGenerator = numberGenerator;
     }
 
     public void start() {
@@ -38,7 +39,7 @@ public class RacingController {
 
         racingGameView.printResultMessage();
         for (int i = 0; i < tryNumber; i++) {
-            racingGame.moveCars(randomNumberGenerator);
+            racingGame.moveCars(numberGenerator);
             racingGameView.printCarResult(racingGame.getRacingCars());
         }
 

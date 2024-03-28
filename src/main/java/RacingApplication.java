@@ -1,4 +1,5 @@
 import controller.RacingController;
+import model.NumberGenerator;
 import service.RacingService;
 import util.RandomNumberGenerator;
 import view.RacingGameView;
@@ -7,9 +8,9 @@ public class RacingApplication {
     public static void main(String[] args) {
         RacingGameView racingGameView = new RacingGameView();
         RacingService racingService = new RacingService();
-        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
         RacingController racingController =
-                new RacingController(racingGameView, racingService, randomNumberGenerator);
+                new RacingController(racingGameView, racingService, numberGenerator);
 
         racingController.start();
     }

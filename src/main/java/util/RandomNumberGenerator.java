@@ -2,7 +2,9 @@ package util;
 
 import java.util.Random;
 
-public class RandomNumberGenerator {
+import model.NumberGenerator;
+
+public class RandomNumberGenerator implements NumberGenerator {
     private final static Random random = new Random();
 
     public int generate() {
