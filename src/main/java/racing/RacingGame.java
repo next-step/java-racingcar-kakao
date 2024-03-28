@@ -6,24 +6,22 @@ import java.util.stream.Collectors;
 public class RacingGame {
 
     private final List<Car> cars;
-    private final RandomStrategy rs;
+    private final RandomStrategy randomStrategy;
 
-    public RacingGame(List<Car> cars, RandomStrategy rs) {
+    public RacingGame(List<Car> cars, RandomStrategy randomStrategy) {
         this.cars = cars;
-        this.rs = rs;
+        this.randomStrategy = randomStrategy;
     }
 
-    public RacingGame(String carNames) {
-        this(carNames.split(","));
+    public RacingGame(String carNames, RandomStrategy randomStrategy) {
+        this(createCars(carNames), randomStrategy);
     }
 
-    public RacingGame(String[] carNames) {
-        this(Arrays.stream(carNames)
+    private static List<Car> createCars(String carNames) {
+        String[] carNamesArray = carNames.split(",");
+        return Arrays.stream(carNamesArray)
                 .map(Car::new)
-                .collect(Collectors.toList()));
-    }
-    public RacingGame(List<Car> cars) {
-        this(cars, new RealRandomStrategy());
+                .collect(Collectors.toList());
     }
 
     public List<Car> getCars() {
@@ -49,6 +47,6 @@ public class RacingGame {
     }
 
     public void moveCars() {
-        cars.forEach(car -> car.moveForward(rs));
+        cars.forEach(car -> car.moveForward(randomStrategy));
     }
 }

@@ -10,7 +10,7 @@ public class RacingGameTest {
 
     @Test
     void commaSeperatedCarNames() {
-        RacingGame racingGame = new RacingGame("pobi,crong,honux");
+        RacingGame racingGame = new RacingGame("pobi,crong,honux", new RealRandomStrategy());
         List<Car> cars = racingGame.getCars();
         assertThat(cars.size()).isEqualTo(3);
         assertThat(cars.get(0).getName()).isEqualTo("pobi");

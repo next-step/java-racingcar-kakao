@@ -2,6 +2,7 @@ package controller;
 
 import racing.Car;
 import racing.RacingGame;
+import racing.RealRandomStrategy;
 import view.RacingGameView;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public class RacingGameController {
         while (true){
             if (getTryNums()) break;
         }
-        racingGame = new RacingGame(carNames);
+        racingGame = new RacingGame(carNames, new RealRandomStrategy());
     }
 
     private boolean getTryNums() {
