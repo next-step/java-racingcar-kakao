@@ -87,8 +87,9 @@ public class Car {
     public static List<Car> updateCarList(List<Car> initCarList, List<Integer> randomNumList) {
         List<Car> updatedCarList = new ArrayList<>();
 
-        for (int i=0; i<initCarList.size(); i++) {
-            updatedCarList.add(updateCarScore(initCarList.get(i), randomNumList.get(i)));
+        int carSize = initCarList.size();
+        for (int i = 0; i < carSize; i++) {
+            updatedCarList.add(updatePosition(initCarList.get(i), randomNumList.get(i)));
         }
 
         return updatedCarList;
