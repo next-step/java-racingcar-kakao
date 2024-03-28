@@ -1,15 +1,15 @@
 import controller.RacingController;
 import service.RacingService;
-import view.CarInputView;
-import view.CarOutputView;
+import util.RandomNumberGenerator;
+import view.RacingGameView;
 
 public class RacingApplication {
     public static void main(String[] args) {
-        CarInputView carInputView = new CarInputView();
-        CarOutputView carOutputView = new CarOutputView();
+        RacingGameView racingGameView = new RacingGameView();
         RacingService racingService = new RacingService();
+        RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
         RacingController racingController =
-                new RacingController(carInputView, carOutputView, racingService);
+                new RacingController(racingGameView, racingService, randomNumberGenerator);
 
         racingController.start();
     }
