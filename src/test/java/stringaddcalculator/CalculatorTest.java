@@ -13,10 +13,10 @@ public class CalculatorTest {
 
         assertThat(calculator.sum(
                 List.of(
-                        new Number(1),
-                        new Number(2),
-                        new Number(3)))
-        ).isEqualTo(new Number(6));
+                        new PositiveNumber(1),
+                        new PositiveNumber(2),
+                        new PositiveNumber(3)))
+        ).isEqualTo(new PositiveNumber(6));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
 
         assertThat(calculator.sum("1,2,3"))
-                .isEqualTo(new Number(6));
+                .isEqualTo(new PositiveNumber(6));
     }
 
     @Test
@@ -32,6 +32,6 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
 
         assertThat(calculator.sum("//m\n1m2,3"))
-                .isEqualTo(new Number(6));
+                .isEqualTo(new PositiveNumber(6));
     }
 }

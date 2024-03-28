@@ -33,18 +33,23 @@ public class CarTest {
         assertThat(car.getPosition()).isEqualTo(previousPosition + 1);
     }
 
-    @Test
-    void 생성_직후_문자열화하면_디폴트_값을_출력한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {4, 5, 6, 7, 8, 9})
+    void 주사위_눈이_4이상이면_차를_이동시킨다(int diceNum) {
         Car car = new Car("Mark");
 
-        assertThat(car.toString()).isEqualTo("Mark : -");
+        int previousPosition = car.getPosition();
+        car.moveWithDiceNum(diceNum);
+        assertThat(car.getPosition()).isEqualTo(previousPosition + 1);
     }
 
-    @Test
-    void 문자열화하면_자신의_이름과_함께_위치를_반환한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {0, 1, 2, 3})
+    void 주사위_눈이_4미만이면_차를_이동시키지_않는다(int diceNum) {
         Car car = new Car("Mark");
-        car.move();
 
-        assertThat(car.toString()).isEqualTo("Mark : --");
+        int previousPosition = car.getPosition();
+        car.moveWithDiceNum(diceNum);
+        assertThat(car.getPosition()).isEqualTo(previousPosition);
     }
 }

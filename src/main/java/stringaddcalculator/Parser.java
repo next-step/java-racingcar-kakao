@@ -11,9 +11,9 @@ public class Parser {
 
     public static Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
-    public static List<Number> parseNumbers(String input) {
+    public static List<PositiveNumber> parseNumbers(String input) {
         if (input == null || input.isEmpty()) {
-            return List.of(new Number(0));
+            return List.of(new PositiveNumber(0));
         }
 
         Matcher matcher = pattern.matcher(input);
@@ -25,17 +25,17 @@ public class Parser {
         return convertToIntegers(input);
     }
 
-    private static List<Number> convertToIntegers(String input, String customRegex) {
+    private static List<PositiveNumber> convertToIntegers(String input, String customRegex) {
         return stream(input.split("[,;" + customRegex + "]"))
                 .map(Integer::parseInt)
-                .map(Number::new)
+                .map(PositiveNumber::new)
                 .collect(Collectors.toList());
     }
 
-    private static List<Number> convertToIntegers(String input) {
+    private static List<PositiveNumber> convertToIntegers(String input) {
         return stream(input.split("[,;]"))
                 .map(Integer::parseInt)
-                .map(Number::new)
+                .map(PositiveNumber::new)
                 .collect(Collectors.toList());
     }
 }

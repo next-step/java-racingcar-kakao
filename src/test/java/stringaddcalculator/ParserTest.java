@@ -1,6 +1,8 @@
 package stringaddcalculator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 
 import java.util.List;
 
@@ -13,9 +15,9 @@ class ParserTest {
 
         assertThat(Parser.parseNumbers(hasDelimiter))
                 .isEqualTo(List.of(
-                        new Number(1),
-                        new Number(2),
-                        new Number(3)
+                        new PositiveNumber(1),
+                        new PositiveNumber(2),
+                        new PositiveNumber(3)
                 ));
     }
 
@@ -25,8 +27,8 @@ class ParserTest {
 
         assertThat(Parser.parseNumbers(hasNormalDelimiter))
                 .isEqualTo(List.of(
-                        new Number(1),
-                        new Number(2)
+                        new PositiveNumber(1),
+                        new PositiveNumber(2)
                 ));
     }
 
@@ -36,9 +38,9 @@ class ParserTest {
 
         assertThat(Parser.parseNumbers(hasNormalDelimiter))
                 .isEqualTo(List.of(
-                        new Number(1),
-                        new Number(2),
-                        new Number(3)
+                        new PositiveNumber(1),
+                        new PositiveNumber(2),
+                        new PositiveNumber(3)
                 ));
     }
 
@@ -48,27 +50,18 @@ class ParserTest {
 
         assertThat(Parser.parseNumbers(hasNormalDelimiter))
                 .isEqualTo(List.of(
-                        new Number(1),
-                        new Number(2),
-                        new Number(3),
-                        new Number(4)
+                        new PositiveNumber(1),
+                        new PositiveNumber(2),
+                        new PositiveNumber(3),
+                        new PositiveNumber(4)
                 ));
     }
 
-    @Test
-    void 빈_문자열의_경우_0을_반환한다() {
-        String hasNormalDelimiter = "";
-
-        assertThat(Parser.parseNumbers(hasNormalDelimiter))
-                .isEqualTo(List.of(new Number(0)));
-    }
-
-    @Test
-    void 널_문자열의_경우_0을_반환한다() {
-        String hasNormalDelimiter = null;
-
-        assertThat(Parser.parseNumbers(hasNormalDelimiter))
-                .isEqualTo(List.of(new Number(0)));
+    @ParameterizedTest
+    @NullAndEmptySource
+    void 문자열이_비었거나_널일_경우_0을_반환한다(String input) {
+        assertThat(Parser.parseNumbers(input))
+                .isEqualTo(List.of(new PositiveNumber(0)));
     }
 
     @Test
@@ -76,6 +69,6 @@ class ParserTest {
         String hasNormalDelimiter = "9";
 
         assertThat(Parser.parseNumbers(hasNormalDelimiter))
-                .isEqualTo(List.of(new Number(9)));
+                .isEqualTo(List.of(new PositiveNumber(9)));
     }
 }

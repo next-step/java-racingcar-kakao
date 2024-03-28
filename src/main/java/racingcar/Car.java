@@ -3,13 +3,19 @@ package racingcar;
 public class Car {
 
     private static final int NAME_LENGTH_LIMIT = 5;
+    private static final int MOVE_THRESHOLD = 4;
 
     private final String name;
-    private int position = 1;
+    private int position;
 
-    public Car(String name) {
+    public Car(String name, int position) {
         validate(name);
         this.name = name;
+        this.position = position;
+    }
+
+    public Car(String name) {
+        this(name, 1);
     }
 
     private void validate(String name) {
@@ -30,8 +36,9 @@ public class Car {
         position++;
     }
 
-    @Override
-    public String toString() {
-        return name + " : " + "-".repeat(position);
+    public void moveWithDiceNum(int diceResult) {
+        if (diceResult >= MOVE_THRESHOLD) {
+            position++;
+        }
     }
 }
