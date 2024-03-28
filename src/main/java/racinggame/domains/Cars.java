@@ -7,11 +7,11 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public final class Cars {
-    private final List<Car> cars;
+    private final List<Car> values;
 
-    public Cars(List<Car> cars) {
-        validate(cars);
-        this.cars = cars;
+    public Cars(List<Car> values) {
+        validate(values);
+        this.values = values;
     }
 
     private void validate(List<Car> cars) {
@@ -27,13 +27,15 @@ public final class Cars {
                 .collect(Collectors.toList()));
     }
 
-    public List<Car> list() {
-        return cars;
+    public List<Car> values() {
+        return values;
     }
 
     public List<Car> winners() {
-        Car winner = cars.stream().max(Car::compareOffset).get();
-        return cars.stream()
+        Car winner = values.stream()
+                .max(Car::compareOffset)
+                .get();
+        return values.stream()
                 .filter(car -> car.at(winner.offset()))
                 .collect(Collectors.toList());
     }

@@ -36,13 +36,14 @@ public final class ConsoleView {
     }
 
     public static void printResult(RacingCarGame racingCarGame) {
-        System.out.println(racingCarGame
+        String gameResultMessage = racingCarGame
                 .cars()
                 .winners()
                 .stream()
                 .map(Car::owner)
                 .collect(Collectors.joining(","))
-                + "가 최종 우승했습니다.");
+                + "가 최종 우승했습니다.";
+        System.out.println(gameResultMessage);
     }
 
     public static void printCarOffset(RacingCarGame racingCarGame) {

@@ -29,14 +29,14 @@ public final class RacingCarGame {
     }
 
     public void processTurn() {
-        cars.list()
+        cars.values()
                 .stream()
                 .filter(e -> MoveChecker.check(randomGenerator.generate()))
                 .forEach(Car::move);
     }
 
     public void showStatus() {
-        cars.list()
+        cars.values()
                 .stream()
                 .forEach(e -> System.out.println(e.owner() + " : " + "-".repeat(e.offset())));
     }

@@ -16,7 +16,7 @@ public class CarsTest {
     void initialize() {
         Cars cars = Cars.of(List.of("pobi", "jseo", "owen"));
 
-        assertThat(cars.list())
+        assertThat(cars.values())
                 .isEqualTo(List.of(
                         Car.of("pobi"),
                         Car.of("jseo"),

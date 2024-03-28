@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 
 public final class Car {
-    public static final int MAX_CAR_NAME_LENGTH = 5;
+    private static final int MAX_CAR_NAME_LENGTH = 5;
     private final String owner;
 
     private int offset;
@@ -50,8 +50,8 @@ public final class Car {
         return Objects.hash(owner);
     }
 
-    public int compareOffset(Car c2) {
-        return Integer.compare(this.offset, c2.offset);
+    public int compareOffset(Car other) {
+        return Integer.compare(this.offset, other.offset);
     }
 
     public boolean at(int offset) {
