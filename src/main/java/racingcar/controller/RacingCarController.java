@@ -24,21 +24,6 @@ public class RacingCarController {
         racingCarView.displayWinners(racingCars.findWinners());
     }
 
-    private RacingCars initializeRacingCars() {
-        List<String> carNames = requestCarNames();
-        racingCarView.startGameRound();
-        return new RacingCars(carNames);
-    }
-
-    private void performRacingRounds(int trial, List<RacingCar> participants) {
-        IntStream.range(0, trial).forEach(i -> playGameRound(participants));
-    }
-
-    private void playGameRound(List<RacingCar> participants) {
-        participants.forEach(RacingCar::move);
-        racingCarView.displayRacingCarStatus(participants);
-    }
-
     private int requestTrial() {
         try {
             return racingCarView.requestTrial();
@@ -55,5 +40,20 @@ public class RacingCarController {
             System.out.println(e.getMessage());
             return requestCarNames();
         }
+    }
+
+    private RacingCars initializeRacingCars() {
+        List<String> carNames = requestCarNames();
+        racingCarView.startGameRound();
+        return new RacingCars(carNames);
+    }
+
+    private void performRacingRounds(int trial, List<RacingCar> participants) {
+        IntStream.range(0, trial).forEach(i -> playGameRound(participants));
+    }
+
+    private void playGameRound(List<RacingCar> participants) {
+        participants.forEach(RacingCar::move);
+        racingCarView.displayRacingCarStatus(participants);
     }
 }
