@@ -21,20 +21,19 @@ public class Controller {
         String carNames = view.promptCars();
         int round = view.promptRound();
 
-        Race race = new Race(carFactory.fromNames(carNames));
+        Race race = new Race(carFactory.fromCsvNames(carNames));
 
         view.printResultHeader();
 
         for (int i = 0; i < round; ++i) {
-            race.move();
-            printResult(race);
+            List<Car> cars = race.nextRound();
+            printResult(cars);
         }
 
-        view.printWinners(race.winners());
+        view.printWinners(race.getWinnersName());
     }
 
-    private void printResult(Race race) {
-        List<Car> cars = race.getCars();
+    private void printResult(List<Car> cars) {
         for (Car car : cars) {
             view.printResult(car.getName(), car.getPosition());
         }
