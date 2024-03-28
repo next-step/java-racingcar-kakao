@@ -3,7 +3,7 @@ package racingcar;
 import java.util.Objects;
 import racingcar.dto.CarState;
 
-public class Car implements Comparable<Car>{
+public class Car {
 
 	private final String name;
 	private int position;
@@ -25,6 +25,10 @@ public class Car implements Comparable<Car>{
 		this.position += 1;
 	}
 
+	public int comparePosition(Car other) {
+		return Integer.compare(this.position, other.position);
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o)
@@ -40,8 +44,4 @@ public class Car implements Comparable<Car>{
 		return Objects.hash(name, position);
 	}
 
-	@Override
-	public int compareTo(Car other) {
-		return other.position - this.position;
-	}
 }
