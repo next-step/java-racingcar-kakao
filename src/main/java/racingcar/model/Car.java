@@ -1,5 +1,8 @@
 package racingcar.model;
 
+import racingcar.model.vo.Name;
+import racingcar.model.vo.Position;
+
 public class Car {
 
     private static final int START_POSITION = 0;
