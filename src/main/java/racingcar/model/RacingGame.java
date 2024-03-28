@@ -1,50 +1,55 @@
 package racingcar.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class RacingGame {
+	private final WinnerSelector winnerSelector;
+	private final List<Car> cars;
+	private int round;
 
-    public List<Car> cars;
-    public int round;
+	public RacingGame(String[] carNames, int round) {
+		this.winnerSelector = new WinnerSelector();
+		this.cars = generateCars(carNames);
+		this.round = round;
+	}
 
-    public RacingGame() {
-    }
+	private List<Car> generateCars(String[] carNames) {
+		return Stream.of(carNames)
+			.map(Car::new)
+			.collect(Collectors.toList());
+	}
 
-    public RacingGame(String [] carNames, int round) {
-        this.cars = generateCars(carNames);
-        this.round = round;
-    }
+	public List<Integer> move() {
+		List<Integer> positionList = new ArrayList<>();
+		for (Car car : cars) {
+			positionList.add(car.moveForwardIfCan(createRandomNumber()));
+		}
+		this.round--;
 
-    private List<Car> generateCars(String [] carNames) {
-        return Stream.of(carNames)
-                .map(Car::new)
-                .collect(Collectors.toList());
-    }
+		return positionList;
+	}
 
-    public void move() {
-        for (int i = 0; i < cars.size(); i++) {
-            cars.get(i).checkForwardMotion(createRandomNumber());
-        }
-    }
+	public List<String> selectWinners(List<Car> cars) {
+		return this.winnerSelector.selectWinners(cars);
+	}
 
-    private int createRandomNumber() {
-        return (int) (Math.random() * 9);
-    }
+	public int createRandomNumber() {
+		return (int)(Math.random() * 9);
+	}
 
-    public List<String> selectWinners() {
-        int maxPosition = getMaxPosition();
-        return cars.stream()
-                .filter(car -> car.position == maxPosition)
-                .map(car -> car.name)
-                .collect(Collectors.toList());
-    }
+	public int getCarsLength() {
+		return this.cars.size();
+	}
 
-    private int getMaxPosition(){
-        return cars.stream()
-                .mapToInt(car -> car.position)
-                .max()
-                .orElseThrow(()-> new IllegalStateException("있을 수 없는 상황이다."));
-    }
+	public boolean isNotEnd() {
+		return this.round > 0;
+	}
+
+	public List<Car> getCars() {
+		return Collections.unmodifiableList(cars);
+	}
 }

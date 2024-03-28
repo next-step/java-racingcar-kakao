@@ -1,37 +1,49 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import racingcar.model.RacingGame;
-import racingcar.view.InputValidator;
 import racingcar.view.View;
 
 public class RacingController {
-    RacingGame racingGame;
-    private final View view;
-    private final InputValidator inputValidator;
+	private RacingGame racingGame;
+	private final View view;
 
-    public RacingController() {
-        view = new View();
-        inputValidator = new InputValidator();
-    }
+	public RacingController() {
+		this.view = new View();
+	}
 
-    public void run() {
-        gameSetting();
-        gameStart();
-        view.displayWinners(racingGame.selectWinners());
-    }
+	public void run() {
+		gameSetting();
+		List<List<Integer>> gameResult = gameStart();
 
-    public void gameSetting(){
-        String carNames = view.displayInputCarName();
-        String[] names = inputValidator.createCarsFromUserInput(carNames);
-        int round = view.displayTryCount();
-        racingGame = new RacingGame(names, round);
-    }
+		this.view.displayResult(gameResult, this.racingGame.getCars());
+		this.view.displayWinners(this.racingGame.selectWinners(racingGame.getCars()));
+	}
 
-    private void gameStart(){
-        view.displayResult();
-        while (racingGame.round-- > 0) {
-            racingGame.move();
-            view.displayMoveResult(racingGame.cars);
-        }
-    }
+	public void gameSetting() {
+		String carNames = this.view.requestInputCarName();
+		String[] names = createCarNamesFromUserInput(carNames);
+
+		int round = this.view.requestInputTryCount();
+
+		this.racingGame = new RacingGame(names, round);
+	}
+
+	private List<List<Integer>> gameStart() {
+		List<List<Integer>> gameResult = new ArrayList<>();
+
+		this.view.displayStart();
+		while (racingGame.isNotEnd()) {
+			gameResult.add(this.racingGame.move());
+		}
+
+		return gameResult;
+	}
+
+	public String[] createCarNamesFromUserInput(String input) {
+		return input.split(",");
+	}
+
 }
