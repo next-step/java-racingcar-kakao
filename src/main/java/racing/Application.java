@@ -1,6 +1,5 @@
 package racing;
 
-import racing.config.Constant;
 import racing.controller.Controller;
 import racing.domain.CarEngine;
 import racing.domain.CarFactory;
@@ -9,7 +8,7 @@ import racing.view.View;
 
 public class Application {
     public static void main(String[] args) {
-        CarEngine generator = new RandomCarEngine(-1, Constant.CAR_MOVE_THRESHOLD);
+        CarEngine generator = new RandomCarEngine();
         View view = new View();
         CarFactory carFactory = new CarFactory(generator);
         Controller controller = new Controller(view, carFactory);

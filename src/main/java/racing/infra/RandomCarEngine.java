@@ -6,20 +6,23 @@ import racing.domain.CarEngine;
 
 public class RandomCarEngine implements CarEngine {
 
+    public static final int MOVE_THRESHOLD = 4;
+    public static final int RANDOM_BOUND = 10;
     private final Random random;
-    private final int threshold;
 
-    public RandomCarEngine(long seed, int threshold) {
-        this.threshold = threshold;
-        if (seed < 0) {
-            this.random = new Random();
-            return;
-        }
-        this.random = new Random(seed);
+    public RandomCarEngine() {
+        this.random = new Random();
+    }
+
+    protected int generateRandomCondition() {
+        return random.nextInt(RANDOM_BOUND);
     }
 
     @Override
-    public boolean canMove() {
-        return random.nextInt(10) > this.threshold;
+    public int getSpeed() {
+        if (generateRandomCondition() < MOVE_THRESHOLD) {
+            return 0;
+        }
+        return 1;
     }
 }
