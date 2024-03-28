@@ -11,17 +11,21 @@ public class StringParser {
     private static final String DEFAULT_DELIMITER = ",:";
     private static final Pattern PATTERN = Pattern.compile("(//(.+)\\n)?(.*)");
 
-    public List<Integer> parse(String numberSequence) {
+    private StringParser() {
+        throw new IllegalStateException("utility 입니다.");
+    }
+
+    public static List<Integer> parse(String numberSequence) {
         Matcher matcher = PATTERN.matcher(numberSequence);
         String delimiters = generateDelimiter(matcher);
         String numbers = matcher.group(3);
 
         return Arrays.stream(numbers.split(delimiters))
-                .map(this::parseElement)
+                .map(StringParser::parseElement)
                 .collect(Collectors.toList());
     }
 
-    private String generateDelimiter(Matcher matcher) {
+    private static String generateDelimiter(Matcher matcher) {
         StringBuilder sb = new StringBuilder(DEFAULT_DELIMITER);
 
         if (matcher.find() && Objects.nonNull(matcher.group(2))) {
@@ -33,7 +37,7 @@ public class StringParser {
                 .toString();
     }
 
-    private Integer parseElement(String element) {
+    private static Integer parseElement(String element) {
         try {
             int number = Integer.parseInt(element);
             validateRange(number);
