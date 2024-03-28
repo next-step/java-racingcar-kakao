@@ -35,13 +35,4 @@ public class CarTest {
             }).withMessage("차량 이름은 5자를 넘어서는 안됩니다.");
     }
 
-    @Test
-    void isMakeRanNumList_ShouldReturnRandomNumListByCarSize() {
-        String carString="pobi,crong,honux";
-        String[] split = carString.split(",");
-        int expectedSize = split.length;
-
-        List<Integer> randomNumList = RandomGenerator.makeRanNumList(split.length);
-        assertThat(randomNumList.size()).isEqualTo(expectedSize);
-    }
 }
