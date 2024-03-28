@@ -4,7 +4,7 @@ public class Car {
 
     private static final int START_POSITION = 0;
 
-    private final Position position;
+    private Position position;
     private final Name name;
 
     private Car(final String name, final int position) {
@@ -17,7 +17,7 @@ public class Car {
     }
 
     public void move() {
-        position.moveFront();
+        this.position = position.moveFront();
     }
 
     public boolean isAt(final Position otherPosition) {
