@@ -1,6 +1,5 @@
 package racing.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,10 +10,13 @@ public class Race {
         this.cars = cars;
     }
 
-	public List<Car> nextRound() {
+	public void nextRound() {
         cars.forEach(Car::move);
-        return Collections.unmodifiableList(cars);
 	}
+
+    public void forEach(Predicate predicate) {
+        cars.forEach(car -> predicate.predicate(car.getName(), car.getPosition()));
+    }
 
     public List<String> getWinnersName() {
         int maxPosition = cars.stream()
@@ -25,5 +27,9 @@ public class Race {
             .filter(car -> car.locates(maxPosition))
             .map(Car::getName)
             .collect(Collectors.toList());
+    }
+
+    public interface Predicate {
+        void predicate(String name, int position);
     }
 }

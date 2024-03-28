@@ -1,8 +1,5 @@
 package racing.controller;
 
-import java.util.List;
-
-import racing.domain.Car;
 import racing.domain.CarFactory;
 import racing.domain.Race;
 import racing.view.View;
@@ -26,17 +23,15 @@ public class Controller {
         view.printResultHeader();
 
         for (int i = 0; i < round; ++i) {
-            List<Car> cars = race.nextRound();
-            printResult(cars);
+            race.nextRound();
+            printResult(race);
         }
 
         view.printWinners(race.getWinnersName());
     }
 
-    private void printResult(List<Car> cars) {
-        for (Car car : cars) {
-            view.printResult(car.getName(), car.getPosition());
-        }
+    private void printResult(Race race) {
+        race.forEach(view::printResult);
         view.printBlankLine();
     }
 }
