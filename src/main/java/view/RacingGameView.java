@@ -1,10 +1,7 @@
 package view;
 
-import racing.Car;
-
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class RacingGameView {
 
@@ -34,13 +31,13 @@ public class RacingGameView {
         System.out.println(RESULT);
     }
 
-    public static void displayCars(List<Car> cars) {
-        cars.forEach(car -> System.out.println(car.display()));
+    public static void displayCars(List<String> positionInfos) {
+        positionInfos.forEach(System.out::println);
         System.out.println();
     }
 
-    public static void displayWinners(List<Car> cars) {
-        String winners = cars.stream().map(Car::getName).collect(Collectors.joining(", "));
+    public static void displayWinners(List<String> winnerInfos) {
+        String winners = String.join(", ", winnerInfos);
         System.out.printf(DISPLAY_WINNER_FMT, winners);
     }
 }

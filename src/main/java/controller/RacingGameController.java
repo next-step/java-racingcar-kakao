@@ -1,6 +1,5 @@
 package controller;
 
-import racing.Car;
 import racing.RacingGame;
 import view.RacingGameView;
 
@@ -41,15 +40,15 @@ public class RacingGameController {
 
     private  void playround(RacingGame racingGame, int tryNums) {
         RacingGameView.displayResult();
-        RacingGameView.displayCars(racingGame.getCars());
+        RacingGameView.displayCars(racingGame.getCarsPositionInfos());
         IntStream.range(0, tryNums).forEach(i -> {
             racingGame.moveCars();
-            RacingGameView.displayCars(racingGame.getCars());
+            RacingGameView.displayCars(racingGame.getCarsPositionInfos());
         });
     }
 
     private  void result(RacingGame racingGame) {
-        List<Car> winners = racingGame.getWinners();
+        List<String> winners = racingGame.getWinners();
         RacingGameView.displayWinners(winners);
     }
 }

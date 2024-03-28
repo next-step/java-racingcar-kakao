@@ -25,11 +25,11 @@ public class RacingGameTest {
                 new Car("crong", 5),
                 new Car("honux", 5)));
 
-        List<Car> winners = racingGame.getWinners();
+        List<String> winners = racingGame.getWinners();
 
         assertThat(winners.size()).isEqualTo(2);
-        assertThat(winners.get(0).getName()).isEqualTo("crong");
-        assertThat(winners.get(1).getName()).isEqualTo("honux");
+        assertThat(winners.get(0)).isEqualTo("crong");
+        assertThat(winners.get(1)).isEqualTo("honux");
     }
 
     @Test
