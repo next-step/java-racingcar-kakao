@@ -1,9 +1,6 @@
 package carrace;
 
-import carrace.domain.Car;
-import carrace.domain.CarRace;
-import carrace.domain.CarMoveRule;
-import carrace.domain.RandomNumberGenerator;
+import carrace.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +15,7 @@ public class CarRaceController {
 
 	public void play() {
 		CarRace carRace = initCarRace();
-		int round = initRound();
+		Round round = initRound();
 		proceedRounds(carRace, round);
 		endRace(carRace);
 	}
@@ -31,23 +28,16 @@ public class CarRaceController {
 		return carNames.stream().map(Car::new).collect(Collectors.toUnmodifiableList());
 	}
 
-	private int initRound() {
-		return view.getCarRaceRound();
+	private Round initRound() {
+		return new Round(view.getCarRaceRound());
 	}
 
-	private void proceedRounds(CarRace carRace, int round) {
+	private void proceedRounds(CarRace carRace, Round round) {
 		view.displayResultStartMessage();
 		view.displayRoundResult(carRace.getCars());
-		validateRaceRound(round);
-		for (int r = 0; r < round; r++) {
+		for (int r = 0; r < round.getValue(); r++) {
 			carRace.runRound();
 			view.displayRoundResult(carRace.getCars());
-		}
-	}
-
-	private void validateRaceRound(int round) {
-		if (round <= 0) {
-			throw new IllegalArgumentException("라운드는 양수여야 합니다.");
 		}
 	}
 
