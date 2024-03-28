@@ -46,15 +46,17 @@ class CarsTest {
     void winnersTest() {
         // given
         final Cars cars = new Cars("lucas,dino,eve,helen");
+        final Winners expectedWinners = new Winners(
+                List.of(
+                        new Name("lucas"),
+                        new Name("dino")
+                )
+        );
 
         // when
         cars.step(new CustomNumberGenerator(List.of(9, 4, 2, 0)));
 
         // then
-        assertAll(
-                () -> assertThat(cars.getWinners().getNames()).hasSize(2),
-                () -> assertThat(cars.getWinners().getNames()).contains("lucas"),
-                () -> assertThat(cars.getWinners().getNames()).contains("dino")
-        );
+        assertThat(cars.getWinners()).usingRecursiveComparison().isEqualTo(expectedWinners);
     }
 }
