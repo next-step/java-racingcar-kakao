@@ -10,7 +10,7 @@ public class RacingMain {
         ResultView.printGameStart();
         RacingGame racingGame = new RacingGame(carNames, tryNo);
 
-        while(!racingGame.isEnd()) {
+        while (!racingGame.isEnd()) {
             racingGame.race();
             ResultView.printCars(racingGame.getCars());
         }

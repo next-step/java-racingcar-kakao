@@ -14,43 +14,32 @@ public class Car {
     private final String name;
 
     public Car(String name, int position) {
+        validate(name);
         this.name = name;
         this.position = position;
     }
 
-    public static List<Car> getWinner(List<Car> carList) {
-        int maxScore = getMaxScore(carList);
-
-        List<Car> maxCars = carList.stream()
-            .filter(car -> car.isMaxScore(maxScore))
-            .collect(toList());
-
-        return maxCars;
+    public String getName() {
+        return name;
     }
 
-    public static List<String> getWinnerName(List<Car> carList) {
-        return getWinner(carList).stream()
-            .map(car -> car.name)
-            .collect(toList());
-    }
-
-    private boolean isMaxScore(int maxScore) {
-        return this.position == maxScore;
-    }
-
-    private static int getMaxScore(List<Car> carList) {
-        return carList.stream()
-            .map(car -> car.position)
-            .max(Integer::compareTo)
-            .orElse(START_SCORE);
+    public int getPosition() {
+        return position;
     }
 
     public static List<Car> getCar(String[] carNameList) {
         return stream(carNameList)
-            .map(carName -> {
-                return new Car(carName, START_SCORE);
-            })
-            .collect(toList());
+                .map(carName -> new Car(carName, START_SCORE))
+                .collect(toList());
+    }
+
+
+    public static List<Car> createCar(String[] carNameList) {
+        return stream(carNameList)
+                .map(carName -> {
+                    return new Car(carName, START_SCORE);
+                })
+                .collect(toList());
     }
 
     public static void validate(String str) {
@@ -74,29 +63,18 @@ public class Car {
     }
 
 
-
     public static Car updatePosition(Car car, int num) {
-        if (num > 3){
+        if (num > 3) {
             car.position++;
         }
         return new Car(car.name, car.position);
     }
 
-    public static List<Car> updateCarList(List<Car> initCarList, List<Integer> randomNumList) {
-        List<Car> updatedCarList = new ArrayList<>();
-
-        int carSize = initCarList.size();
-        for (int i = 0; i < carSize; i++) {
-            updatedCarList.add(updatePosition(initCarList.get(i), randomNumList.get(i)));
-        }
-
-        return updatedCarList;
-    }
 
     public static String makeCarPrint(Car car) {
         String stringBuilder = car.name +
-            " : " +
-            makeDash(car.position);
+                " : " +
+                makeDash(car.position);
 
         return stringBuilder;
 
@@ -104,7 +82,6 @@ public class Car {
 
     private static String makeDash(int carScore) {
         String dash = "-";
-
         return dash.repeat(carScore);
     }
 

@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 import model.Car;
+import model.Race;
 import model.RandomGenerator;
 
+import static java.util.stream.Collectors.*;
 import static view.ResultView.printCars;
 
 public class RacingGame {
@@ -23,12 +27,12 @@ public class RacingGame {
 
     private void makeCar() {
         String[] split = carNames.split(",");
-        carList = Car.getCar(split);
+        carList = Car.createCar(split);
     }
 
     public void race() {
         List<Integer> ranNumList = RandomGenerator.makeRanNumList(tryNo);
-        carList = Car.updateCarList(carList, ranNumList);
+        Race.updateCarByNum(carList, ranNumList);
         gameCount++;
     }
 
@@ -41,6 +45,10 @@ public class RacingGame {
     }
 
     public List<String> getWinners() {
-        return Car.getWinnerName(carList);
+        Race race = new Race(carList);
+        return race.getWinner()
+                .stream()
+                .map(Car::getName)
+                .collect(toList());
     }
 }

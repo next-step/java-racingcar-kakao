@@ -7,24 +7,25 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
+    private static int CUSTOM_DELIMITER_GROUPINDEX = 1;
+    private static int TEXT_GROUPINDEX = 2;
+    private static Matcher matcher = null;
 
-    public static int splitAndSum(String text) {
-        if (text == null || text.isEmpty()) {
-            return 0;
-        }
-        return sum(toInts(split(text)));
+
+    public static int sumProcess(String[] strList) {
+        return sum(toInts(strList));
     }
 
+    public static String[] split(String text) {
+        if (text == null || text.isEmpty()) {
+            return new String[]{"0"};
+        }
 
-    private static String[] split(String text) {
-        int CUSTOM_DELIMITER_GROUPINDEX = 1;
-        int TEXT_GROUPINDEX = 2;
+        matcher = Pattern.compile("//(.)\n(.*)").matcher(text);
 
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
-
-        if (m.find()) {
-            String customDelimiter = m.group(CUSTOM_DELIMITER_GROUPINDEX) + "|,|;";
-            return m.group(TEXT_GROUPINDEX).split(customDelimiter);
+        if (matcher.find()) {
+            String customDelimiter = matcher.group(CUSTOM_DELIMITER_GROUPINDEX) + "|,|;";
+            return matcher.group(TEXT_GROUPINDEX).split(customDelimiter);
         }
 
         return text.split(",|;");
