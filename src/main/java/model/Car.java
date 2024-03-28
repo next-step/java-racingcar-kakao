@@ -9,6 +9,7 @@ import static java.util.Arrays.*;
 import static java.util.stream.Collectors.toList;
 
 public class Car {
+    private static HashSet<String> DISTINCT_NAME_SET = new HashSet<>();
     public static final int START_SCORE = 1;
     private int score;
     private final String name;
@@ -34,17 +35,16 @@ public class Car {
     }
 
     public void validate(String str) {
-        String[] carNameList = str.split(",");
-        HashSet<String> checker = new HashSet<>();
+        validateCarNameLength(str);
+        validateCarNameDuplicate(str);
+    }
 
-        for (String carName : carNameList) {
-            validateCarNameLength(carName);
-            checker.add(carName);
+    private void validateCarNameDuplicate(String str) {
+        if (DISTINCT_NAME_SET.contains(str)) {
+            throw new IllegalArgumentException("동일 이름은 사용 불가능합니다.");
         }
 
-        if (checker.size() != carNameList.length) {
-            throw new IllegalArgumentException("동일한 차량 이름은 불가능합니다.");
-        }
+        DISTINCT_NAME_SET.add(str);
     }
 
     private void validateCarNameLength(String str) {

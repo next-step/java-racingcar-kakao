@@ -35,4 +35,13 @@ public class CarTest {
             }).withMessage("차량 이름은 5자를 넘어서는 안됩니다.");
     }
 
+    @Test
+    void isGetCar_ShouldThrowIllegalArgumentExceptionWithDuplicateName(){
+        String carStr="a,a,a";
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> {
+                Car.getCar(carStr.split(","));
+            }).withMessage("동일 이름은 사용 불가능합니다.");
+    }
 }
