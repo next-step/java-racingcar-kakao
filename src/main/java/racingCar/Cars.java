@@ -1,59 +1,69 @@
 package racingCar;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
+    private static final String CAR_NAME_DELIMITER = ",";
+    public static final int DEFAULT_POSITION = 0;
 
-	private final List<Car> cars=new ArrayList<>();
+    private final List<Car> cars;
 
-	public Cars(String s) {
-		String[] carNames = s.split(",");
-		for(String carName : carNames){
-			Car car=new Car(carName);
-			this.cars.add(car);
-		}
-	}
 
-	public List<String> getCarNames() {
-		return cars.stream()
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
+    public Cars(String s) {
+        this(Arrays.asList(s.split(CAR_NAME_DELIMITER)));
+    }
 
-	public void move(NumberGenerator generator) {
-		for(Car car : cars) {
-			car.move(generator.generateNumber());
-		}
-	}
+    public Cars(List<String> carNames) {
+        validateNotDuplicated(carNames);
+        this.cars = carNames.stream().map(Car::new).collect(Collectors.toList());
+    }
 
-	public List<Integer> getCarPositions() {
-		return cars.stream()
-			.map(Car::getPosition)
-			.collect(Collectors.toList());
-	}
+    private void validateNotDuplicated(List<String> carNames) {
+        if (carNames.size() != carNames.stream().distinct().count()) {
+            throw new IllegalArgumentException("중복된 자동차 이름이 존재합니다.");
+        }
+    }
 
-	public List<String> getWinners() {
-		int maxPosition = getMaxPosition();
+    public List<String> getCarNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 
-		return cars.stream()
-			.filter(car -> car.getPosition() == maxPosition)
-			.map(Car::getName)
-			.collect(Collectors.toList());
-	}
+    public void move(NumberGenerator generator) {
+        for (Car car : cars) {
+            car.move(generator.generateNumber());
+        }
+    }
 
-	private int getMaxPosition() {
-		return cars.stream()
-			.mapToInt(Car::getPosition)
-			.max()
-			.orElse(0);
-	}
+    public List<Integer> getCarPositions() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .collect(Collectors.toList());
+    }
 
-	@Override
-	public String toString() {
-		return cars.stream()
-			.map(Car::toString)
-			.collect(Collectors.joining(System.lineSeparator()));
-	}
+    public List<String> getWinners() {
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(DEFAULT_POSITION);
+    }
+
+    @Override
+    public String toString() {
+        return cars.stream()
+                .map(Car::toString)
+                .collect(Collectors.joining(System.lineSeparator()));
+    }
 }
