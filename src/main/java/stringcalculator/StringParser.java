@@ -9,9 +9,11 @@ import java.util.stream.Collectors;
 
 public class StringParser {
 	private static final String DEFAULT_DELIMITER = ":|,";
+	private static final Pattern CUSTOM_DELIMITER_INPUT_PATTERN = Pattern.compile("//(.)\n(.*)");
+
 	public static List<Integer> parse(String input) {
 		String delimiter = DEFAULT_DELIMITER;
-		Matcher matcher = Pattern.compile("//(.)\n(.*)").matcher(input);
+		Matcher matcher = CUSTOM_DELIMITER_INPUT_PATTERN.matcher(input);
 		if (matcher.find()) {
 			delimiter += "|" + matcher.group(1);
 			input = matcher.group(2);
