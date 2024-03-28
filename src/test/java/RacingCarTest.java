@@ -4,7 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.model.RacingCar;
-import racingcar.model.RacingCars;
+import racingcar.model.RacingGame;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,13 +48,13 @@ public class RacingCarTest {
     @Test
     void determineWinnerTest() {
         List<String> racingCarNames = Arrays.asList("car1", "car2", "car3");
-        RacingCars racingCars = new RacingCars(racingCarNames);
+        RacingGame racingGame = new RacingGame(racingCarNames);
 
-        racingCars.getRacingCars().get(0).getNumAndMove(9);
-        racingCars.getRacingCars().get(1).getNumAndMove(2);
-        racingCars.getRacingCars().get(2).getNumAndMove(8);
+        racingGame.getRacingCars().get(0).getNumAndMove(9);
+        racingGame.getRacingCars().get(1).getNumAndMove(2);
+        racingGame.getRacingCars().get(2).getNumAndMove(8);
 
-        List<RacingCar> winners = racingCars.findWinners();
+        List<RacingCar> winners = racingGame.findWinners();
 
         assertEquals(2, winners.size());
         assertEquals("car1", winners.get(0).getName());

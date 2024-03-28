@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class RacingCarView {
+public class RacingGameView {
 
     Scanner sc;
 
-    public RacingCarView() {
+    public RacingGameView() {
         sc = new Scanner(System.in);
     }
 

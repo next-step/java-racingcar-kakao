@@ -17,6 +17,11 @@ public class RacingCar {
         this.name = name;
     }
 
+    private static int makeRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(9);
+    }
+
     public void getNumAndMove(int num) {
         if (isMove(num)) {
             this.moves++;
@@ -40,18 +45,13 @@ public class RacingCar {
         return moves;
     }
 
-    public boolean isAt(int moves){
+    public boolean isAt(int moves) {
         return this.moves == moves;
     }
-
+    
     private void validateName(String name) {
         if (name == null || name.isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("자동차 이름이 적절하지 않습니다.");
         }
-    }
-
-    private static int makeRandomNumber() {
-        Random random = new Random();
-        return random.nextInt(9);
     }
 }
