@@ -1,6 +1,5 @@
 package racing;
 
-import racing.config.Constant;
 import racing.controller.Controller;
 import racing.domain.CarEngine;
 import racing.domain.CarFactory;
