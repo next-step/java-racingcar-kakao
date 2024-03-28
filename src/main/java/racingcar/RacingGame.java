@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import racingcar.dto.CarState;
 
@@ -29,7 +30,10 @@ public class RacingGame {
 		ui.printResultHeader();
 		for (int i = 0; i < rounds; i++) {
 			playRound();
-			ui.printCarStates(cars.stream().map(Car::getState).toList());
+			List<CarState> carStates = cars.stream()
+					.map(Car::getState)
+					.collect(Collectors.toList());
+			ui.printCarStates(carStates);
 		}
 
 		ui.printWinners(findWinner());
@@ -47,7 +51,7 @@ public class RacingGame {
 			String carNameInput = ui.getCarNames();
 			carNames = Arrays.stream(carNameInput.split(","))
 					.map(String::trim)
-					.toList();
+					.collect(Collectors.toList());
 			isValid = isValidCarNames(carNames);
 		}
 
@@ -84,7 +88,7 @@ public class RacingGame {
 	private boolean isEmptyCarNames(List<String> carNames) {
 		List<String> emptyCarNames = carNames.stream()
 				.filter(String::isEmpty)
-				.toList();
+				.collect(Collectors.toList());
 
 		if (!emptyCarNames.isEmpty()) {
 			ui.printError(ErrorType.EMPTY_CAR_NAME);
@@ -97,7 +101,7 @@ public class RacingGame {
 	private boolean isLongCarNames(List<String> carNames) {
 		List<String> longCarNames = carNames.stream()
 				.filter(name -> name.length() > MAX_CAR_NAME_LENGTH)
-				.toList();
+				.collect(Collectors.toList());
 		
 		if (!longCarNames.isEmpty()) {
 			ui.printError(ErrorType.TOO_LONG_CAR_NAME);
@@ -129,7 +133,7 @@ public class RacingGame {
 	private boolean hasNonNumericalCharacter(String round) {
 		List<String> nonNumericalCharacters = Arrays.stream(round.split(""))
 				.filter(s -> !Character.isDigit(s.charAt(0)))
-				.toList();
+				.collect(Collectors.toList());
 
 		if (!nonNumericalCharacters.isEmpty()){
 			ui.printError(ErrorType.NON_NUMERICAL_ROUND);
@@ -160,6 +164,6 @@ public class RacingGame {
 		return cars.stream()
 			.filter(car -> winner.comparePosition(car) == 0)
 			.map(Car::getState)
-			.toList();
+				.collect(Collectors.toList());
 	}
 }

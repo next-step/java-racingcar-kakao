@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringParser {
 	private static final String DEFAULT_DELIMITER = ":|,";
@@ -16,7 +17,10 @@ public class StringParser {
 			input = matcher.group(2);
 		}
 
-		List<String> numbers = Arrays.stream(input.split(delimiter)).map(String::trim).toList();
+		List<String> numbers = Arrays.stream(input.split(delimiter))
+				.map(String::trim)
+				.collect(Collectors.toList());
+
 		return tokenize(numbers);
 	}
 
