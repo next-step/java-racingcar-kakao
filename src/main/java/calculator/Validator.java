@@ -4,7 +4,7 @@ public class Validator {
 
     private static final int NUMBER_ZERO = 0;
 
-    public static int check(String token){
+    public static int isPositiveInteger(String token){
         int num = 0;
         try {
             num = Integer.parseInt(token);

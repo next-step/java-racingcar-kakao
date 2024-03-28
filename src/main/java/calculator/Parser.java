@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    private final Pattern pattern = Pattern.compile("//(.)\n(.*)");
+    private static final Pattern pattern = Pattern.compile("//(.)\n(.*)");
 
     public String[] split(String input) {
 
