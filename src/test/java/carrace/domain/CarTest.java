@@ -1,6 +1,5 @@
-package carrace;
+package carrace.domain;
 
-import carrace.domain.Car;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +22,7 @@ public class CarTest {
     void moveForward(int moveCount) {
         Car car = new Car("pobi");
         for (int i = 0; i < moveCount; i++) {
-            car.moveForward();
+            car = car.moveForward();
         }
         assertThat(car.getPosition()).isEqualTo(1 + moveCount);
     }

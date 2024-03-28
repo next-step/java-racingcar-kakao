@@ -1,6 +1,7 @@
 package carrace;
 
-import carrace.domain.Car;
+import carrace.domain.Cars;
+import carrace.domain.RaceResult;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -20,18 +21,19 @@ public class CarRaceView {
         return Integer.parseInt(scanner.nextLine());
 	}
 
-	public void displayResultStartMessage() {
+	public void displayRoundResult(RaceResult raceResult) {
 		System.out.println("\n실행 결과");
+		List<Cars> roundCars = raceResult.getRoundCars();
+		for (Cars cars : roundCars) {
+			displayRound(cars);
+		}
+		System.out.printf("%s가 최종 우숭했습니다.", String.join(", ", raceResult.getWinnerNames()));
 	}
 
-	public void displayRoundResult(List<Car> cars) {
-		cars.stream()
+	private void displayRound(Cars cars) {
+		cars.getCars().stream()
 			.map(car -> car.getName() + " : " + "-".repeat(car.getPosition()))
 			.forEach(System.out::println);
 		System.out.println();
-	}
-
-	public void displayWinnerNames(List<String> winnerNames) {
-		System.out.printf("%s가 최종 우숭했습니다.", String.join(", ", winnerNames));
 	}
 }

@@ -1,19 +1,18 @@
-package carrace;
+package carrace.domain;
 
-import carrace.domain.CarMoveRule;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CarMoveRuleTest {
+public class DefaultCarMoveRuleTest {
 
     @DisplayName("숫자값이 4 이상이면 움직이고, 4 미만이면 움직이지 않는다")
     @CsvSource({"0, false", "3, false", "4, true", "9, true"})
     @ParameterizedTest
     void moveIfOver4Inclusive(int value, boolean move) {
-        CarMoveRule carMoveRule = new CarMoveRule(() -> value);
+        DefaultCarMoveRule carMoveRule = new DefaultCarMoveRule(() -> value);
         boolean result = carMoveRule.isMovable();
         assertThat(result).isEqualTo(move);
     }

@@ -1,12 +1,22 @@
 package carrace.domain;
 
+import java.util.Objects;
+
 public class Car {
 
+    private static final int DEFAULT_POSITION = 1;
+    private static final int MOVE_AMOUNT = 1;
+
     private final String name;
-    private int position = 1;
+    private final int position;
 
     public Car(String name) {
+        this(name, DEFAULT_POSITION);
+    }
+
+    private Car(String name, int position) {
         this.name = name;
+        this.position = position;
         validateName();
     }
 
@@ -28,7 +38,20 @@ public class Car {
         return position;
     }
 
-    public void moveForward() {
-        position++;
+    public Car moveForward() {
+        return new Car(name, position + MOVE_AMOUNT);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

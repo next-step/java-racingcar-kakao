@@ -14,37 +14,15 @@ public class CarRaceController {
 	}
 
 	public void play() {
-		CarRace carRace = initCarRace();
-		Round round = initRound();
-		proceedRounds(carRace, round);
-		endRace(carRace);
+		CarRace carRace = new CarRace(new DefaultCarMoveRule(new RandomNumberGenerator()), createCars(view.getCarNames()));
+		Round round = new Round(view.getCarRaceRound());
+		RaceResult raceResult = carRace.race(round);
+		view.displayRoundResult(raceResult);
 	}
 
-	private CarRace initCarRace() {
-		return new CarRace(new CarMoveRule(new RandomNumberGenerator()), createCars(view.getCarNames()));
-	}
-
-	private List<Car> createCars(List<String> carNames) {
-		return carNames.stream().map(Car::new).collect(Collectors.toUnmodifiableList());
-	}
-
-	private Round initRound() {
-		return new Round(view.getCarRaceRound());
-	}
-
-	private void proceedRounds(CarRace carRace, Round round) {
-		view.displayResultStartMessage();
-		view.displayRoundResult(carRace.getCars());
-		for (int r = 0; r < round.getValue(); r++) {
-			carRace.runRound();
-			view.displayRoundResult(carRace.getCars());
-		}
-	}
-
-	private void endRace(CarRace carRace) {
-		view.displayWinnerNames(carRace.getWinningCars()
-				.stream()
-				.map(Car::getName)
+	private Cars createCars(List<String> carNames) {
+		return new Cars(carNames.stream()
+				.map(Car::new)
 				.collect(Collectors.toUnmodifiableList()));
 	}
 }
